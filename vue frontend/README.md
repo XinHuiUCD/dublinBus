@@ -1,4 +1,4 @@
-# vue-ts
+# dbus
 
 ## Project setup
 ```
