@@ -1,0 +1,30 @@
+{
+  "name": "vue-browser-geolocation",
+  "version": "1.8.0",
+  "description": "simple geolocation plugin",
+  "author": {
+    "name": "Marco Boffo",
+    "email": "marcoboffo.waves@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scaccogatto/vue-geolocation.git"
+  },
+  "main": "dist/vue-geolocation.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack --config webpack.config.js",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "vue": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-latest": "^6.16.0",
+    "mocha": "^5.2.0",
+    "mocha-jsdom": "1.1.0",
+    "webpack": "^2.3.2"
+  }
+}
