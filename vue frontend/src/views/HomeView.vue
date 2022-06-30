@@ -11,6 +11,9 @@
                 <WeatherDisplay />
             </div>
         </div>
+		<footer style="float: right;margin-top: 10px;">
+			© 2022: XpressBusEgineering- Team 10
+		</footer>
     </ContentBase>
 </template>
 

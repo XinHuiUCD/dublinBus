@@ -18,13 +18,6 @@
 							</div>
 						</div>
 					</li>
-				</ul>
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<el-switch v-model="dark_mode" class="mb-2"
-							style="--el-switch-on-color: #000000; --el-switch-off-color: #eaeaea; display: block;float: right;margin-top: 10px"
-							active-text="🌛" inactive-text="🌞" />
-					</li>
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
@@ -36,11 +29,59 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" :to="{ name: 'login' }">Log out</router-link>
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'twitter' }">Twitter
+								</router-link>
 							</div>
 						</div>
 					</li>
 				</ul>
+				<ul class="navbar-nav" v-if="!$store.state.user.is_login">
+					
+					<!-- dark_mode -->
+					<li class="nav-item">
+						<el-switch class="mb-2" v-model="dark_mode"
+							style="--el-switch-on-color: #000000; --el-switch-off-color: #eaeaea; display: block;float: right;margin-top: 10px"
+							active-text="🌛" inactive-text="🌞" />
+					</li>
+					
+					<li class="nav-item">
+						<div class="card">
+							<div class="card-body">
+								<router-link class="nav-link active" :to="{ name: 'login' }">Log in</router-link>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="card">
+							<div class="card-body">
+								<router-link class="nav-link active" :to="{ name: 'register' }">Sign up</router-link>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul class="navbar-nav" v-else>
+					
+					<!-- dark_mode -->
+					<li class="nav-item">
+						<el-switch class="mb-2" v-model="dark_mode"
+							style="--el-switch-on-color: #000000; --el-switch-off-color: #eaeaea; display: block;float: right;margin-top: 10px"
+							active-text="🌛" inactive-text="🌞" />
+					</li>
+					
+					<li class="nav-item">
+						<router-link class="nav-link active" :to="{ name: 'home' }">
+							{{ $store.state.user.username }}
+						</router-link>
+					</li>
+					<li class="nav-item">
+						<div class="card">
+							<div class="card-body">
+								<a class="nav-link active" style="cursor: pointer" @click="logout">Exit</a>
+							</div>
+						</div>
+					</li>
+				</ul>
+
 			</div>
 		</div>
 	</nav>
@@ -52,13 +93,14 @@
 		ref
 	} from 'vue'
 
-	const dark_mode = ref(false)
+	const visible = ref(false)
+
 
 	export default {
 		name: "NavBar",
-		data(){
-			return{
-				dark_mode
+		data() {
+			return {
+				visible,
 			}
 		}
 	};

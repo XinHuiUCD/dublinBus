@@ -11,6 +11,7 @@
 					<el-aside width="300px">
 						<h3>Rating for us!</h3>
 						<br />
+						<!-- Rating star -->
 						<span class="content">User Experience</span>
 						<br />
 						<el-rate v-model="value" :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
@@ -43,15 +44,36 @@
 					</el-aside>
 
 					<el-container>
+
 						<el-main>
 							<h3>Our Members</h3>
+							<!-- carousel -->
 							<el-carousel :interval="3000" type="card" height="200px">
 								<el-carousel-item v-for="item in 4" :key="item">
 									<h3 text="2xl" justify="center">{{ item }}</h3>
 								</el-carousel-item>
 							</el-carousel>
+
+							<!-- form -->
+							<el-descriptions title="Contect Us" :column="3" border>
+								<el-descriptions-item label="Customer Service" label-align="right" align="center"
+									label-class-name="my-label" class-name="my-content" width="150px">Cheng Zhang
+								</el-descriptions-item>
+								<el-descriptions-item label="Telephone" label-align="right" align="center">(01)7167777
+								</el-descriptions-item>
+								<el-descriptions-item label="Place" label-align="right" align="center">Dublin
+								</el-descriptions-item>
+								<el-descriptions-item label="Remarks" label-align="right" align="center">
+									<el-tag size="small">School</el-tag>
+								</el-descriptions-item>
+								<el-descriptions-item label="Address" label-align="right" align="center">University
+									College Dublin, Belfield, Dublin 4</el-descriptions-item>
+							</el-descriptions>
 						</el-main>
-						<el-footer>Footer</el-footer>
+
+						<el-footer>
+							<p style="float: right;margin-top: 10px;">© 2022: XpressBusEgineering- Team 10</p>
+						</el-footer>
 					</el-container>
 
 				</el-container>
@@ -115,5 +137,13 @@
 
 	.el-carousel__item:nth-child(2n + 1) {
 		background-color: #d3dce6;
+	}
+
+	.my-label {
+		background: var(--el-color-success-light-9);
+	}
+
+	.my-content {
+		background: var(--el-color-danger-light-9);
 	}
 </style>

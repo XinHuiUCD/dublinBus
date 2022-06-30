@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+	"resolveJsonModule": true,
+	"allowJs": true,
     "target": "es5",
     "module": "esnext",
     "strict": true,
@@ -12,6 +14,7 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
     "sourceMap": true,
+	"allowJs": true,
     "baseUrl": ".",
     "types": [
       "webpack-env"
