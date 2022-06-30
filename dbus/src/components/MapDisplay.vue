@@ -1,56 +1,116 @@
 <template>
-    <GoogleMap api-key="AIzaSyCrhyaaRpjY62Rs5XiT91Vfwv50ySu-FNo" style="height: 700px;" :center="center" :zoom="15">
-        <Marker :options="{ position: center }">
-            <InfoWindow>
-                <div id="content">
-                    <div id="siteNotice"></div>
-                    <h1 id="firstHeading" class="firstHeading">Dublin Bus</h1>
-                    <div id="bodyContent">
-                        <p><b>Bus Stop Info: </b>123</p>
-                    </div>
-                </div>
-            </InfoWindow>
-        </Marker>
-    </GoogleMap>
-    {{$data}}
+   
+    <GMapMap
+      :center="center"
+      :zoom="15"
+      map-type-id="terrain"
+      style="width: 100%; height: 700px"
+      >
+
+<div style="padding-top: 10px;">
+<button type="button" @click="hideAllMarkers()" class="btn btn-outline-info">Hide/Show Makers</button>
+</div>
+
+
+
+    <template v-for="marker in Hellodata " :key="marker.stop_id">
+        <!-- <MarkerCluster>     -->
+  <GMapMarker 
+    :position="{ lat: marker.stop_lat, lng: marker.stop_lon}"
+    :visible="marker.visibility"
+    :title="marker.stop_name"
+    :clickable="true"
+    @click="hideAllMarkers()"
+
+    />
+        <!-- </MarkerCluster> -->
+    </template>
+    
+  </GMapMap>
+
+  
+       
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import {
-    GoogleMap,
-    Marker,
-    InfoWindow
-} from 'vue3-google-map'
 
+
+
+<script>
+    var clicked = true;
+
+
+// import { defineComponent } from 'vue'
+
+
+// import { Marker, MarkerCluster  } from "vue3-google-map";
+
+    
 import markerLocations from "./json/BusStopsLongLatCSV.json"
+           
+export default{
 
+  name: "DrawGoogleMap",
+  data() {
+    return {
+      center: { 
+          lat: 39.7837304, 
+          lng: -100.4458825 
+      },
+      currentLocation: null,
+      Hellodata: markerLocations,
 
-export default defineComponent({
-    components: {
-        GoogleMap,
-        Marker,
-        InfoWindow
+    };
+  },
+ 
+  mounted() {
+    this.setLocationLatLng();
+  },
+ 
+  methods: {
+    setPlace(loc) {
+      this.currentLocation = loc;
     },
-    setup() {
-        const center = {
-            lat: 53.349723,
-            lng: -6.260278
-        }
-
-        return {
-            center
-        }
-    },
-    data(){
-        return{
-            data: markerLocations
-
-
-        }
+    setLocationLatLng: function() {
+        navigator.geolocation.getCurrentPosition(geolocation => {
+          this.center = {
+            lat: geolocation.coords.latitude,
+            lng: geolocation.coords.longitude
+          };
+        });
         
-    },
-})
+        
+    }, 
+    hideAllMarkers() {
+        if (clicked) {
+            for(let i=0;i<this.Hellodata.length;i++){
+    
+
+            this.Hellodata[i]["visibility"] = false;
+    
+            }
+             clicked = false;
+
+        }else {
+            for(let i=0;i<this.Hellodata.length;i++){
+    
+
+            this.Hellodata[i]["visibility"] = true;
+    
+        }
+            clicked = true;
+
+
+}
+}
+
+
+    
+     
+
+  }
+  
+};  
+
 </script>
 
 <style scoped>

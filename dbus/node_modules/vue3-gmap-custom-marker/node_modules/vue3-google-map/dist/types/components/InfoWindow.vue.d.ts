@@ -1,0 +1,16 @@
+/// <reference types="google.maps" />
+import { PropType } from "vue";
+declare const _default: import("vue").DefineComponent<{
+    options: {
+        type: PropType<google.maps.InfoWindowOptions>;
+        required: true;
+    };
+}, {
+    infoWindow: import("vue").Ref<google.maps.InfoWindow | undefined>;
+    infoWindowRef: import("vue").Ref<HTMLElement | undefined>;
+    hasSlotContent: import("vue").ComputedRef<boolean | undefined>;
+    mapTilesLoaded: import("vue").Ref<boolean>;
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, string[], string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<{
+    options: google.maps.InfoWindowOptions;
+} & {}>, {}>;
+export default _default;

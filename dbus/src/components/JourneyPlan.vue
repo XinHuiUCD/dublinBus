@@ -54,7 +54,7 @@ export default{
             address: ""
         }
     },
-// for showing location users address
+
     mounted() {
         // eslint-disable-next-line
         var autocomplete = new google.maps.places.Autocomplete(
