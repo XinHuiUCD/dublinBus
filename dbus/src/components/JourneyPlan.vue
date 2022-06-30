@@ -5,21 +5,23 @@
 				<span style="color: black">Plan Your Journery</span>&nbsp;
 				<span style="color: gray">With DublinBus</span>
 			</h1>
+         
 			<div id="function">
+                
 				<!-- Your Position -->
 				<div class="input-group mb-3">
 					<button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="locatorButtonPressed">🔍</button>
-					<input type="text" class="form-control" placeholder="Your Position" v-model="address"
-                id="autocomplete"
-                ref="autocomplete"
+					<input type="text" class="form-control" placeholder="Your Position" v-model="address" id="autocomplete" ref="autocomplete"
 						aria-label="Example text with button addon" aria-describedby="button-addon1" show-clear>
 				</div>
 
 
 				<!-- Your Destination -->
 				<div class="input-group mb-3">
-					<button class="btn btn-outline-secondary" type="button" id="button-addon2">🔍</button>
-					<input type="text" class="form-control" placeholder="Your Destination"
+					<button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="locatorButtonPressedTwo">🔍</button>
+                    
+					<input type="text" class="form-control" placeholder="Your Destination" v-model="addresstwo" ref="autocomplete2"
+
 						>
 				</div>
 
@@ -46,12 +48,15 @@
 <script>
     
 import axios from 'axios'
+// import VueGoogleAutocomplete from "vue-google-autocomplete"
+
 
 
 export default{
     data() {
         return {
-            address: ""
+            address: "",
+            addresstwo: ""
         }
     },
 
@@ -59,6 +64,19 @@ export default{
         // eslint-disable-next-line
         var autocomplete = new google.maps.places.Autocomplete(
       this.$refs["autocomplete"],
+      {
+                // eslint-disable-next-line
+        bounds: new google.maps.LatLngBounds(
+                    // eslint-disable-next-line
+          new google.maps.LatLng(53.3498, -6.2603)
+        ),
+      
+      }
+      
+    );
+            // eslint-disable-next-line
+    var autocomplete2 = new google.maps.places.Autocomplete(
+      this.$refs["autocomplete2"],
       {
                 // eslint-disable-next-line
         bounds: new google.maps.LatLngBounds(
@@ -90,12 +108,47 @@ export default{
                 console.log('your browser does not support geolocation')
             }
         }, 
+        locatorButtonPressedTwo() {
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(position => {
+                    this.getAddressFromTwo(position.coords.latitude, position.coords.longitude);
+
+                    this.showUserLocationOnTheMap(
+                        position.coords.latitude, position.coords.longitude
+                        );
+                    
+                },
+                error => {
+                    console.log(error.message);
+                }
+                );
+
+            } else {
+                console.log('your browser does not support geolocation')
+            }
+        }, 
         getAddressFrom(lat, long){
             axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + long + "&key=AIzaSyC9SSiHS7Va-YfYv3RojyCeVva48AHKSqQ").then(response => {
                 if(response.data.error_message){
                     console.log(response.data.error_message);
                 } else {
                     this.address = response.data.results[0].formatted_address
+                    // console.log(response.data.results[0].formatted_address);
+
+                }
+
+            })
+            .catch(error => {
+                console.log(error.message);
+            });
+
+        },
+        getAddressFromTwo(lat, long){
+            axios.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + long + "&key=AIzaSyC9SSiHS7Va-YfYv3RojyCeVva48AHKSqQ").then(response => {
+                if(response.data.error_message){
+                    console.log(response.data.error_message);
+                } else {
+                    this.addresstwo = response.data.results[0].formatted_address
                     // console.log(response.data.results[0].formatted_address);
 
                 }
@@ -126,33 +179,13 @@ export default{
     }
 
 };
-	/* eslint-disable */
-// 	import {
-// defineComponent,
-// 		ref
-// 	} from 'vue'
-// 	import {
-// 		Calendar,
-// 		Search
-// 	} from '@element-plus/icons-vue'
-
-// 	const ur_position = ref('')
-// 	const ur_destination = ref('')
-// 	const date = ref('')
-
 
 
 
 </script>
 
 <style scoped>
-	.enter {
-		width: 80%;
-		height: 40px;
-		border-radius: 8px;
-		margin-top: 20px;
-	}
-	::-ms-clear {
-	  display: none;
-	}
+	
+
+    
 </style>
