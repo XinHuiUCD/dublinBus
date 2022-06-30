@@ -18,13 +18,6 @@
 							</div>
 						</div>
 					</li>
-				</ul>
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<el-switch v-model="dark_mode" class="mb-2"
-							style="--el-switch-on-color: #000000; --el-switch-off-color: #eaeaea; display: block;float: right;margin-top: 10px"
-							active-text="🌛" inactive-text="🌞" />
-					</li>
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
@@ -33,10 +26,47 @@
 							</div>
 						</div>
 					</li>
+				</ul>
+				<ul class="navbar-nav" v-if="!$store.state.user.is_login">
+					<li class="nav-item">
+						<el-switch v-model="dark_mode" class="mb-2"
+							style="--el-switch-on-color: #000000; --el-switch-off-color: #eaeaea; display: block;float: right;margin-top: 10px"
+							active-text="🌛" inactive-text="🌞" />
+					</li>
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" :to="{ name: 'login' }">Log out</router-link>
+								<router-link class="nav-link active" :to="{ name: 'login' }">Log in</router-link>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="card">
+							<div class="card-body">
+								<router-link class="nav-link active" :to="{ name: 'register' }">Sign up</router-link>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul class="navbar-nav" v-else>
+					<li class="nav-item">
+						<el-switch v-model="dark_mode" class="mb-2"
+							style="--el-switch-on-color: #000000; --el-switch-off-color: #eaeaea; display: block;float: right;margin-top: 10px"
+							active-text="🌛" inactive-text="🌞" />
+					</li>
+					<li class="nav-item">
+						<div class="card showname">
+							<div class="card-body">
+								<router-link class="nav-link active" :to="{ name: 'home' }">
+									Hi, {{ $store.state.user.username }}
+								</router-link>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="card">
+							<div class="card-body">
+								<a class="nav-link active" style="cursor: pointer" @click="logout">Exit</a>
 							</div>
 						</div>
 					</li>
@@ -47,34 +77,48 @@
 </template>
 
 <script lang="ts">
-	/* eslint-disable */
-	import {
-		ref
-	} from 'vue'
+/* eslint-disable */
+import {
+	ref
+} from 'vue';
+import { useStore } from 'vuex';
 
-	const dark_mode = ref(false)
+const dark_mode = ref(false)
 
-	export default {
-		name: "NavBar",
-		data(){
-			return{
-				dark_mode
-			}
+export default {
+	name: "NavBar",
+	data() {
+		return {
+			dark_mode
 		}
-	};
+	},
+	setup() {
+		const store = useStore();
+		const logout = () => {
+			store.commit("logout");
+		};
+
+		return {
+			logout,
+		}
+	},
+};
 </script>
 
-
 <style scoped>
-	img {
-		width: 200px;
-	}
+img {
+	width: 200px;
+}
 
-	.card {
-		margin-left: 20px;
-	}
+.card {
+	margin-left: 20px;
+}
 
-	.card-body {
-		padding: 2px 8px;
-	}
+.card-body {
+	padding: 2px 8px;
+}
+
+.showname {
+	border: none;
+}
 </style>
