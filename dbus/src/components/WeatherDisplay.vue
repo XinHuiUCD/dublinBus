@@ -4,14 +4,15 @@
             <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="&nbsp; Current Weather" name="1">
                     <div>
-                        <img src="https://z4a.net/images/2022/06/23/night.png" style="width: 200px;">
+                        <img src="http://openweathermap.org/img/w/04n.png" style="width: 100px;">
 
-                        <h1>Hello World</h1>
-                        <!-- <template v-for="index in result " :key="index">
-                        <div>{{index.coord.lon}}</div>
-                        </template> -->
-                        {{result.main.temp}}
-                    </div>
+                         <div><p>Current Temp {{result.main.temp}}°<span>C</span></p></div>
+                          <div><p>Feels Like {{result.main.feels_like}}°<span>C</span></p></div>
+                           <div>{{result.weather[0].description}}</div>
+
+
+                        
+                    </div> 
                 </el-collapse-item>
                 <el-collapse-item title="&nbsp; Today's Weather" name="2">
                     <div>
