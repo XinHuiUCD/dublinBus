@@ -22,7 +22,10 @@ from django.conf.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
 
+<<<<<<< HEAD
 >>>>>>> 7a0517c744007e9998f720044138a9fdea369890:myDublinBus/myDublinBus/urls.py
+=======
+>>>>>>> 7704d1cdf6da33d631aa6428db85189164dc1004
 
 urlpatterns = [
     path('', include('xpressbus.urls')),

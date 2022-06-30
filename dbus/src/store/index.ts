@@ -1,6 +1,7 @@
 import { createStore } from 'vuex'
 import ModuleUser from './user.js'
 
+
 export default createStore({
   state: {
   },
@@ -14,3 +15,5 @@ export default createStore({
     user: ModuleUser,
   }
 });
+
+

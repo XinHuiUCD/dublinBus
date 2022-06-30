@@ -27,11 +27,15 @@ SECRET_KEY = 'django-insecure-akpxvatg@2n14shwrf7#1+8=*_79_5jz=9ad9=20h=iv9#mj!&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+<<<<<<< HEAD
 <<<<<<< HEAD:dublinBus/dublinBus/settings.py
 ALLOWED_HOSTS = ["ipa-011.ucd.ie", "127.0.0.1"]
 =======
 ALLOWED_HOSTS = []
 >>>>>>> 7a0517c744007e9998f720044138a9fdea369890:myDublinBus/myDublinBus/settings.py
+=======
+ALLOWED_HOSTS = []
+>>>>>>> 7704d1cdf6da33d631aa6428db85189164dc1004
 
 
 # Application definition
