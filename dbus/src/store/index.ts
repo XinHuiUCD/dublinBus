@@ -1,6 +1,5 @@
 import { createStore } from 'vuex'
 import ModuleUser from './user.js'
-import ModuleWeather from './weather.js'
 
 
 export default createStore({
@@ -14,7 +13,6 @@ export default createStore({
   },
   modules: {
     user: ModuleUser,
-    weather: ModuleWeather,
   }
 });
 
