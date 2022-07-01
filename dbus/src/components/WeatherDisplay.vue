@@ -3,11 +3,11 @@
         <div class="demo-collapse">
             <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="&nbsp; Current Weather" name="1">
-                    <div>
-                        <img src="http://openweathermap.org/img/w/04n.png" style="width: 100px;">
+                    <div style="font-weight: bold;  font-family: 'Actor';font-size: 18px; text-align:center; ">
+                   <img src="http://openweathermap.org/img/w/04n.png" style="width: 100px;">
 
-                         <div><p>Current Temp {{result.main.temp}}°<span>C</span></p></div>
-                          <div><p>Feels Like {{result.main.feels_like}}°<span>C</span></p></div>
+                         <div><p>Temp: {{result.main.temp}}°<span>C</span></p></div>
+                          <div><p>Feels Like: {{result.main.feels_like}}°<span>C</span></p></div> 
                            <div>{{result.weather[0].description}}</div>
 
 
