@@ -3,15 +3,14 @@
         <div class="demo-collapse">
             <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="&nbsp; Current Weather" name="1">
-                    <div style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center; ">
+                    <div style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;      border:1px solid #999999; color:#6f6f6f; ">
 
-                        <p>Current Date & Time: {{currentDateTime()}}</p>
+                        <p style=" font-size:16px; position: relative; display: inline-block; height: auto;">Date & Time: {{currentDateTime()}}</p>
                         <div v-if="result">
                             <img src="http://openweathermap.org/img/w/10d.png" style="width: 100px;"> 
-
-                             <div><p>Temp: {{result.main.temp}}°<span>C</span></p></div> 
-                                <div><p>Feels Like: {{result.main.feels_like}}°<span>C</span></p></div> 
-                                <div>{{result.weather[0].description}}</div>     
+                            <div><p>Temp: {{result.main.temp}}°<span>C</span></p></div> 
+                            <div><p>Feels Like: {{result.main.feels_like}}°<span>C</span></p></div> 
+                            <div>{{result.weather[0].description}}</div>     
                         </div>
 
 
