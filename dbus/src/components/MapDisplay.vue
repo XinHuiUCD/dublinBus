@@ -22,10 +22,42 @@
     :visible="marker.visibility"
     :title="marker.stop_name"
     :clickable="true"
-    />
+    :icon="'https://img.icons8.com/fluency/48/000000/bus.png'"
+    @click="openMarker(marker.stop_id)"
+
+    >
+    <GMapInfoWindow
+            :closeclick="true"
+          @closeclick="openMarker(null)"
+          :opened="openedMarkerID === marker.stop_id"
+            
+          >
+
+           <div style="text-align: center;">
+              <h5>Real Time Information</h5>
+              <div>Stop Name: {{ marker.stop_name }} </div>
+              <table style=" margin: 0 auto;">
+                    <tr>
+                      <th>Bus Route</th>
+                      <th>Arrival</th>
+                    </tr>
+                    <tr>
+                      <td>145</td>
+                      <td>6 mins</td>
+                    </tr>
+                    <tr>
+                      <td>46a</td>
+                      <td>12 mins</td>
+                    </tr>
+              </table>
+            </div>
+            
+      </GMapInfoWindow>
+    </GMapMarker>
 
         <!-- </MarkerCluster> -->
     </template>
+    
     
   </GMapMap>
 
@@ -55,6 +87,14 @@ export default{
       },
       currentLocation: null,
       Hellodata: markerLocations,
+      openedMarkerID: null,
+
+
+      infoWindow: {
+          position: {lat: 0, lng: 0},
+          open: false,
+          template: ''
+        }
 
     };
   },
@@ -98,7 +138,11 @@ export default{
 
 
 }
-}
+}, 
+openMarker(id) {
+       this.openedMarkerID = id
+    }
+
 
 
     
