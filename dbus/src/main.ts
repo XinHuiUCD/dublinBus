@@ -21,6 +21,8 @@ const app = createApp(App).use(store).use(router)
 
 app.use(Vue3Geolocation)
 
+
+
 app.use(ElementPlus)
 
 app.use(VueGoogleMaps, {

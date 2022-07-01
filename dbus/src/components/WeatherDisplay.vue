@@ -3,12 +3,21 @@
         <div class="demo-collapse">
             <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="&nbsp; Current Weather" name="1">
-                    <div style="font-weight: bold;  font-family: 'Actor';font-size: 18px; text-align:center; ">
-                   <img src="http://openweathermap.org/img/w/04n.png" style="width: 100px;">
+                    <div style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center; ">
+                   <!-- <img src="http://openweathermap.org/img/w/04n.png" style="width: 100px;"> -->
 
-                         <div><p>Temp: {{result.main.temp}}°<span>C</span></p></div>
-                          <div><p>Feels Like: {{result.main.feels_like}}°<span>C</span></p></div> 
-                           <div>{{result.weather[0].description}}</div>
+                         <!-- <div><p>Temp: {{main.temp}}°<span>C</span></p></div> -->
+                          <!-- <div><p>Feels Like: {{result.main.feels_like}}°<span>C</span></p></div>  -->
+                           <!-- <div>{{result.weather[0].description}}</div> -->
+                           <!-- <div> {{new Date().toLocaleString()}}</div>  -->
+                           <p>Current Date & Time: {{currentDateTime()}}</p>
+                           <!-- {{result}} -->
+                        <div class="panel-body" v-for="d, index in result" :key="index">
+
+                                    <p>
+                                            {{d.temp}}
+                                    </p>
+                                </div>
 
 
                         
@@ -33,6 +42,7 @@
 /* eslint-disable */
 
 
+import axios from 'axios'
 
 import { result } from 'lodash';
 import { defineComponent } from 'vue'
@@ -44,12 +54,13 @@ import {
 
 const activeName = ref('1');
 
+var weather = {};
 
 export default ({
   name: "WeatherData",
+  
 	setup(){
     const result = ref(null)
-    const weather = {};
     
 
 
@@ -57,6 +68,9 @@ export default ({
       .then(response => response.json())
       .then(data => result.value = data)
       .then((result) => {
+            result.main
+            weather = result.main.temp;
+
 			console.log("helllooooo", result.weather[0].description)
             console.log("icon init",result.weather[0].icon);
         })
@@ -65,6 +79,16 @@ export default ({
     return { result }
 
       
+  }, 
+   methods: {
+    currentDateTime() {
+      const current = new Date();
+      const date = current.getFullYear()+'-'+(current.getMonth()+1)+'-'+current.getDate();
+      const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+      const dateTime = date +' '+ time;
+
+      return dateTime;
+    }
   }
 
 
