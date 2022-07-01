@@ -92,15 +92,7 @@ export default {
 /* eslint-disable */
 
 
-import axios from 'axios'
-
-import { result } from 'lodash';
-import { defineComponent } from 'vue'
-
-
-import {
-  ref
-} from 'vue'
+import { ref } from 'vue'
 
 const activeName = ref('1');
 
@@ -111,8 +103,6 @@ export default ({
 
   setup() {
     const result = ref(null)
-
-
 
     fetch('https://api.openweathermap.org/data/2.5/weather?q=Ireland&units=metric&appid=17f166d4fd4137881f3c09b22dd04a7a')
       .then(response => response.json())
@@ -136,12 +126,9 @@ export default ({
       const date = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
       const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
       const dateTime = date + ' ' + time;
-
       return dateTime;
     }
   }
-
-
 });
 </script>
 
