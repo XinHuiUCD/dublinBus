@@ -14,15 +14,16 @@
 
 
     <template v-for="marker in Hellodata " :key="marker.stop_id">
-        <!-- <MarkerCluster>     -->
+
+     
+
   <GMapMarker 
     :position="{ lat: marker.stop_lat, lng: marker.stop_lon}"
     :visible="marker.visibility"
     :title="marker.stop_name"
     :clickable="true"
-    @click="hideAllMarkers()"
-
     />
+
         <!-- </MarkerCluster> -->
     </template>
     
@@ -34,18 +35,14 @@
 
 
 
-
 <script>
-    var clicked = true;
 
 
-// import { defineComponent } from 'vue'
+var clicked = true;
 
 
-// import { Marker, MarkerCluster  } from "vue3-google-map";
-
-    
 import markerLocations from "./json/BusStopsLongLatCSV.json"
+
            
 export default{
 

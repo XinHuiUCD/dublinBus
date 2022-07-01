@@ -4,9 +4,7 @@ import ElementPlus from 'element-plus'
 import router from './router'
 import store from './store'
 import Vue3Geolocation from 'vue3-geolocation';
-// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 
 // import * as VueGoogleMaps from "vue2-google-maps";
 
@@ -19,12 +17,11 @@ import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 const app = createApp(App).use(store).use(router)
 
-// Make BootstrapVue available throughout your project
-// app.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
-// app.use(IconsPlugin)
+
 
 app.use(Vue3Geolocation)
+
+
 
 app.use(ElementPlus)
 
