@@ -5,7 +5,7 @@
                 <JourneyPlan />
             </div>
             <div class="col-7">
-                <MapDisplay />
+                <!-- <MapDisplay /> -->
             </div>
             <div class="col-2">
                 <WeatherDisplay />
@@ -24,7 +24,7 @@ export default {
     name: "HomeView",
     components: {
         ContentBase,
-        MapDisplay,
+        //MapDisplay,
         JourneyPlan,
         WeatherDisplay,
     }

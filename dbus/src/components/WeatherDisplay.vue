@@ -1,40 +1,60 @@
-<!-- <template>
-    <div id="Weather" style="height: 700px;">
-        <div class="demo-collapse">
-            <el-collapse v-model="activeName" accordion>
-                <el-collapse-item title="&nbsp; Current Weather" name="1">
-                    <div>
-                        <img src="https://z4a.net/images/2022/06/23/night.png" style="width: 200px;">
-                    </div>
-                </el-collapse-item>
-                <el-collapse-item title="&nbsp; Today's Weather" name="2">
-                    <div>
-                        <img src="https://z4a.net/images/2022/06/23/rain.png" style="width: 200px;">
-                    </div>
-                </el-collapse-item>
-                <el-collapse-item title="&nbsp; Future Weather" name="3">
-                    <div>
-                        <img src="https://z4a.net/images/2022/06/23/sunny.png" style="width: 200px;">
-                    </div>
-                </el-collapse-item>
-            </el-collapse>
-        </div>
+<template>
+  <div id="Weather" style="height: 700px;">
+    <div class="demo-collapse">
+      <el-collapse>
+        <el-collapse-item title="&nbsp; Current Weather" name="1">
+          <div>
+            <img src="https://z4a.net/images/2022/06/23/night.png" style="width: 200px;">
+          </div>
+        </el-collapse-item>
+        <el-collapse-item title="&nbsp; Today's Weather" name="2">
+          <div>
+            <img src="https://z4a.net/images/2022/06/23/rain.png" style="width: 200px;">
+          </div>
+        </el-collapse-item>
+        <el-collapse-item title="&nbsp; Future Weather" name="3">
+          <div>
+            <img src="https://z4a.net/images/2022/06/23/sunny.png" style="width: 200px;">
+            <button @click="getWeather" type="button" class="btn btn-primary">Primary
+              {{ tempsLen }}</button>
+          </div>
+        </el-collapse-item>
+      </el-collapse>
     </div>
+  </div>
 </template>
 
-<script lang="ts" setup>
-import {
-    ref
-} from 'vue'
+<script lang="ts">
+import { ref } from 'vue';
+import { useStore } from 'vuex';
 
-const activeName = ref('1');
+export default {
+  name: "WeatherDisplay",
+  setup() {
+    let temps = ref([]);
+    let tempsLen = ref('');
+    const store = useStore();
+
+    const getWeather = () => {
+      store.dispatch("getWeather");
+      temps.value = store.state.weather.temps;
+      tempsLen.value = store.state.weather.tempsLen;
+    };
+
+    return {
+      temps,
+      tempsLen,
+      getWeather,
+    };
+  }
+};
 
 </script>
 
 
-<style>
+<style scoped>
 </style>
- -->
+
 
 
 <!-- <template>
@@ -112,55 +132,5 @@ export default{
   }
 }
 </style> -->
-
-
-
-<template>
-  <div class="temp">
-    <span>{{ weather.temp }}&deg;C</span>
-    <span v-html="weather.icon"></span>
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-    return {
-      weather: {
-        temp: 14,
-        description: "null",
-        icon: "10n",
-      },
-    };
-  },
-  methods: {
-    getWeather: async function () {
-      const weatherURL = "/weather";
-      const response = await fetch(weatherURL);
-      const data = await response.json();
-
-      this.weather.temp = Math.round(data.temp);
-      this.weather.icon = "<img src=\"http://openweathermap.org/img/wn/" + data.icon + "@2x.png\"></img>";
-    },
-  },
-  beforeMount() {
-    this.getWeather();
-  },
-};
-</script>
-
-<style scoped>
-.temp {
-  font-weight: 100;
-  font-size: 1.5em;
-  letter-spacing: -1px;
-  white-space: nowrap;
-  color: white;
-}
-
-.card-mid {
-  line-height: 0.1;
-}
-</style>
 
 
