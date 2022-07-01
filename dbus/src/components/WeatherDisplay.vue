@@ -4,20 +4,19 @@
             <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="&nbsp; Current Weather" name="1">
                     <div style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center; ">
-                   <!-- <img src="http://openweathermap.org/img/w/04n.png" style="width: 100px;"> -->
 
-                         <!-- <div><p>Temp: {{main.temp}}°<span>C</span></p></div> -->
-                          <!-- <div><p>Feels Like: {{result.main.feels_like}}°<span>C</span></p></div>  -->
-                           <!-- <div>{{result.weather[0].description}}</div> -->
-                           <!-- <div> {{new Date().toLocaleString()}}</div>  -->
                            <p>Current Date & Time: {{currentDateTime()}}</p>
-                           <!-- {{result}} -->
-                        <div class="panel-body" v-for="d, index in result" :key="index">
+                        <div v-if="result">
+                            <img src="http://openweathermap.org/img/w/10d.png" style="width: 100px;"> 
 
-                                    <p>
-                                            {{d.temp}}
-                                    </p>
+                             <div><p>Temp: {{result.main.temp}}°<span>C</span></p></div> 
+ 
+
+                                <div><p>Feels Like: {{result.main.feels_like}}°<span>C</span></p></div> 
+                                <div>{{result.weather[0].description}}</div> 
+                                    
                                 </div>
+
 
 
                         
