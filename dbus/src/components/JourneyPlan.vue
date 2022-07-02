@@ -2,7 +2,7 @@
 	<div id="Menu" style="height: 700px;">
 		<div id="title">
 			<h1>
-				<span style="color: black">Plan Your Journery</span>&nbsp;
+				<span style="color: black">Plan Your Journey</span>&nbsp;
 				<span style="color: gray">With DublinBus</span>
 			</h1>
          

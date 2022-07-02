@@ -3,7 +3,7 @@
         <div class="demo-collapse">
             <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="&nbsp; Current Weather" name="1">
-                    <div style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;      border:1px solid #999999; color:#6f6f6f; ">
+                    <div style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
 
                         <p style=" font-size:16px; position: relative; display: inline-block; height: auto;">Date & Time: {{currentDateTime()}}</p>
                         <div v-if="result">

@@ -1,13 +1,13 @@
 <template>
-   
+   <div style="align-items: center;">
     <GMapMap
       :center="center"
       :zoom="15"
       map-type-id="terrain"
-      style="width: 100%; height: 700px"
+      style="width: 100%; height: 700px;"
       >
 
-<div style="padding-top: 10px;">
+<div style="padding-top: 10px; margin: auto; text-align: center; align-items: center;" >
 <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info">Hide/Show Makers</button>
 </div>
 
@@ -61,7 +61,7 @@
     
   </GMapMap>
 
-  
+  </div>
        
 </template>
 
