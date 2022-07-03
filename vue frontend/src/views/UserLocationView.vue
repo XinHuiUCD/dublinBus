@@ -4,6 +4,7 @@
 
 <script lang="ts">
 import ContentBase from '../components/UserLocation.vue'
+
 export default {
     name: "UserLocation",
     components: {

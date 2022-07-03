@@ -2,9 +2,6 @@
 	<ContentBase>
 		<frame-options policy="SAMEORIGIN" />
 		<iframe :src="this.txtUrl" frameborder="0" width="100%" :style="{height:calHeight}" scrolling="auto"></iframe>
-		<footer style="float: right;margin-top: 10px;">
-			© 2022: XpressBusEgineering- Team 10
-		</footer>
 	</ContentBase>
 </template>
 

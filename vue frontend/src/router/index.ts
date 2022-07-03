@@ -4,8 +4,10 @@ import AboutView from '../views/AboutView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import TwitterView from '../views/TwitterView.vue'
-import UserLocationView from '../views/UserLocationView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
+import UserLocationView from '../views/UserLocationView.vue'
+
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,9 +26,9 @@ const routes: Array<RouteRecordRaw> = [
     component: LoginView
   },
   {
-    path: '/register/',
-    name: 'register',
-    component: RegisterView
+    path: '/twitter/',
+    name: 'twitter',
+    component: TwitterView
   },
   {
     path: '/UserLocation/',
@@ -34,9 +36,9 @@ const routes: Array<RouteRecordRaw> = [
     component: UserLocationView
   },
   {
-    path: '/twitter/',
-    name: 'twitter',
-    component: TwitterView
+    path: '/register/',
+    name: 'register',
+    component: RegisterView
   },
   {
     path: '/404/',
