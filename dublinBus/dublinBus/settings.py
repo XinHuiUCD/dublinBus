@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'dublinBus.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
+        'NAME': 'dublinBus',
+        'USER': 'admin',
+        'PASSWORD': 'Dublinbus123',
+        'HOST': 'dubbuswod.cndmh0rmccxq.eu-west-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
