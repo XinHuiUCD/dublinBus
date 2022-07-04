@@ -2,7 +2,7 @@
 	<nav class="navbar navbar-expand-lg">
 		<div class="container">
 			<router-link class="navbar-brand" :to="{ name: 'home' }">
-				<img src="https://z4a.net/images/2022/07/04/dublinBus.png" />
+				<img src="../assets/imgs/dublinBus.png" />
 			</router-link>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
 				aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
