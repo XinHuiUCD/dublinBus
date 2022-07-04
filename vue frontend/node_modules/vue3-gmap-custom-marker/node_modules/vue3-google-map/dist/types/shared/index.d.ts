@@ -1,0 +1,43 @@
+/// <reference types="google.maps" />
+import { InjectionKey, Ref } from "vue";
+export declare const mapSymbol: InjectionKey<Ref<google.maps.Map | null>>;
+export declare const apiSymbol: InjectionKey<Ref<typeof google.maps | null>>;
+/**
+ * Utilitary flag for components that need to know the map
+ * was fully loaded (including its tiles) to decide their behavior
+ */
+export declare const mapTilesLoadedSymbol: InjectionKey<Ref<boolean>>;
+export declare const loaderInstance: Ref<{
+    readonly version: string;
+    readonly apiKey: string;
+    readonly channel: string;
+    readonly client: string;
+    readonly id: string;
+    readonly libraries: ("drawing" | "geometry" | "localContext" | "places" | "visualization")[];
+    readonly language: string;
+    readonly region: string;
+    readonly mapIds: string[];
+    readonly nonce: string | null;
+    readonly retries: number;
+    readonly url: string;
+    readonly options: {
+        apiKey: string;
+        channel?: string | undefined;
+        client?: string | undefined;
+        version?: string | undefined;
+        id?: string | undefined;
+        libraries?: ("drawing" | "geometry" | "localContext" | "places" | "visualization")[] | undefined;
+        language?: string | undefined;
+        region?: string | undefined;
+        mapIds?: string[] | undefined;
+        url?: string | undefined;
+        nonce?: string | undefined;
+        retries?: number | undefined;
+    };
+    createUrl: () => string;
+    deleteScript: () => void;
+    load: () => Promise<typeof google>;
+    loadPromise: () => Promise<typeof google>;
+    loadCallback: (fn: (e: ErrorEvent) => void) => void;
+} | null>;
+export declare const polylineEvents: string[];
