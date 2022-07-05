@@ -10,6 +10,7 @@ import 'bootstrap/dist/js/bootstrap'
 import 'element-plus/dist/index.css'
 import NavBar from './components/NavBar.vue'
 
+
 export default {
   name: "App",
   components: {

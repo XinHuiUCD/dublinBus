@@ -53,11 +53,16 @@
             </div>
             
       </GMapInfoWindow>
+
     </GMapMarker>
 
         <!-- </MarkerCluster> -->
     </template>
-    
+    <!-- <directionsRenderer
+        travelMode="DRIVING"
+        :origin="startLocation"
+        :destination="endLocation"
+      /> -->
     
   </GMapMap>
 
@@ -72,22 +77,31 @@
 
 var clicked = true;
 
+// import DirectionsRenderer from "@/components/DirectionsRenderer";
 
 import markerLocations from "./json/BusStopsLongLatCSV.json"
 
            
 export default{
+  // components: {
+  //       DirectionsRenderer,
+  // },
 
   name: "DrawGoogleMap",
   data() {
     return {
       center: { 
-          lat: 39.7837304, 
-          lng: -100.4458825 
+          lat: 53.3498, 
+          lng: -6.2603
       },
       currentLocation: null,
       Hellodata: markerLocations,
       openedMarkerID: null,
+      currentPlace: null,
+      markers: [],
+      places: [],
+      startLocation: null,
+      endLocation: null,
 
 
       infoWindow: {
@@ -141,7 +155,21 @@ export default{
 }, 
 openMarker(id) {
        this.openedMarkerID = id
-    }
+    }, 
+
+setPlace2(place) {
+      this.currentPlace = place;
+    },
+    addMarker(index) {
+      const marker = {
+        lat: this.currentPlace.geometry.location.lat(),
+        lng: this.currentPlace.geometry.location.lng(),
+      };
+      if (index === 0) this.startLocation = marker;
+      if (index === 1) this.endLocation = marker;
+      this.center = marker;
+    },
+  
 
 
 

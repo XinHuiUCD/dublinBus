@@ -10,9 +10,10 @@
                 
 				<!-- Your Position -->
 				<div class="input-group mb-3">
-					<button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="locatorButtonPressed">🔍</button>
+					<button class="btn btn-outline-secondary" type="button" id="button-addon1" @click="locatorButtonPressed" >🔍</button>
 					<input type="text" class="form-control" placeholder="Your Position" v-model="address" id="autocomplete" ref="autocomplete"
-						aria-label="Example text with button addon" aria-describedby="button-addon1" show-clear>
+						aria-label="Example text with button addon" aria-describedby="button-addon1" @place_changed="setPlace2">
+                       <button class="btn" @click="addMarker(0)">Add</button>
 				</div>
 
 
@@ -20,9 +21,8 @@
 				<div class="input-group mb-3">
 					<button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="locatorButtonPressedTwo">🔍</button>
                     
-					<input type="text" class="form-control" placeholder="Your Destination" v-model="addresstwo" ref="autocomplete2"
-
-						>
+					<input type="text" class="form-control" placeholder="Your Destination" v-model="addresstwo" ref="autocomplete2" @place_changed="setPlace2">
+                    <button class="btn" @click="addMarker(1)">Add</button>
 				</div>
 
 
@@ -32,6 +32,7 @@
 						format="YYYY/MM/DD hh:mm:ss" value-format="YYYY-MM-DD h:m:s a"
 						style="height: 40px; " />
 				</div>
+
 				<div style="height: 300px; margin-top: 20px;">
 					<el-steps direction="vertical" :active="1">
 						<el-step title="Start" description="39A" />
@@ -39,6 +40,7 @@
 						<el-step title="End" />
 					</el-steps>
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -46,13 +48,15 @@
 </template>
 
 <script>
-    
+   
+
 import axios from 'axios'
 // import VueGoogleAutocomplete from "vue-google-autocomplete"
 
 
 
 export default{
+    
     data() {
         return {
             address: "",
