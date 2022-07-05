@@ -3,29 +3,35 @@
         <div class="demo-collapse">
             <el-collapse v-model="activeName" accordion>
                 <el-collapse-item title="&nbsp; Current Weather" name="1">
-                    <div style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
+                    <div
+                        style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
 
-                        <p style=" font-size:16px; position: relative; display: inline-block; height: auto;">Date & Time: {{currentDateTime()}}</p>
+                        <p style=" font-size:16px; position: relative; display: inline-block; height: auto;">Date &
+                            Time: {{ currentDateTime() }}</p>
                         <div v-if="result">
-                            <img src="http://openweathermap.org/img/w/10d.png" style="width: 100px;"> 
-                            <div><p>Temp: {{result.main.temp}}°<span>C</span></p></div> 
-                            <div><p>Feels Like: {{result.main.feels_like}}°<span>C</span></p></div> 
-                            <div>{{result.weather[0].description}}</div>     
+                            <img src="http://openweathermap.org/img/w/10d.png" style="width: 100px;">
+                            <div>
+                                <p>Temp: {{ result.main.temp }}°<span>C</span></p>
+                            </div>
+                            <div>
+                                <p>Feels Like: {{ result.main.feels_like }}°<span>C</span></p>
+                            </div>
+                            <div>{{ result.weather[0].description }}</div>
                         </div>
 
 
 
-                        
-                    </div> 
+
+                    </div>
                 </el-collapse-item>
                 <el-collapse-item title="&nbsp; Today's Weather" name="2">
                     <div>
-                        <img src="https://z4a.net/images/2022/06/23/rain.png" style="width: 200px;">
+                        <img src="../assets/imgs/rain.png" style="width: 200px;">
                     </div>
                 </el-collapse-item>
                 <el-collapse-item title="&nbsp; Future Weather" name="3">
                     <div>
-                        <img src="https://z4a.net/images/2022/06/23/sunny.png" style="width: 200px;">
+                        <img src="../assets/imgs/sunny.png" style="width: 200px;">
                     </div>
                 </el-collapse-item>
             </el-collapse>
@@ -52,39 +58,39 @@ const activeName = ref('1');
 var weather = {};
 
 export default ({
-  name: "WeatherData",
-  
-	setup(){
-    const result = ref(null)
-    
+    name: "WeatherData",
+
+    setup() {
+        const result = ref(null)
 
 
-    fetch('https://api.openweathermap.org/data/2.5/weather?q=Ireland&units=metric&appid=17f166d4fd4137881f3c09b22dd04a7a')
-      .then(response => response.json())
-      .then(data => result.value = data)
-      .then((result) => {
-            result.main
-            weather = result.main.temp;
 
-			console.log("helllooooo", result.weather[0].description)
-            console.log("icon init",result.weather[0].icon);
-        })
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=Ireland&units=metric&appid=17f166d4fd4137881f3c09b22dd04a7a')
+            .then(response => response.json())
+            .then(data => result.value = data)
+            .then((result) => {
+                result.main
+                weather = result.main.temp;
+
+                console.log("helllooooo", result.weather[0].description)
+                console.log("icon init", result.weather[0].icon);
+            })
 
 
-    return { result }
+        return { result }
 
-      
-  }, 
-   methods: {
-    currentDateTime() {
-      const current = new Date();
-      const date = current.getFullYear()+'-'+(current.getMonth()+1)+'-'+current.getDate();
-      const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-      const dateTime = date +' '+ time;
 
-      return dateTime;
+    },
+    methods: {
+        currentDateTime() {
+            const current = new Date();
+            const date = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+            const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+            const dateTime = date + ' ' + time;
+
+            return dateTime;
+        }
     }
-  }
 
 
 });
