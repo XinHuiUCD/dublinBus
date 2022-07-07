@@ -1,0 +1,1 @@
+declare module '@fawmi/vue-google-maps';
