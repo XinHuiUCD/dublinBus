@@ -1,3 +1,5 @@
+<!-- this code was adapted from https://github.com/paupaulaz/VueJSTwitterFeed -->
+
 <template>
   <a
     class="twitter-timeline"
