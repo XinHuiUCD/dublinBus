@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<ContentBase>
 		<div id="twitter">
 			<frame-options policy="SAMEORIGIN" />
@@ -33,4 +33,34 @@
 
 <style scoped>
 
-</style>
+</style> -->
+<template>
+  <a
+    class="twitter-timeline"
+    :href="src"
+  ></a>
+</template>
+
+<script>
+export default {
+  props: {
+    src: {
+      type: String,
+      default: "https://twitter.com/dublinbusnews"
+    },
+    dark: {
+      type: Boolean,
+      default: true
+    },
+    dataLinkColor: {
+      type: String,
+      default: "#2B7BB9"
+    }
+  },
+  created() {
+    let twitterFeed = document.createElement("script");
+    twitterFeed.setAttribute("src", "https://platform.twitter.com/widgets.js");
+    document.head.appendChild(twitterFeed);
+  }
+};
+</script>

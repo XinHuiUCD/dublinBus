@@ -69,8 +69,8 @@
 		color: var(--text-primary-color);
 	}
 
-	#twitter {
-		filter: var(--filter-grayscale);
+	.twitter-timeline {
+		filter: var(--filter-invert);
 	}
 	#map {
 		filter: var(--filter-invert);
