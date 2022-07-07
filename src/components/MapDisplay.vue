@@ -5,8 +5,8 @@
 			<div style="padding-top: 10px;">
 				<button type="button" @click="hideAllMarkers()" class="btn btn-outline-info">Hide/Show Makers</button>
 			</div>
-			<!-- asdjkhasdj -->
-			<GMapMarker id="123"
+
+			<GMapMarker
 			
 				v-for="marker in Hellodata " :key="marker.stop_id"
 				:position="{ lat: marker.stop_lat, lng: marker.stop_lon}" 
