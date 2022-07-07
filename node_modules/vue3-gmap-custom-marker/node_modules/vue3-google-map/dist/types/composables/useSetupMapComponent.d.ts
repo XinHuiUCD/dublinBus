@@ -1,0 +1,5 @@
+/// <reference types="google.maps" />
+import { Ref } from "vue";
+export declare type IComponent = google.maps.Marker | google.maps.Polyline | google.maps.Polygon | google.maps.Rectangle | google.maps.Circle;
+export declare type IComponentOptions = google.maps.MarkerOptions | google.maps.PolylineOptions | google.maps.PolygonOptions | google.maps.RectangleOptions | google.maps.CircleOptions;
+export declare const useSetupMapComponent: (componentName: "Marker" | "Polyline" | "Polygon" | "Rectangle" | "Circle", events: string[], options: Ref<IComponentOptions>, emit: (event: string, ...args: unknown[]) => void) => Ref<IComponent | null>;
