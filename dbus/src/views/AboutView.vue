@@ -83,7 +83,7 @@
 
 <style scoped>
 	.el-carousel{
-		width: 40%;
+		width: 250px;
 		
 	}
 
