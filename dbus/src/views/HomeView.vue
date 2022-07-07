@@ -1,14 +1,9 @@
 <template>
     <ContentBase>
-        <div class="row">
-            <div class="col-3">
+        <div class="top">
                 <JourneyPlan />
-            </div>
-            <div class="col-7">
+            <div class="button">
                 <MapDisplay />
-            </div>
-            <div class="col-2">
-                <WeatherDisplay />
             </div>
         </div>
     </ContentBase>
@@ -18,7 +13,6 @@
 import ContentBase from '../components/ContentBase.vue'
 import MapDisplay from '../components/MapDisplay.vue'
 import JourneyPlan from '../components/JourneyPlan.vue'
-import WeatherDisplay from '../components/WeatherDisplay.vue'
 
 export default {
     name: "HomeView",
@@ -26,7 +20,6 @@ export default {
         ContentBase,
         MapDisplay,
         JourneyPlan,
-        WeatherDisplay,
     }
 }
 </script>

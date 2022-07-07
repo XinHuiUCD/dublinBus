@@ -3,17 +3,20 @@ import ModuleUser from './user.js'
 
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-    user: ModuleUser,
-  }
+	state: {
+		map: null,
+	},
+	getters: {
+	},
+	mutations: {
+		initMap(state, map) {
+			state.map = map
+		},
+	},
+	actions: {
+	},
+	modules: {
+		user: ModuleUser,
+	}
 });
-
 

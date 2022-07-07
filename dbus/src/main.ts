@@ -14,7 +14,6 @@ import VueGoogleMaps from '@fawmi/vue-google-maps'
 // import  { VueGeolocation } from 'vue-browser-geolocation';
 
 
-
 const app = createApp(App).use(store).use(router)
 
 

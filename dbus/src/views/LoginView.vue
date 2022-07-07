@@ -1,7 +1,6 @@
 <template>
     <ContentBase>
         <div class="row justify-content-md-center">
-            <div class="col-3">
                 <form @submit.prevent="login">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
@@ -14,7 +13,6 @@
                     <div class="error-message">{{ error_message }}</div>
                     <button type="submit" class="btn btn-primary">Log in</button>
                 </form>
-            </div>
         </div>
     </ContentBase>
 </template>
@@ -46,7 +44,7 @@ export default {
                     routers.push({ name: "home" });
                 },
                 error() {
-                    error_message.value = "wrong username or password provided!";
+                    error_message.value = "Wrong username or password provided!";
                 },
             });
         };

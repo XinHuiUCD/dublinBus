@@ -7,6 +7,9 @@
                 </div>
             </div>
         </div>
+		<footer style="text-align: center;margin-top: 10px;color: #1dc1ec">
+			© 2022: XpressBusEgineering- Team 10
+		</footer>
     </div>
 </template>
 
@@ -22,6 +25,6 @@ export default {
 
 <style scoped>
 .card-body {
-    background: whitesmoke;
+    background: transparent;
 }
 </style>

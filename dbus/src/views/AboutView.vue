@@ -4,27 +4,14 @@
 			<el-container>
 
 				<el-header>
-					<h1>About Us</h1>
+					<h1 style="color: #1dc1ec">About Us</h1>
 				</el-header>
 
-				<el-container>
-					<el-aside width="300px">
-						<h3>Rating for us!</h3>
-						<br />
-						<span class="content">User Experience</span>
-						<br />
+					<el-container>
+						<el-main>
+						<h3 style="color: #1dc1ec">Rating for us!</h3>
 						<el-rate v-model="value" :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
-							show-text />
-						<br />
-						<span class="content">Product Quality</span>
-						<br />
-						<el-rate v-model="value1" :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
-							show-text />
-						<br />
-						<span class="content">What Else?</span>
-						<br />
-						<el-rate v-model="value2" :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
-							show-text />
+							show-text style="color: #1dc1ec"/>
 
 						<!-- submit button -->
 						<el-divider border-style="dashed" />
@@ -40,22 +27,16 @@
 								</span>
 							</template>
 						</el-dialog>
-					</el-aside>
-
-					<el-container>
-						<el-main>
-							<h3>Our Members</h3>
+							<el-divider border-style="dashed" />
+							<h3 style="color: #1dc1ec">Our Members</h3>
 							<el-carousel :interval="3000" type="card" height="200px">
-								<el-carousel-item v-for="item in 4" :key="item">
-									<h3 text="2xl" justify="center">{{ item }}</h3>
+								<el-carousel-item v-for="item in carouseImgs" :key="item">
+									<img :src="item.url" alt=""/>
 								</el-carousel-item>
 							</el-carousel>
 						</el-main>
-						<el-footer>Footer</el-footer>
 					</el-container>
-
 				</el-container>
-			</el-container>
 		</div>
 	</ContentBase>
 </template>
@@ -71,9 +52,6 @@
 	} from 'element-plus'
 
 	const dialogVisible = ref(false)
-	const value = ref()
-	const value1 = ref()
-	const value2 = ref()
 	const handleClose = (done: () => void) => {
 		ElMessageBox.confirm('Are you sure to close this dialog?')
 			.then(() => {
@@ -91,29 +69,31 @@
 		},
 		data() {
 			return {
-				value,
-				value1,
-				value2,
-				dialogVisible
+				dialogVisible,
+				carouseImgs: [
+					{ url: require("../assets/photo1.png")},
+					{ url: require("../assets/photo1.png")},
+					{ url: require("../assets/photo1.png")},
+					{ url: require("../assets/photo1.png")},
+				]
 			}
 		}
 	};
 </script>
 
 <style scoped>
-	.el-carousel__item h3 {
-		color: #475669;
-		opacity: 0.75;
-		line-height: 200px;
-		margin: 0;
-		text-align: center;
+	.el-carousel{
+		width: 250px;
+		
 	}
 
 	.el-carousel__item:nth-child(2n) {
 		background-color: #99a9bf;
+		text-align: center;
 	}
 
 	.el-carousel__item:nth-child(2n + 1) {
 		background-color: #d3dce6;
+		text-align: center;
 	}
 </style>

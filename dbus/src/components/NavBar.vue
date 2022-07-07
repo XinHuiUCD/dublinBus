@@ -2,7 +2,7 @@
 	<nav class="navbar navbar-expand-lg">
 		<div class="container">
 			<router-link class="navbar-brand" :to="{ name: 'home' }">
-				<img src="../assets/imgs/dublinBus.png" />
+				<img src="https://z4a.net/images/2022/07/04/dublinBus.png" />
 			</router-link>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
 				aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,7 +13,7 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'home' }">Home
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'home' }" style="color: #1dc1ec">Home
 								</router-link>
 							</div>
 						</div>
@@ -21,7 +21,24 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'about' }">About
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'weather' }" style="color: #1dc1ec">Weather
+								</router-link>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="card">
+							<div class="card-body">
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'about' }" style="color: #1dc1ec">About
+								</router-link>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="card">
+							<div class="card-body">
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'twitter' }" style="color: #1dc1ec">
+									Twitter
 								</router-link>
 							</div>
 						</div>
@@ -29,35 +46,31 @@
 				</ul>
 				<ul class="navbar-nav" v-if="!$store.state.user.is_login">
 					<li class="nav-item">
-						<el-switch v-model="dark_mode" class="mb-2"
-							style="--el-switch-on-color: #000000; --el-switch-off-color: #eaeaea; display: block;float: right;margin-top: 10px"
-							active-text="🌛" inactive-text="🌞" />
+						<theme-button />
 					</li>
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" :to="{ name: 'login' }">Log in</router-link>
+								<router-link class="nav-link active" :to="{ name: 'login' }" style="color: #1dc1ec">Log in</router-link>
 							</div>
 						</div>
 					</li>
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" :to="{ name: 'register' }">Sign up</router-link>
+								<router-link class="nav-link active" :to="{ name: 'register' }" style="color: #1dc1ec">Sign up</router-link>
 							</div>
 						</div>
 					</li>
 				</ul>
 				<ul class="navbar-nav" v-else>
 					<li class="nav-item">
-						<el-switch v-model="dark_mode" class="mb-2"
-							style="--el-switch-on-color: #000000; --el-switch-off-color: #eaeaea; display: block;float: right;margin-top: 10px"
-							active-text="🌛" inactive-text="🌞" />
+						<theme-button />
 					</li>
 					<li class="nav-item">
 						<div class="card showname">
 							<div class="card-body">
-								<router-link class="nav-link active" :to="{ name: 'home' }">
+								<router-link class="nav-link active" :to="{ name: 'home' }" style="color: #1dc1ec">
 									Hi, {{ $store.state.user.username }}
 								</router-link>
 							</div>
@@ -66,7 +79,7 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<a class="nav-link active" style="cursor: pointer" @click="logout">Exit</a>
+								<a class="nav-link active" style="cursor: pointer;" @click="logout">Exit</a>
 							</div>
 						</div>
 					</li>
@@ -77,48 +90,53 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable */
-import {
-	ref
-} from 'vue';
-import { useStore } from 'vuex';
+	/* eslint-disable */
+	import ThemeButton from "@/components/ThemeButton.vue";
+	import {
+		ref
+	} from 'vue';
+	import {
+		useStore
+	} from 'vuex';
 
-const dark_mode = ref(false)
+	const dark_mode = ref(false)
 
-export default {
-	name: "NavBar",
-	data() {
-		return {
-			dark_mode
-		}
-	},
-	setup() {
-		const store = useStore();
-		const logout = () => {
-			store.commit("logout");
-		};
+	export default {
+		name: "NavBar",
+		data() {
+			return {
+				dark_mode
+			}
+		},
+		setup() {
+			const store = useStore();
+			const logout = () => {
+				store.commit("logout");
+			};
 
-		return {
-			logout,
-		}
-	},
-};
+			return {
+				logout,
+			}
+		},
+	};
 </script>
 
-<style scoped>
-img {
-	width: 200px;
-}
+<style>
+	img {
+		width: 200px;
+	}
 
-.card {
-	margin-left: 20px;
-}
+	.card {
+		margin-left: 20px;
+	}
 
-.card-body {
-	padding: 2px 8px;
-}
+	.card-body {
+		padding: 2px 8px;
+	}
 
-.showname {
-	border: none;
-}
+	.showname {
+		border: none;
+	}
+	
+	
 </style>
