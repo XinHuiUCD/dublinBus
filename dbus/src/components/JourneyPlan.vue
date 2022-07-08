@@ -84,7 +84,7 @@
 
 		mounted() {
 			// eslint-disable-next-line
-			var autocomplete = new google.maps.places.Autocomplete(
+			const autocomplete = new google.maps.places.Autocomplete(
 				this.$refs["autocomplete"], {
 					// eslint-disable-next-line
 					bounds: new google.maps.LatLngBounds(
@@ -95,23 +95,14 @@
 				}
 
 			);
-			// autocomplete.addListener('place_changed', function() {
 
-			// var place = autocomplete.getPlace();
-
-			// if (!place.geometry) {
-			// // User entered the name of a Place that was not suggested and
-			// // pressed the Enter key, or the Place Details request failed.
-			// // Do anything you like with what was entered in the ac field.
-			// 	console.log('You entered: ' + place.name);
-			// 	return;
-			// }
-
-			// console.log('You selected: ' + place.formatted_address);
-			// });
+			autocomplete.addListener("place_changed", () => {
+				this.address=autocomplete.getPlace().formatted_address;
+				console.log(autocomplete.getPlace());
+			});
 
 			// eslint-disable-next-line
-			var autocomplete2 = new google.maps.places.Autocomplete(
+			const autocomplete2 = new google.maps.places.Autocomplete(
 				this.$refs["autocomplete2"], {
 					// eslint-disable-next-line
 					bounds: new google.maps.LatLngBounds(
@@ -122,6 +113,10 @@
 				}
 
 			);
+			autocomplete2.addListener("place_changed", () => {
+				this.addresstwo=autocomplete2.getPlace().formatted_address;
+				console.log(autocomplete2.getPlace());
+			});
 		},
 		
 		methods: {
