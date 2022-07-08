@@ -95,6 +95,21 @@
 				}
 
 			);
+			// autocomplete.addListener('place_changed', function() {
+
+			// var place = autocomplete.getPlace();
+
+			// if (!place.geometry) {
+			// // User entered the name of a Place that was not suggested and
+			// // pressed the Enter key, or the Place Details request failed.
+			// // Do anything you like with what was entered in the ac field.
+			// 	console.log('You entered: ' + place.name);
+			// 	return;
+			// }
+
+			// console.log('You selected: ' + place.formatted_address);
+			// });
+
 			// eslint-disable-next-line
 			var autocomplete2 = new google.maps.places.Autocomplete(
 				this.$refs["autocomplete2"], {

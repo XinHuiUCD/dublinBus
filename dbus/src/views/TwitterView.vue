@@ -35,10 +35,13 @@
 
 </style> -->
 <template>
-  <a
+<ContentBase>
+	<a
+	id="twitter"
     class="twitter-timeline"
-    :href="src"
-  ></a>
+    :href="src"></a>
+</ContentBase>
+
 </template>
 
 <script>
