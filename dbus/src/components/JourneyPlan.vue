@@ -68,7 +68,7 @@
 	import {
 		ref
 	} from 'vue'
-	
+
 	const pickdate = ref('')
 
 	export default {
@@ -79,7 +79,6 @@
 				address: "",
 				addresstwo: ""
 			}
-			// this.address = this.addresstwo
 		},
 
 		mounted() {
@@ -97,7 +96,7 @@
 			);
 
 			autocomplete.addListener("place_changed", () => {
-				this.address=autocomplete.getPlace().formatted_address;
+				this.address = autocomplete.getPlace().formatted_address;
 				console.log(autocomplete.getPlace());
 			});
 
@@ -114,11 +113,11 @@
 
 			);
 			autocomplete2.addListener("place_changed", () => {
-				this.addresstwo=autocomplete2.getPlace().formatted_address;
+				this.addresstwo = autocomplete2.getPlace().formatted_address;
 				console.log(autocomplete2.getPlace());
 			});
 		},
-		
+
 		methods: {
 			togglefav: function() {
 				this.$emit('togglefav', !this.is_fav);

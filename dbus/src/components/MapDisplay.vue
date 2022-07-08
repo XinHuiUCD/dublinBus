@@ -6,12 +6,9 @@
 				<button type="button" @click="hideAllMarkers()" class="btn btn-outline-info">Hide/Show Makers</button>
 			</div>
 
-			<GMapMarker
-				v-for="marker in Hellodata " :key="marker.stop_id"
-				:position="{ lat: marker.stop_lat, lng: marker.stop_lon}" 
-				:visible="marker.visibility"
-				:title="marker.stop_name" :clickable="true" 
-				:icon="'https://img.icons8.com/fluency/48/000000/bus.png'"
+			<GMapMarker v-for="marker in Hellodata " :key="marker.stop_id"
+				:position="{ lat: marker.stop_lat, lng: marker.stop_lon}" :visible="marker.visibility"
+				:title="marker.stop_name" :clickable="true" :icon="'https://img.icons8.com/fluency/48/000000/bus.png'"
 				@click="openMarker(marker.stop_id)">
 
 				<GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)"
