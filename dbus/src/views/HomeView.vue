@@ -12,6 +12,7 @@
 <script lang="ts">
 import ContentBase from '../components/ContentBase.vue'
 import MapDisplay from '../components/MapDisplay.vue'
+
 import JourneyPlan from '../components/JourneyPlan.vue'
 
 
@@ -21,7 +22,6 @@ export default {
         ContentBase,
         MapDisplay,
         JourneyPlan,
-
     }
 }
 </script>

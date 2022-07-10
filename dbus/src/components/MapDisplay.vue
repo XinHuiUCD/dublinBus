@@ -1,6 +1,6 @@
 <template>
 	<div id="map" style="align-items: center;">
-		<GMapMap :center="center" :zoom="15" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
+		<GMapMap :center="center" :zoom="15" map-type-id="terrain" style="width: 100%; height: 700px">
 
 			<div style="padding-top: 10px;">
 				<button type="button" @click="hideAllMarkers()" class="btn btn-outline-info">Hide/Show Makers</button>
@@ -43,7 +43,7 @@
 
 
 <script>
-	import store from "@/store/index";
+
 	import markerLocations from "./json/BusStopsLongLatCSV.json"
 
 	var clicked = true;
@@ -51,7 +51,7 @@
 
 	export default {
 		name: "DrawGoogleMap",
-		store,
+
 		data() {
 			return {
 				center: {
@@ -80,11 +80,6 @@
 		},
 
 		methods: {
-
-			initMap() {
-				const map = new window.google.maps.Map(document.getElementById("map"));
-				this.$store.commit("initMap", map);
-			},
 
 			setPlace(loc) {
 				this.currentLocation = loc;

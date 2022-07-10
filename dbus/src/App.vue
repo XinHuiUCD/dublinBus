@@ -68,6 +68,10 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
+	.el-input {
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
 
 	.twitter-timeline {
 		filter: var(--filter-invert);
