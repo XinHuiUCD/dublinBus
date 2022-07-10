@@ -1,7 +1,9 @@
  <template>
     <div id="route">
-        <el-autocomplete class="inline-input" v-model="select_route" :fetch-suggestions="querySearch" placeholder="Select Route"
-            :trigger-on-focus="false" @select="handleSelect" clearable style="width:100%;"></el-autocomplete>
+        <!-- <el-autocomplete class="inline-input" v-model="select_route" :fetch-suggestions="querySearch" placeholder="Select Route"
+            :trigger-on-focus="false" @select="handleSelect" clearable style="width:100%;"></el-autocomplete> -->
+        <el-autocomplete v-model="select_route" :fetch-suggestions="querySearch" clearable class="inline-input w-100"
+            placeholder="Select Route" @select="handleSelect" />
         <MapDisplay />
     </div>
 </template>
@@ -103,7 +105,7 @@ const loadAll = () => {
         { value: '70' },
         { value: '145' },
         { value: '155' },
-        
+
     ]
 }
 
