@@ -57,9 +57,10 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
-	/* .el-input {
+	.el-autocomplete * {
 		background-color: var(--background-color-secondary);
-	} */
+		color: var(--text-primary-color);
+	}
 	.form-control {
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);

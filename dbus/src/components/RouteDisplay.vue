@@ -20,12 +20,12 @@ interface RoutetItem {
 }
 const select_route = ref('')
 
-const restaurants = ref<RoutetItem[]>([])
+const routets = ref<RoutetItem[]>([])
 // eslint-disable-next-line
 const querySearch = (queryString: string, cb: any) => {
     const results = queryString
-        ? restaurants.value.filter(createFilter(queryString))
-        : restaurants.value
+        ? routets.value.filter(createFilter(queryString))
+        : routets.value
     // call callback function to return suggestions
     cb(results)
 }
@@ -114,7 +114,7 @@ const handleSelect = (item: RoutetItem) => {
 }
 
 onMounted(() => {
-    restaurants.value = loadAll()
+    routets.value = loadAll()
 })
 
 </script>
