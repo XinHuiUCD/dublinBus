@@ -2,7 +2,6 @@
 	<div id="map" style="align-items: center;">
 		<GMapMap :center="center" :zoom="15" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
 		
-		
 
 			<div style="padding-top: 10px;">
 				<button type="button" @click="hideAllMarkers()" class="btn btn-outline-info">Hide/Show Makers</button>
@@ -54,14 +53,21 @@
 
 <script>
 	import store from "@/store/index";
-// import { map } from "lodash";
 	import markerLocations from "./json/BusStopsLongLatCSV.json"
+	// importing journey planner so I can use results from input fields in map
+    import JourneyPlan from './JourneyPlan.vue'
 
+
+
+// variable for toggle switch 
 	var clicked = true;
 
 
 	export default {
 		name: "DrawGoogleMap",
+		components: {
+          JourneyPlan
+        },
 		store,
 
 		data() {
@@ -186,7 +192,7 @@
 
 	};
 
-	// code ref: https://jsfiddle.net/irhamkim/20pegws2/2/
+	// code ref: https://jsfiddle.net/irhamkim/20pegws2/2/  https://developers.google.com/maps/documentation/javascript/directions#TransitOptions
 </script>
 
 <style scoped>
