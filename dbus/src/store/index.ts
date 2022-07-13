@@ -4,14 +4,14 @@ import ModuleUser from './user.js'
 
 export default createStore({
 	state: {
-		map: null,
+		// submit: null,
 	},
 	getters: {
 	},
 	mutations: {
-		initMap(state, map) {
-			state.map = map
-		},
+		// functions(state,submit){
+		// 	state.submit = submit
+		// }
 	},
 	actions: {
 	},

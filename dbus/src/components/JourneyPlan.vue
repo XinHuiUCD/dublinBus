@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<div id="Menu">
 		<div id="title">
 			<h1>
@@ -8,7 +8,7 @@
 
 			<div id="function">
 
-				<!-- Your Position -->
+
 				<div class="input-group mb-3">
 					<button class="btn btn-outline-secondary" type="button" id="button-addon1"
 						@click="locatorButtonPressed">🔍</button>
@@ -18,7 +18,7 @@
 				</div>
 
 
-				<!-- Your Destination -->
+
 				<div class="input-group mb-3">
 					<button class="btn btn-outline-secondary" type="button" id="button-addon2"
 						@click="locatorButtonPressedTwo">🔍</button>
@@ -28,34 +28,22 @@
 
 				</div>
 
-				<!-- Select date and time -->
 				<div class="block">
 					<el-date-picker v-model="pickdate" type="datetime" placeholder="Select date and time"
 						style="height: 40px; width: 100%;" />
 				</div>
 
-				<!-- swap address -->
+
 				<button class="btn btn-outline-secondary" type="submit" @click="swapAddress(address,addresstwo)"
 					style="margin-top: 10px; width: 60px;height: 60px;">↕️<br />Swap</button>
 
-				<!-- fare calculator -->
 				<button class="btn btn-outline-secondary" type="submit"
 					style="margin-top: 10px;margin-left: 20px;width: 60px;height: 60px;">€️<br />Fare</button>
 
-				<!-- submit -->
-				<!-- Gus route planner Add button -->
+
 				<button class="btn btn-outline-secondary" type="submit"
 					style="margin-top: 10px;margin-left: 20px;width: 70px;height: 60px;background-color: chartreuse;">Submit️</button>
 
-				<!-- schedule -->
-				<!-- <div style="height: 300px; margin-top: 20px;">
-					<el-steps direction="vertical" :active="1">
-						<el-step title="Start" description="39A" />
-						<el-step title="Futher Info" description="" />
-						<el-step title="End" />
-					</el-steps>
-				</div> -->
-				<!-- favorite bus stop maybe -->
 			</div>
 		</div>
 	</div>
@@ -64,7 +52,7 @@
 
 <script>
 	import axios from 'axios'
-	// import VueGoogleAutocomplete from "vue-google-autocomplete"
+
 	import {
 		ref
 	} from 'vue'
@@ -227,4 +215,4 @@
 
 <style scoped>
 
-</style>
+</style> -->

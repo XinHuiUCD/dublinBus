@@ -35,7 +35,7 @@
 						<div v-if="result">
 							<img src="http://openweathermap.org/img/w/04d.png" style="width: 100px;">
 							<div>
-								<p>Current date {{result.list[10].dt_txt}}</p>
+								<p>Current date {{ result.list[10].dt_txt }}</p>
 							</div>
 							<div>
 								<p>Temp: {{ (result.list[10].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
@@ -60,7 +60,7 @@
 						<div v-if="result">
 							<img src="http://openweathermap.org/img/w/04n.png" style="width: 100px;">
 							<div>
-								<p>Current date {{result.list[20].dt_txt}}</p>
+								<p>Current date {{ result.list[20].dt_txt }}</p>
 							</div>
 							<div>
 								<p>Temp: {{ (result.list[20].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
@@ -81,48 +81,48 @@
 </template>
 
 <script lang="ts">
-	/* eslint-disable */
+/* eslint-disable */
 
 
-	import axios from 'axios'
+import axios from 'axios'
 
-	import {
-		result
-	} from 'lodash';
-	import {
-		defineComponent
-	} from 'vue'
-
-
-	import {
-		ref
-	} from 'vue'
-
-	const activeName = ref('1');
-
-	var weather = {};
-
-	export default ({
-		name: "WeatherData",
-		data() {
-			return {
-				currentWeather: null,
-
-			}
-		},
-
-		setup() {
-			const result = ref(null)
+import {
+	result
+} from 'lodash';
+import {
+	defineComponent
+} from 'vue'
 
 
+import {
+	ref
+} from 'vue'
 
+const activeName = ref('1');
+
+var weather = {};
+
+export default ({
+	name: "WeatherData",
+	data() {
+		return {
+			currentWeather: null,
+
+		}
+	},
+
+	setup() {
+		const result = ref(null)
+
+
+
+		fetch(
+			'https://api.openweathermap.org/data/2.5/weather?q=Ireland&units=metric&appid=17f166d4fd4137881f3c09b22dd04a7a'
+		)
+			.then(response => response.json()),
 			fetch(
-					'https://api.openweathermap.org/data/2.5/weather?q=Ireland&units=metric&appid=17f166d4fd4137881f3c09b22dd04a7a'
-					)
-				.then(response => response.json()),
-				fetch(
-					'https://api.openweathermap.org/data/2.5/forecast?lat=53.3498&lon=-6.2603&appid=17f166d4fd4137881f3c09b22dd04a7a'
-				)
+				'https://api.openweathermap.org/data/2.5/forecast?lat=53.3498&lon=-6.2603&appid=17f166d4fd4137881f3c09b22dd04a7a'
+			)
 				.then(response => response.json())
 				.then(data => result.value = data)
 				.then((result) => {
@@ -135,37 +135,37 @@
 				})
 
 
-			// return { result }
+		// return { result }
 
-			// Promise.all([
-			//         fetch('https://api.openweathermap.org/data/2.5/weather?q=Ireland&units=metric&appid=17f166d4fd4137881f3c09b22dd04a7a').then(res => res.ok && res.json() || Promise.reject(res)),
-			//         fetch('https://api.openweathermap.org/data/2.5/forecast?lat=53.3498&lon=6.2603&appid=17f166d4fd4137881f3c09b22dd04a7a').then(res => res.ok && res.json() || Promise.reject(res))
-			// ]).then(result => {
-			//     console.log("temparature", result[0].main.temp)
+		// Promise.all([
+		//         fetch('https://api.openweathermap.org/data/2.5/weather?q=Ireland&units=metric&appid=17f166d4fd4137881f3c09b22dd04a7a').then(res => res.ok && res.json() || Promise.reject(res)),
+		//         fetch('https://api.openweathermap.org/data/2.5/forecast?lat=53.3498&lon=6.2603&appid=17f166d4fd4137881f3c09b22dd04a7a').then(res => res.ok && res.json() || Promise.reject(res))
+		// ]).then(result => {
+		//     console.log("temparature", result[0].main.temp)
 
-			// })
+		// })
 
-			return {
-				result
-			}
-
-
-
-
-		},
-		methods: {
-			currentDateTime() {
-				const current = new Date();
-				const date = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
-				const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-				const dateTime = date + ' ' + time;
-
-				return dateTime;
-			}
+		return {
+			result
 		}
 
 
-	});
+
+
+	},
+	methods: {
+		currentDateTime() {
+			const current = new Date();
+			const date = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
+			const time = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+			const dateTime = date + ' ' + time;
+
+			return dateTime;
+		}
+	}
+
+
+});
 
 	// https://api.openweathermap.org/data/2.5/forecast?lat=53.3498&lon=6.2603&appid=17f166d4fd4137881f3c09b22dd04a7a
 </script>

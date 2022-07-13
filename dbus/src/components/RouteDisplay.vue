@@ -1,9 +1,8 @@
- <template>
+ <!-- <template>
     <div id="route">
-        <!-- <el-autocomplete class="inline-input" v-model="select_route" :fetch-suggestions="querySearch" placeholder="Select Route"
-            :trigger-on-focus="false" @select="handleSelect" clearable style="width:100%;"></el-autocomplete> -->
         <el-autocomplete v-model="select_route" :fetch-suggestions="querySearch" clearable class="inline-input w-100"
             placeholder="Select Route" @select="handleSelect" />
+
         <MapDisplay />
     </div>
 </template>
@@ -11,14 +10,15 @@
  <script lang="ts" setup>
 import MapDisplay from '@/components/MapDisplay.vue'
 import { ref, onMounted } from 'vue'
-
-// need to connect database or import json to get bus id, 
-// stop id, stop lat and stop lon to show the position and direction
+import busRoute from "./json/route.json"
 
 interface RoutetItem {
     value: string
 }
 const select_route = ref('')
+const Hellodata2 = busRoute 
+
+
 
 const routets = ref<RoutetItem[]>([])
 // eslint-disable-next-line
@@ -121,4 +121,4 @@ onMounted(() => {
  
  
  <style>
- </style>
+ </style> -->

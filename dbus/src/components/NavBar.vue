@@ -19,14 +19,14 @@
 						</div>
 					</li>
 
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<div class="card">
 							<div class="card-body">
 								<router-link class="nav-link active" aria-current="page" :to="{ name: 'route' }" style="color: #1dc1ec">Route
 								</router-link>
 							</div>
 						</div>
-					</li>
+					</li> -->
 
 					<li class="nav-item">
 						<div class="card">
