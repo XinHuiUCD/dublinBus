@@ -2,6 +2,7 @@
 	<div id="map" style="align-items: center;">
 		<GMapMap :center="center" :zoom="15" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
 		
+		
 
 			<div style="padding-top: 10px;">
 				<button type="button" @click="hideAllMarkers()" class="btn btn-outline-info">Hide/Show Makers</button>
@@ -44,9 +45,30 @@
     </GMapMarker>
     <GMapMarker :position="this.destination">
     </GMapMarker>
+	
 		</GMapMap>
+
+	</div>
+	<div id="Menu">
+		<div id="title">
+	<div class="input-group mb-3">
+	<GMapAutocomplete
+       placeholder="Enter your starting Point"
+       @place_changed="setPlace"
+    >
+  </GMapAutocomplete><button class="btn" @click="addMarkerStart()">Add Marker</button>
 	</div>
 
+
+	<div class="input-group mb-3">
+	<GMapAutocomplete
+       placeholder="Enter your destination"
+       @place_changed="setPlace"
+    >
+  </GMapAutocomplete><button class="btn" @click="addMarkerEnd()">Add Marker</button>
+	</div>
+	</div>
+</div>
 </template>
 
 
@@ -55,7 +77,9 @@
 	import store from "@/store/index";
 	import markerLocations from "./json/BusStopsLongLatCSV.json"
 	// importing journey planner so I can use results from input fields in map
-    import JourneyPlan from './JourneyPlan.vue'
+    // import JourneyPlan from './JourneyPlan.vue'
+	// import DirectionsRenderer from "@/components/DirectionsRenderer";
+
 
 
 
@@ -65,9 +89,9 @@
 
 	export default {
 		name: "DrawGoogleMap",
-		components: {
-          JourneyPlan
-        },
+		// components: {
+        //   DirectionsRenderer
+        // },
 		store,
 
 		data() {
@@ -82,8 +106,8 @@
 				lng: null
       },
       destination: {
-        lat: 53.4072,
-        lng:  -6.1238
+        lat: null,
+        lng:  null
       },
 
 				currentLocation: null,
@@ -112,14 +136,9 @@
 
 		methods: {
 
-			initMap() {
-				const map = new window.google.maps.Map(document.getElementById("map"));
-				this.$store.commit("initMap", map);
-			},
-
-			setPlace(loc) {
-				this.currentLocation = loc;
-			},
+			setPlace(place) {
+      this.currentPlace = place;
+    },
 			setLocationLatLng: function() {
 				navigator.geolocation.getCurrentPosition(geolocation => {
 					this.center = {
@@ -135,6 +154,22 @@
 
 
 			},
+			addMarkerStart() {
+			console.log("add maker")
+       this.coords = {
+        lat: this.currentPlace.geometry.location.lat(),
+        lng: this.currentPlace.geometry.location.lng(),
+      };
+      
+    },
+		addMarkerEnd() {
+			console.log("add maker")
+       this.destination = {
+        lat: this.currentPlace.geometry.location.lat(),
+        lng: this.currentPlace.geometry.location.lng(),
+      };
+      
+    },
 			hideAllMarkers() {
 				if (clicked) {
 					for (let i = 0; i < this.Hellodata.length; i++) {
@@ -172,6 +207,7 @@
           origin: start,
           destination: destination,
           travelMode: 'TRANSIT',
+		
 		transitOptions: {
 			// eslint-disable-next-line
     modes: [google.maps.TransitMode.BUS]
@@ -196,4 +232,9 @@
 </script>
 
 <style scoped>
+
+.pac-target-input {
+  padding: 10px;
+  width: 100%;
+}
 </style>
