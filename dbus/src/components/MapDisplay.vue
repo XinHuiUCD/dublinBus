@@ -103,6 +103,7 @@
           </button>
 
         </div>
+            <div id="textDirections"></div>
         <GMapMarker
           v-for="marker in Hellodata"
           :key="marker.stop_id"
@@ -258,6 +259,7 @@ export default {
       // eslint-disable-next-line
       var directionsDisplay = new google.maps.DirectionsRenderer();
       directionsDisplay.setMap(this.$refs.mapTheme.$mapObject);
+      directionsDisplay.setPanel(document.getElementById("textDirections"));
       function calculateAndDisplayRoute(
         directionsService,
         directionsDisplay,
