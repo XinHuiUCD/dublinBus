@@ -15,7 +15,7 @@
               placeholder="Enter your starting Point"
               @place_changed="setPlace"
               v-model="address"
-			  
+
             >
             </GMapAutocomplete
             ><button class="btn" @click="addMarkerStart()">Add Marker</button>
@@ -28,7 +28,7 @@
               placeholder="Enter your destination"
               @place_changed="setPlace"
               v-model="addresstwo"
-			  
+
             >
             </GMapAutocomplete
             ><button class="btn" @click="addMarkerEnd()">Add Marker</button>
@@ -162,6 +162,7 @@
 import markerLocations from "./json/BusStopsLongLatCSV.json";
 // import JourneyPlan from "./JourneyPlan.vue";
 // importing journey planner so I can use results from input fields in map
+// eslint-disable-next-line
 import axios from "axios";
 import { ref } from "vue";
 
@@ -345,7 +346,7 @@ export default {
       const tempAddress = this.address;
       this.address = this.addresstwo;
       this.addresstwo = tempAddress;
-	  console.log("trying to swap")
+      console.log("trying to swap")
     },
 
     // locatorButtonPressed() {
