@@ -1,6 +1,6 @@
 from django.urls import path
 from xpressbus.views import index
 
-urlpatterns = {
+urlpatterns = [
     path("", index, name="index"),
-}
+]
