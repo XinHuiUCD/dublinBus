@@ -85,4 +85,11 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	} */
+	.pac-target-input{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
+	.btn{
+		color: var(--text-primary-color);
+	}
 </style>
