@@ -82,16 +82,6 @@
           >
             Submit
           </button>
-
-          <!-- schedule -->
-          <!-- <div style="height: 300px; margin-top: 20px;">
-					<el-steps direction="vertical" :active="1">
-						<el-step title="Start" description="39A" />
-						<el-step title="Futher Info" description="" />
-						<el-step title="End" />
-					</el-steps>
-				</div> -->
-          <!-- favorite bus stop maybe -->
         </div>
       </div>
     </div>
@@ -158,10 +148,7 @@
 
 
 <script>
-// import store from "@/store/index";
 import markerLocations from "./json/BusStopsLongLatCSV.json";
-// import JourneyPlan from "./JourneyPlan.vue";
-// importing journey planner so I can use results from input fields in map
 // eslint-disable-next-line
 import axios from "axios";
 import { ref } from "vue";
@@ -214,38 +201,6 @@ export default {
     this.$refs.mapTheme.$mapPromise.then((mapObject) => {
       console.log("map is loaded now", mapObject);
     });
-    // // eslint-disable-next-line
-    // const autocomplete = new google.maps.places.Autocomplete(
-    // 	this.$refs["autocomplete"],
-    // 	{
-    // 		// eslint-disable-next-line
-    // 		bounds: new google.maps.LatLngBounds(
-    // 			// eslint-disable-next-line
-    // 			new google.maps.LatLng(53.3498, -6.2603)
-    // 		),
-    // 	}
-    // );
-
-    // autocomplete.addListener("place_changed", () => {
-    //   this.address = autocomplete.getPlace().formatted_address;
-    //   console.log(autocomplete.getPlace());
-    // });
-
-    // // eslint-disable-next-line
-    // // const autocomplete2 = new google.maps.places.Autocomplete(
-    // // 	this.$refs["autocomplete2"],
-    // // 	{
-    // // 		// eslint-disable-next-line
-    // // 		bounds: new google.maps.LatLngBounds(
-    // // 			// eslint-disable-next-line
-    // // 			new google.maps.LatLng(53.3498, -6.2603)
-    // // 		),
-    // // 	}
-    // // );
-    // autocomplete2.addListener("place_changed", () => {
-    //   this.addresstwo = autocomplete2.getPlace().formatted_address;
-    //   console.log(autocomplete2.getPlace());
-    // });
   },
   methods: {
     setPlace(place) {
@@ -348,93 +303,6 @@ export default {
       this.addresstwo = tempAddress;
       console.log("trying to swap")
     },
-
-    // locatorButtonPressed() {
-    // 	if (navigator.geolocation) {
-    // 		navigator.geolocation.getCurrentPosition(
-    // 			(position) => {
-    // 				this.getAddressFrom(
-    // 					position.coords.latitude,
-    // 					position.coords.longitude
-    // 				);
-
-    // 				this.showUserLocationOnTheMap(
-    // 					position.coords.latitude,
-    // 					position.coords.longitude
-    // 				);
-    // 			},
-    // 			(error) => {
-    // 				console.log(error.message);
-    // 			}
-    // 		);
-    // 	} else {
-    // 		console.log("your browser does not support geolocation");
-    // 	}
-    // },
-    // locatorButtonPressedTwo() {
-    // 	if (navigator.geolocation) {
-    // 		navigator.geolocation.getCurrentPosition(
-    // 			(position) => {
-    // 				this.getAddressFromTwo(
-    // 					position.coords.latitude,
-    // 					position.coords.longitude
-    // 				);
-
-    // 				this.showUserLocationOnTheMap(
-    // 					position.coords.latitude,
-    // 					position.coords.longitude
-    // 				);
-    // 			},
-    // 			(error) => {
-    // 				console.log(error.message);
-    // 			}
-    // 		);
-    // 	} else {
-    // 		console.log("your browser does not support geolocation");
-    // 	}
-    // },
-    // getAddressFrom(lat, long) {
-    // 	axios
-    // 		.get(
-    // 			"https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
-    // 			lat +
-    // 			"," +
-    // 			long +
-    // 			"&key=AIzaSyC9SSiHS7Va-YfYv3RojyCeVva48AHKSqQ"
-    // 		)
-    // 		.then((response) => {
-    // 			if (response.data.error_message) {
-    // 				console.log(response.data.error_message);
-    // 			} else {
-    // 				this.address = response.data.results[0].formatted_address;
-    // 				// console.log(response.data.results[0].formatted_address);
-    // 			}
-    // 		})
-    // 		.catch((error) => {
-    // 			console.log(error.message);
-    // 		});
-    // },
-    // getAddressFromTwo(lat, long) {
-    // 	axios
-    // 		.get(
-    // 			"https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
-    // 			lat +
-    // 			"," +
-    // 			long +
-    // 			"&key=AIzaSyC9SSiHS7Va-YfYv3RojyCeVva48AHKSqQ"
-    // 		)
-    // 		.then((response) => {
-    // 			if (response.data.error_message) {
-    // 				console.log(response.data.error_message);
-    // 			} else {
-    // 				this.addresstwo = response.data.results[0].formatted_address;
-    // 				// console.log(response.data.results[0].formatted_address);
-    // 			}
-    // 		})
-    // 		.catch((error) => {
-    // 			console.log(error.message);
-    // 		});
-    // },
   },
   showUserLocationOnTheMap(latitude, longitude) {
     // eslint-disable-next-line
