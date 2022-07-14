@@ -27,6 +27,7 @@ app.use(ElementPlus)
 app.use(VueGoogleMaps, {
     load: {
         key: 'AIzaSyC9SSiHS7Va-YfYv3RojyCeVva48AHKSqQ',
+        libraries: "places"
     },
 }).mount('#app')
 

@@ -13,6 +13,7 @@
     "bootstrap": "^5.2.0-beta1",
     "bootstrap-vue": "^2.22.0",
     "element-plus": "^2.2.6",
+    "jquery": "^3.6.0",
     "jwt-decode": "^3.1.2",
     "marker-clusterer-plus": "^2.1.4",
     "twitter-widgets": "^2.0.0",
@@ -47,6 +48,7 @@
     "sass-loader": "^13.0.2",
     "typescript": "~4.5.5",
     "vue-browser-geolocation": "^1.8.0",
+    "vue-cli-plugin-vuetify": "~2.5.1",
     "webpack": "^5.73.0"
   }
 }
