@@ -85,6 +85,8 @@
         </div>
       </div>
     </div>
+     <div id="container">
+      <div id="sidebar"></div>
     <div class="button" id="map" style="align-items: center; margin-top: 1%">
       <GMapMap
         :center="center"
@@ -103,7 +105,6 @@
           </button>
 
         </div>
-            <div id="textDirections"></div>
         <GMapMarker
           v-for="marker in Hellodata"
           :key="marker.stop_id"
@@ -143,6 +144,8 @@
         <GMapMarker :position="this.destination" />
       </GMapMap>
     </div>
+    </div>
+
   </div>
 </template>
 
@@ -259,7 +262,7 @@ export default {
       // eslint-disable-next-line
       var directionsDisplay = new google.maps.DirectionsRenderer();
       directionsDisplay.setMap(this.$refs.mapTheme.$mapObject);
-      directionsDisplay.setPanel(document.getElementById("textDirections"));
+      directionsDisplay.setPanel(document.getElementById("sidebar"));
       function calculateAndDisplayRoute(
         directionsService,
         directionsDisplay,
@@ -279,6 +282,9 @@ export default {
           },
           function (response, status) {
             if (status === "OK") {
+               
+              console.log("fare estimation", response.routes[0].fare);
+              console.log("respnss",response);
               directionsDisplay.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
@@ -322,6 +328,7 @@ export default {
       map: map,
     });
   },
+  
 };
 
 // code ref: https://jsfiddle.net/irhamkim/20pegws2/2/  https://developers.google.com/maps/documentation/javascript/directions#TransitOptions
@@ -332,4 +339,42 @@ export default {
   padding: 10px;
   width: 90%;
 }
+
+
+#container {
+  display: flex;
+}
+
+#sidebar {
+  flex-basis: 15rem;
+  flex-grow: 1;
+  padding: 1rem;
+  max-width: 30rem;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+#map {
+  flex-basis: 0;
+  flex-grow: 4;
+  height: 100%;
+}
+
+
+
+
+#map {
+  flex: auto;
+}
+
+#sidebar {
+  flex: 0 1 auto;
+  padding: 0;
+}
+#sidebar > div {
+  padding: 0.5rem;
+}
+
+
 </style>
