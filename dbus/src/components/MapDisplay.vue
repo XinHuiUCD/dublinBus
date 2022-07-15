@@ -18,7 +18,7 @@
 
             >
             </GMapAutocomplete
-            ><button class="btn" @click="addMarkerStart()">Add Marker</button>
+            ><button class="btn" @click="addMarkerStart()"><img style="width: fit-content; height: fit-content;" src="https://img.icons8.com/color/48/000000/place-marker--v1.png"/></button>
           </div>
 
           <!-- Your Destination -->
@@ -31,7 +31,7 @@
 
             >
             </GMapAutocomplete
-            ><button class="btn" @click="addMarkerEnd()">Add Marker</button>
+            ><button class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;" src="https://img.icons8.com/color/48/000000/place-marker--v1.png"/></button>
           </div>
           <!-- Select date and time -->
           <div class="block">
@@ -340,7 +340,7 @@ export default {
   width: 90%;
 }
 
-
+/* reference for side pannel of text directions: https://developers.google.com/maps/documentation/javascript/examples/directions-panel */
 #container {
   display: flex;
 }
@@ -360,9 +360,6 @@ export default {
   flex-grow: 4;
   height: 100%;
 }
-
-
-
 
 #map {
   flex: auto;
