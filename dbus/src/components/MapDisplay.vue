@@ -182,6 +182,9 @@ var clicked = true;
 const directionRenderers = [];
 
 
+
+
+
 export default {
   name: "DrawGoogleMap",
 
@@ -328,6 +331,8 @@ export default {
       console.log("reset")
       directionRenderers.forEach(directionsDisplay => {
     directionsDisplay.setMap(null)
+    directionsDisplay.setPanel(null)
+
   });
   directionRenderers.length = 0;
      
