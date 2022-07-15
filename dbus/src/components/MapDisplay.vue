@@ -66,6 +66,21 @@
             €️<br />Fare
           </button>
 
+          <button
+            class="btn btn-outline-secondary"
+            type="submit"
+            style="
+              margin-top: 10px;
+              margin-left: 20px;
+              width: 60px;
+              height: 60px;
+            "
+            @click="resetSearch()"
+
+          >
+            Reset
+          </button>
+
           <!-- submit -->
 
           <button
@@ -162,6 +177,10 @@ const submit = ref("");
 
 // variable for toggle switch
 var clicked = true;
+
+
+const directionRenderers = [];
+
 
 export default {
   name: "DrawGoogleMap",
@@ -262,6 +281,7 @@ export default {
       // eslint-disable-next-line
       var directionsDisplay = new google.maps.DirectionsRenderer();
       directionsDisplay.setMap(this.$refs.mapTheme.$mapObject);
+      directionRenderers.push(directionsDisplay);
       directionsDisplay.setPanel(document.getElementById("sidebar"));
       function calculateAndDisplayRoute(
         directionsService,
@@ -303,6 +323,15 @@ export default {
 
     togglefav: function () {
       this.$emit("togglefav", !this.is_fav);
+    },
+    resetSearch(){
+      console.log("reset")
+      directionRenderers.forEach(directionsDisplay => {
+    directionsDisplay.setMap(null)
+  });
+  directionRenderers.length = 0;
+     
+
     },
 
     swapAddress() {
@@ -372,6 +401,7 @@ export default {
 #sidebar > div {
   padding: 0.5rem;
 }
+
 
 
 </style>
