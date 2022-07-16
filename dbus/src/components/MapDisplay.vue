@@ -12,7 +12,7 @@
 
           <div class="input-group mb-3">
             <GMapAutocomplete
-              placeholder="Enter your starting Point"
+              placeholder="Enter your starting point"
               @place_changed="setPlace"
               v-model="address"
 
@@ -86,7 +86,7 @@
           <button
             class="btn btn-outline-secondary"
             type="submit"
-            @click="getDirection"
+            @click="getDirection(); showDiv();"
             style="
               margin-top: 10px;
               margin-left: 20px;
@@ -97,6 +97,12 @@
           >
             Submit
           </button>
+          <div id="MlResult"
+            class="btn btn-outline-secondary"
+            style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;"
+          >
+          Your predicted travel time is: <strong>20 minutes</strong>
+          </div>
         </div>
       </div>
     </div>
@@ -110,7 +116,7 @@
         style="width: 100%; height: 700px"
         ref="mapTheme"
       >
-        <div style="padding-top: 10px">
+        <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
           <button
             type="button"
             @click="hideAllMarkers()"
@@ -232,6 +238,11 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
+
+    showDiv() {
+   document.getElementById('MlResult').style.display = "inline";
+    },
+
     setLocationLatLng: function () {
       navigator.geolocation.getCurrentPosition((geolocation) => {
         this.center = {
@@ -335,6 +346,7 @@ export default {
 
   });
   directionRenderers.length = 0;
+  document.getElementById('MlResult').style.display = "none";
      
 
     },
@@ -406,6 +418,8 @@ export default {
 #sidebar > div {
   padding: 0.5rem;
 }
+
+
 
 
 
