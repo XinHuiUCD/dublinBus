@@ -396,7 +396,7 @@ export default {
   flex-grow: 1;
   padding: 1rem;
   max-width: 30rem;
-  height: 100%;
+  height: 55%;
   box-sizing: border-box;
   overflow: auto;
 }
