@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Bus
+from .models import Stoprouteinfo
 
-class BusSerializer(serializers.HyperlinkedModelSerialzer):
+class BusSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bus
-        fields = ('routeId', 'lat', 'lon')
+        model = Stoprouteinfo
+        fields = ('stopid', 'routesid', 'searchname', 'latitude', 'longitude')
