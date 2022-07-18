@@ -17,9 +17,9 @@ class RouteStopView(APIView):
     http_method_names = ['get']
 
     def get(self, request):
-        routeId = request.data.get('routeId')
+        routeId = request.query_params.get('routeId')
         # stops = Stoprouteinfo.objects.all()
-        stops = Stoprouteinfo.objects.filter(routesid__contains=145)
+        stops = Stoprouteinfo.objects.filter(routesid__contains=routeId)
         serializer = BusSerializer(stops, many=True)
         return JsonResponse({"stops": serializer.data}, safe=False)
 
