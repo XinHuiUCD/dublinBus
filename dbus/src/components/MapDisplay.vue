@@ -133,7 +133,8 @@
           :visible="marker.visibility"
           :title="marker.stop_name"
           :clickable="true"
-          :icon="'https://img.icons8.com/fluency/48/000000/bus.png'"
+          :icon='{url: "https://img.icons8.com/fluency/48/000000/bus.png",
+          scaledSize: {width: 40, height: 40}}'
           @click="openMarker(marker.stop_id)"
         >
           <GMapInfoWindow
