@@ -13,7 +13,8 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'home' }" style="color: #1dc1ec">Home
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'home' }"
+									style="color: #1dc1ec">Home
 								</router-link>
 							</div>
 						</div>
@@ -21,7 +22,8 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'weather' }" style="color: #1dc1ec">Weather
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'weather' }"
+									style="color: #1dc1ec">Weather
 								</router-link>
 							</div>
 						</div>
@@ -29,7 +31,8 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'about' }" style="color: #1dc1ec">About
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'about' }"
+									style="color: #1dc1ec">About
 								</router-link>
 							</div>
 						</div>
@@ -37,8 +40,19 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'twitter' }" style="color: #1dc1ec">
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'twitter' }"
+									style="color: #1dc1ec">
 									Twitter
+								</router-link>
+							</div>
+						</div>
+					</li>
+					<li class="nav-item">
+						<div class="card">
+							<div class="card-body">
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'routeStopInfo' }"
+									style="color: #1dc1ec">
+									RoutesInfo
 								</router-link>
 							</div>
 						</div>
@@ -51,14 +65,16 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" :to="{ name: 'login' }" style="color: #1dc1ec">Log in</router-link>
+								<router-link class="nav-link active" :to="{ name: 'login' }" style="color: #1dc1ec">Log
+									in</router-link>
 							</div>
 						</div>
 					</li>
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" :to="{ name: 'register' }" style="color: #1dc1ec">Sign up</router-link>
+								<router-link class="nav-link active" :to="{ name: 'register' }" style="color: #1dc1ec">
+									Sign up</router-link>
 							</div>
 						</div>
 					</li>
@@ -90,53 +106,51 @@
 </template>
 
 <script lang="ts">
-	/* eslint-disable */
-	import ThemeButton from "@/components/ThemeButton.vue";
-	import {
-		ref
-	} from 'vue';
-	import {
-		useStore
-	} from 'vuex';
+/* eslint-disable */
+import ThemeButton from "@/components/ThemeButton.vue";
+import {
+	ref
+} from 'vue';
+import {
+	useStore
+} from 'vuex';
 
-	const dark_mode = ref(false)
+const dark_mode = ref(false)
 
-	export default {
-		name: "NavBar",
-		data() {
-			return {
-				dark_mode
-			}
-		},
-		setup() {
-			const store = useStore();
-			const logout = () => {
-				store.commit("logout");
-			};
+export default {
+	name: "NavBar",
+	data() {
+		return {
+			dark_mode
+		}
+	},
+	setup() {
+		const store = useStore();
+		const logout = () => {
+			store.commit("logout");
+		};
 
-			return {
-				logout,
-			}
-		},
-	};
+		return {
+			logout,
+		}
+	},
+};
 </script>
 
 <style>
-	img {
-		width: 200px;
-	}
+img {
+	width: 200px;
+}
 
-	.card {
-		margin-left: 20px;
-	}
+.card {
+	margin-left: 20px;
+}
 
-	.card-body {
-		padding: 2px 8px;
-	}
+.card-body {
+	padding: 2px 8px;
+}
 
-	.showname {
-		border: none;
-	}
-	
-	
+.showname {
+	border: none;
+}
 </style>
