@@ -7,6 +7,7 @@ import TwitterView from '../views/TwitterView.vue'
 import WeatherView from '../views/WeatherView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
 import UserLocationView from '../views/UserLocationView.vue'
+import RouteStopInfoView from '../views/RouteStopInfoView.vue'
 
 
 
@@ -50,6 +51,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/404/',
     name: '404',
     component: NotFoundView
+  },
+  {
+    path: '/routeStopInfo/',
+    name: 'routeStopInfo',
+    component: RouteStopInfoView
   },
   {
     path: '/:catchAll(.*)',

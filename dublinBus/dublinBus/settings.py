@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ["ipa-011.ucd.ie", "127.0.0.1"]
 INSTALLED_APPS = [
     'xpressbus.apps.XpressbusConfig',
     'rest_framework',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +44,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,6 +87,9 @@ DATABASES = {
         'PASSWORD': 'Dublinbus123',
         'HOST': 'dubbuswod.cndmh0rmccxq.eu-west-1.rds.amazonaws.com',
         'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",    
+        },
     }
 }
 
@@ -104,6 +110,12 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+# CORS Whitelist
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8080',        
+    'http://127.0.0.1:9000',
 ]
 
 
