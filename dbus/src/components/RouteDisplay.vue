@@ -1,0 +1,124 @@
+ <!-- <template>
+    <div id="route">
+        <el-autocomplete v-model="select_route" :fetch-suggestions="querySearch" clearable class="inline-input w-100"
+            placeholder="Select Route" @select="handleSelect" />
+
+        <MapDisplay />
+    </div>
+</template>
+ 
+ <script lang="ts" setup>
+import MapDisplay from '@/components/MapDisplay.vue'
+import { ref, onMounted } from 'vue'
+import busRoute from "./json/route.json"
+
+interface RoutetItem {
+    value: string
+}
+const select_route = ref('')
+const Hellodata2 = busRoute 
+
+
+
+const routets = ref<RoutetItem[]>([])
+// eslint-disable-next-line
+const querySearch = (queryString: string, cb: any) => {
+    const results = queryString
+        ? routets.value.filter(createFilter(queryString))
+        : routets.value
+    // call callback function to return suggestions
+    cb(results)
+}
+const createFilter = (queryString: string) => {
+    return (restaurant: RoutetItem) => {
+        return (
+            restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+        )
+    }
+}
+const loadAll = () => {
+    return [
+        // autocomplete test
+        { value: '1' },
+        { value: '4' },
+        { value: '6' },
+        { value: '7' },
+        { value: '7A' },
+        { value: '7B' },
+        { value: '7D' },
+        { value: '7N' },
+        { value: '9' },
+        { value: '11' },
+        { value: '13' },
+        { value: '14' },
+        { value: '15' },
+        { value: '15A' },
+        { value: '15B' },
+        { value: '15D' },
+        { value: '16' },
+        { value: '25N' },
+        { value: '26' },
+        { value: '27' },
+        { value: '27A' },
+        { value: '27B' },
+        { value: '27X' },
+        { value: '29N' },
+        { value: '31N' },
+        { value: '32X' },
+        { value: '33' },
+        { value: '33D' },
+        { value: '33N' },
+        { value: '33X' },
+        { value: '37' },
+        { value: '38' },
+        { value: '38A' },
+        { value: '38B' },
+        { value: '39' },
+        { value: '39A' },
+        { value: '39X' },
+        { value: '40' },
+        { value: '40B' },
+        { value: '40D' },
+        { value: '40E' },
+        { value: '41' },
+        { value: '41B' },
+        { value: '41C' },
+        { value: '42' },
+        { value: '41D' },
+        { value: '42D' },
+        { value: '42N' },
+        { value: '41X' },
+        { value: '43' },
+        { value: '44' },
+        { value: '44B' },
+        { value: '46A' },
+        { value: '46E' },
+        { value: '46N' },
+        { value: '47' },
+        { value: '49' },
+        { value: '49N' },
+        { value: '51N' },
+        { value: '51X' },
+        { value: '52' },
+        { value: '53A' },
+        { value: '69A' },
+        { value: '70' },
+        { value: '145' },
+        { value: '155' },
+
+    ]
+}
+
+const handleSelect = (item: RoutetItem) => {
+    console.log(item)
+}
+
+onMounted(() => {
+    routets.value = loadAll()
+})
+
+</script>
+ 
+ 
+ <style>
+ </style> -->

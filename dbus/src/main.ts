@@ -12,10 +12,6 @@ import Dropdown from 'vue-simple-search-dropdown'
 
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 
-
-// import  { VueGeolocation } from 'vue-browser-geolocation';
-
-
 const app = createApp(App).use(store).use(router)
 
 app.use(Dropdown);
@@ -32,6 +28,7 @@ app.use(ElementPlus)
 app.use(VueGoogleMaps, {
     load: {
         key: 'AIzaSyC9SSiHS7Va-YfYv3RojyCeVva48AHKSqQ',
+        libraries: "places"
     },
 }).mount('#app')
 

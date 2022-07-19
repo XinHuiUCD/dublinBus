@@ -57,9 +57,10 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
-	/* .el-input {
+	.el-autocomplete * {
 		background-color: var(--background-color-secondary);
-	} */
+		color: var(--text-primary-color);
+	}
 	.form-control {
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
@@ -68,9 +69,13 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
+	.el-input {
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
 
-	#twitter {
-		filter: var(--filter-grayscale);
+	.twitter-timeline {
+		filter: var(--filter-invert);
 	}
 	#map {
 		filter: var(--filter-invert);
@@ -80,4 +85,11 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	} */
+	.pac-target-input{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
+	.btn{
+		color: var(--text-primary-color);
+	}
 </style>
