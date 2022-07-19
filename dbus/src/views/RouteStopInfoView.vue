@@ -8,13 +8,7 @@
                         <button class="btn btn-outline-secondary" type="button" id="button-addon1">🔍</button>
                         <input type="text" class="form-control" placeholder="RouteID" v-model="routeId" show-clear>
                     </div>
-                    <div>
-                        <datalist id="suggestions">
-                            <option>First option</option>
-                            <option>Second Option</option>
-                        </datalist>
-                        <input  autoComplete="on" list="suggestions"/> 
-                    </div>
+                  
 
 
                     <!-- submit -->
