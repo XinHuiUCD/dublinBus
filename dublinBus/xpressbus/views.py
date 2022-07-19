@@ -18,6 +18,7 @@ class RouteStopView(APIView):
 
     def get(self, request):
         routeId = request.query_params.get('routeId')
+        routeId = routeId.upper()
         # stops = Stoprouteinfo.objects.all()
         stops = Stoprouteinfo.objects.filter(routesid__contains=routeId)
         serializer = BusSerializer(stops, many=True)
