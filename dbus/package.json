@@ -22,6 +22,8 @@
     "vue-open-weather-widget": "^1.0.3",
     "vue-openweather": "^0.2.15",
     "vue-router": "^4.0.3",
+    "vue-select": "^4.0.0-beta.3",
+    "vue-simple-search-dropdown": "^1.0.1",
     "vue-tweet": "^2.0.2",
     "vue-weather-widget": "^4.3.1",
     "vue2-google-maps": "^0.10.7",
