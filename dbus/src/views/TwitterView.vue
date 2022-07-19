@@ -5,15 +5,15 @@
 			<iframe :src="txtUrl" frameborder="0" width="100%" :style="{height:calHeight}" scrolling="auto"></iframe>
 		</div>
 
-	</ContentBase>
+<template>
+  <a
+    class="twitter-timeline"
+    :href="src"
+    :data-theme="dark ? 'dark' : 'light'"
+    :data-link-color="dataLinkColor"
+  ></a>
 </template>
 
-<script lang="ts">
-	import ContentBase from '../components/ContentBase.vue'
-
-	export default {
-		name: "TwitterView",
-		components: {
 			ContentBase,
 		},
 		data() {

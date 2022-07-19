@@ -8,7 +8,6 @@
 import ContentBase from '../components/ContentBase.vue'
 import MapDisplay from '../components/MapDisplay.vue'
 
-
 export default {
     name: "HomeView",
     components: {

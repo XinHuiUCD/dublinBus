@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,12 +26,14 @@ SECRET_KEY = 'django-insecure-+=ob)xt1g0bgphw7pdv(y(wn))zbw3=ih6us7ax&$$lg1=a8i+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["ipa-011.ucd.ie"]
+ALLOWED_HOSTS = ["ipa-011.ucd.ie", "127.0.0.1"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'xpressbus.apps.XpressbusConfig',
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +78,12 @@ WSGI_APPLICATION = 'dublinBus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dublinBus',
+        'USER': 'admin',
+        'PASSWORD': 'Dublinbus123',
+        'HOST': 'dubbuswod.cndmh0rmccxq.eu-west-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
@@ -105,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Dublin'
 
 USE_I18N = True
 

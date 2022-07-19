@@ -29,6 +29,7 @@
     "vue3-geolocation": "^1.0.0",
     "vue3-gmap-custom-marker": "^0.0.5",
     "vue3-google-map": "^0.13.0",
+    "vuejs-twitter-feed": "^1.0.1",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

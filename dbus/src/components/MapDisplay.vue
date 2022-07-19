@@ -1,4 +1,3 @@
-<template>
   <div class="row">
     <div class="top" id="Menu">
       <div id="title">
