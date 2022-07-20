@@ -28,7 +28,10 @@
           v-for="(marker, index) in stops.stops" :key="marker"
           :position="{ lat: stops.stops[index].latitude, lng: stops.stops[index].longitude }"
           :visible="marker.visibility"
+          :title="marker.searchname"
           :clickable="true"
+          :icon='{url: "https://img.icons8.com/fluency/48/000000/bus.png",
+          scaledSize: {width: 40, height: 40}}'
           @click="openMarker(stops.stops[index].stopid)"
 
         >
