@@ -8,13 +8,34 @@
                         <button class="btn btn-outline-secondary" type="button" id="button-addon1">🔍</button>
                         <input type="text" class="form-control" placeholder="RouteID" v-model="routeId" show-clear>
                     </div>
-                  
+
 
 
                     <!-- submit -->
                     <button class="btn btn-outline-secondary" type="submit" @click="submit"
-                        style="margin-top: 10px;margin-left: 20px;width: 70px;height: 60px;background-color: chartreuse;">Submit️</button>
+                        style="margin-top: 10px;margin-left: 20px;width: 70px;height: 60px;background-color: chartreuse;">Submit</button>
                 </div>
+            </div>
+                <div class="button" id="map" style="align-items: center; margin-top: 1%">
+      <GMapMap
+        :center="center"
+        :zoom="15"
+        map-type-id="terrain"
+        style="width: 100%; height: 700px"
+        ref="mapTheme"
+      >
+        <GMapMarker
+          v-for="marker in stops"
+          :key="marker.stopid"
+          :position="{ lat: marker.latitude, lng: marker.longitude }"
+          :visible="marker.visibility"
+          :clickable="true"
+        >
+        </GMapMarker>
+      </GMapMap>
+    </div>
+            <div>
+                {{ stops }}
             </div>
         </div>
     </ContentBase>
@@ -32,6 +53,7 @@ export default {
         ContentBase,
     },
     setup() {
+        let stops = ref([]);
         let routeId = ref('');
         const submit = () => {
             $.ajax({
@@ -41,14 +63,19 @@ export default {
                     routeId: routeId.value,
                 },
                 success(resp) {
-                    console.log(resp);
+                    stops.value = resp;
                 }
             });
         };
 
         return {
+            stops,
             routeId,
             submit,
+            center: {
+                lat: 53.349722,
+                lng: -6.260278,
+            },
         }
     }
 }
