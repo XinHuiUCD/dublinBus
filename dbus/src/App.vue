@@ -92,4 +92,7 @@
 	.btn{
 		color: var(--text-primary-color);
 	}
+	#sidebar{
+		filter: var(--filter-invert);
+	}
 </style>

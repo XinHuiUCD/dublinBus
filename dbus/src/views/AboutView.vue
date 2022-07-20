@@ -82,10 +82,10 @@
 </script>
 
 <style scoped>
-	.el-carousel{
+	/* .el-carousel{
 		width: 250px;
 		
-	}
+	} */
 
 	.el-carousel__item:nth-child(2n) {
 		background-color: #99a9bf;
