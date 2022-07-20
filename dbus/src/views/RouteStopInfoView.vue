@@ -29,18 +29,38 @@
           :position="{ lat: stops.stops[index].latitude, lng: stops.stops[index].longitude }"
           :visible="marker.visibility"
           :clickable="true"
+          @click="openMarker(stops.stops[index].stopid)"
+
         >
+
+        <GMapInfoWindow
+            :closeclick="true"
+            @closeclick="openMarker(null)"
+            :opened="openedMarkerID === stops.stops[index].stopid"
+          >
+            <div style="text-align: center">
+              <h5>Real Time Information</h5>
+              <div>Stop Name: {{ stops.stops[index].searchname }}</div>
+              <table style="margin: 0 auto">
+                <tr>
+                  <th>Bus Route</th>
+                  <th>Arrival</th>
+                </tr>
+                <tr>
+                  <td>145</td>
+                  <td>6 mins</td>
+                </tr>
+                <tr>
+                  <td>46a</td>
+                  <td>12 mins</td>
+                </tr>
+              </table>
+            </div>
+          </GMapInfoWindow>
         </GMapMarker>
       </GMapMap>
     </div>
-            <!-- <div v-for="marker in stops.stops" :key="marker.stop_id">
-                {{ stops.stops[marker].latitude }}
-            </div> -->
-            <!-- <div v-if="stops.stops">
-                <div v-for="(marker, index) in stops.stops" :key="marker">
-                {{stops.stops[index].latitude}}
-                </div>
-            </div> -->
+          
         </div>
     </ContentBase>
 </template>
@@ -56,6 +76,17 @@ export default {
     components: {
         ContentBase,
     },
+
+    data() {
+        return {
+
+              openedMarkerID: null,
+
+
+        }
+    },
+
+
     setup() {
         let stops = ref([]);
         let routeId = ref('');
@@ -82,6 +113,12 @@ export default {
                 lng: -6.260278,
             },
         }
+    },
+    methods: {
+         openMarker(id) {
+      this.openedMarkerID = id;
+    },
+
     }
 }
 </script>
