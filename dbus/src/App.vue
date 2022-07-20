@@ -92,4 +92,7 @@
 	.btn{
 		color: var(--text-primary-color);
 	}
+	#textDirections{
+		filter: var(--filter-invert);
+	}
 </style>
