@@ -5,15 +5,16 @@
                 <div id="function">
                     <!-- Your Position -->
                     <div class="input-group mb-3">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon1">🔍</button>
                         <input type="text" class="form-control" placeholder="RouteID" v-model="routeId" show-clear>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon1" @click="submit">🔍</button>
+
                     </div>
 
 
 
                     <!-- submit -->
-                    <button class="btn btn-outline-secondary" type="submit" @click="submit"
-                        style="margin-top: 10px;margin-left: 20px;width: 70px;height: 60px;background-color: chartreuse;">Submit</button>
+                    <!-- <button class="btn btn-outline-secondary" type="submit" @click="submit"
+                        style="margin-top: 10px;margin-left: 20px;width: 70px;height: 60px;background-color: chartreuse;">Submit</button> -->
                 </div>
             </div>
                 <div class="button" id="map" style="align-items: center; margin-top: 1%">
