@@ -135,16 +135,6 @@ export default ({
 				})
 
 
-		// return { result }
-
-		// Promise.all([
-		//         fetch('https://api.openweathermap.org/data/2.5/weather?q=Ireland&units=metric&appid=17f166d4fd4137881f3c09b22dd04a7a').then(res => res.ok && res.json() || Promise.reject(res)),
-		//         fetch('https://api.openweathermap.org/data/2.5/forecast?lat=53.3498&lon=6.2603&appid=17f166d4fd4137881f3c09b22dd04a7a').then(res => res.ok && res.json() || Promise.reject(res))
-		// ]).then(result => {
-		//     console.log("temparature", result[0].main.temp)
-
-		// })
-
 		return {
 			result
 		}
