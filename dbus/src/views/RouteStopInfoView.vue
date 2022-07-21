@@ -4,16 +4,24 @@
             <div id="title">
                 <div id="function">
                     <!-- Your Position -->
-                    <div class="input-group mb-3">
+                    <!-- <div class="input-group mb-3">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon1">🔍</button>
                         <input type="text" class="form-control" placeholder="RouteID" v-model="routeId" show-clear>
+                    </div> -->
+                    <div>
+                      <label for="browser">Choose a route to display on the map</label>
+                      <input list="browsers" name="browser" id="browser" v-model="routeId">
+                      <datalist id="browsers">
+                        <div v-for="(route, index) in busRoutes" :key="route">
+                        <option :value="busRoutes[index]"></option>
+                        </div>
+                      </datalist>
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon1" @click="submit">🔍</button>
                     </div>
+<!-- <div v-for="(route, index) in busRoutes" :key="route">
+{{busRoutes[index]}}
+</div> -->
 
-
-
-                    <!-- submit -->
-                    <button class="btn btn-outline-secondary" type="submit" @click="submit"
-                        style="margin-top: 10px;margin-left: 20px;width: 70px;height: 60px;background-color: chartreuse;">Submit</button>
                 </div>
             </div>
                 <div class="button" id="map" style="align-items: center; margin-top: 1%">
@@ -70,6 +78,8 @@
 
 <script>
 import ContentBase from '../components/ContentBase.vue'
+import busRoutesJson from "../assets/json/route.json";
+
 // import VueGoogleAutocomplete from "vue-google-autocomplete"
 import { ref } from 'vue';
 import $ from 'jquery';
@@ -84,6 +94,7 @@ export default {
         return {
 
               openedMarkerID: null,
+              busRoutes: busRoutesJson,
 
 
         }
