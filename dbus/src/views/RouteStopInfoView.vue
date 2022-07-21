@@ -69,7 +69,7 @@
     </ContentBase>
 </template>
 
-<script lang="ts">
+<script>
 import ContentBase from '../components/ContentBase.vue'
 // import VueGoogleAutocomplete from "vue-google-autocomplete"
 import { ref } from 'vue';
