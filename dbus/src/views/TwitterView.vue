@@ -36,10 +36,12 @@
 </style> -->
 <template>
 <ContentBase>
-	<a
-	id="twitter"
-    class="twitter-timeline"
-    :href="src"></a>
+  <div style= "margin:0 auto; width: 50%;">
+    <a  
+    id="twitter"
+      class="twitter-timeline"
+      :href="src"></a>
+  </div>
 </ContentBase>
 
 </template>

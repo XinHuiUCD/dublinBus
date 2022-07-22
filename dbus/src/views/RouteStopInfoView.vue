@@ -10,13 +10,15 @@
                     
                     <div>
                       <label style="padding-right:5px;">Choose a route to display on the map. Click the stop to view the real time data</label>
-                      <input list="browsers" name="browser" id="browser" v-model="routeId">
+                      <input list="browsers" name="browser" id="browser" v-model="routeId" placeholder="bus route..." style="border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; height: 32px;">
                       <datalist id="browsers">
                         <div v-for="(route, index) in busRoutes" :key="route">
                         <option :value="busRoutes[index]"></option>
                         </div>
                       </datalist>
-                        <button class="btn btn-outline-secondary" type="submit" id="button-addon1" @click="submit">🔍</button>
+                        <button type="button" class="btn btn-info" @click="submit">Search</button>
+
+                        <!-- <button class="btn btn-outline-secondary" type="submit" id="button-addon1" @click="submit">🔍</button> -->
                     </div>
 
 
@@ -52,7 +54,7 @@
               <div>Stop Name: {{ stops.stops[index].searchname }}</div>
               <div>
                 <div v-if="loading" style="margin: 0 auto;">
-                  <div class="loader" style="margin: 0 auto;"></div>
+                  <div class="loader" style="margin: 10px auto;"></div>
                   <div>Loading Real Time Data</div>
                 </div>
                 <div v-else>
@@ -171,7 +173,7 @@ export default {
 #realTimeTable td, #realTimeTable th {
   border: 1px solid #ddd;
 }
-
+/* Loader adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader */
 .loader {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
