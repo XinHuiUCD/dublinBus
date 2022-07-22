@@ -50,22 +50,31 @@
             <div style="text-align: center;  height:200px; overflow:auto">
               <h5>Real Time Information</h5>
               <div>Stop Name: {{ stops.stops[index].searchname }}</div>
-                <table id= "realTimeTable" style="margin: 0 auto;">
-                  <tr>
-                    <th>Bus Route</th>
-                    <th>Destination</th>
-                    <th>Arrival</th>
+              <div>
+                <div v-if="loading" style="margin: 0 auto;">
+                  <div class="loader" style="margin: 0 auto;"></div>
+                  <div>Loading Real Time Data</div>
+                </div>
+                <div v-else>
 
-                  </tr>
+                    <table id= "realTimeTable" style="margin: 0 auto;">
+                      <tr>
+                        <th>Bus Route</th>
+                        <th>Destination</th>
+                        <th>Arrival</th>
 
-                  <tr  v-for="busInfo in resultBusTimesSched" :key="busInfo">
-                      <td>{{busInfo.Route}}</td>
-                      <td>{{busInfo.Destination}}</td>
-                      <td>{{busInfo.Arrival}}</td>
+                      </tr>
 
-                  </tr>
+                      <tr  v-for="busInfo in resultBusTimesSched" :key="busInfo">
+                          <td>{{busInfo.Route}}</td>
+                          <td>{{busInfo.Destination}}</td>
+                          <td>{{busInfo.Arrival}}</td>
 
-                </table>
+                      </tr>
+                    </table>
+                </div>
+              </div>
+
             </div>
           </GMapInfoWindow>
         </GMapMarker>
@@ -97,7 +106,9 @@ export default {
               openedMarkerID: null,
               busRoutes: busRoutesJson,
               realTimeResults: null, 
-              resultBusTimesSched: {}
+              resultBusTimesSched: {},
+              loading: false,
+
 
 
         }
@@ -136,11 +147,13 @@ export default {
       this.openedMarkerID = id;
     },
     realTimeBusData(busstopNO) {
+      this.loading = true
       fetch('http://127.0.0.1:9000/getRealTime/'+ busstopNO)
         .then(response => response.json())
         .then(data => this.resultBusTimesSched = data)
+        .finally(() => (this.loading=false))
       
-        console.log(this.resultBusTimesSched)
+        
     },
 
     }
@@ -157,6 +170,27 @@ export default {
 
 #realTimeTable td, #realTimeTable th {
   border: 1px solid #ddd;
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 </style>
