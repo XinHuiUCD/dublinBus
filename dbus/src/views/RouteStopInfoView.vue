@@ -1,11 +1,15 @@
 <template>
     <ContentBase>
         <div id="Menu">
+          <h2 style="text-align:center">
+          <span style="color: black">Bus Routes</span>&nbsp;
+          <span style="color: gray">and Real Time Info</span>
+        </h2>
             <div id="title">
                 <div id="function">
                     
                     <div>
-                      <label for="browser">Choose a route to display on the map</label>
+                      <label style="padding-right:5px;">Choose a route to display on the map. Click the stop to view the real time data</label>
                       <input list="browsers" name="browser" id="browser" v-model="routeId">
                       <datalist id="browsers">
                         <div v-for="(route, index) in busRoutes" :key="route">
