@@ -6,7 +6,8 @@ from .serializers import BusSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-
+import pandas as pd
+import json
 # Create your views here.
 
 def index(request):
@@ -36,4 +37,14 @@ def stop_detail(request, id):
         serializer = BusSerializer(stop)
         return Response(serializer.data)
 
-
+# Query dublin bus web page to get bus times:
+# code adapted from https://stackabuse.com/reading-and-writing-html-tables-with-pandas/
+@api_view(['GET'])
+def realTimeData(request, busNo):
+    if request.method == 'GET':
+        url = "https://www.dublinbus.ie/en/RTPI/Sources-of-Real-Time-Information/?searchtype=view&searchquery="
+        df = pd.read_html(url + str(busNo))
+        bus_times = df[3]
+        bus_times.rename(columns={'Expected Time': 'Arrival'},inplace=True)
+        bus_times = bus_times.to_json(orient='records')
+        return Response(json.loads(bus_times))
