@@ -8,22 +8,21 @@
 			<el-collapse v-model="activeName" accordion>
 				<el-collapse-item title="&nbsp; Current Weather" name="1">
 					<div
-						style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
-
-						<p style=" font-size:16px; position: relative; display: inline-block; height: auto;">Date &
-							Time: {{ currentDateTime() }}</p>
+						style=" font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
+						<p style=" font-size:16px; position: relative; display: inline-block; height: auto;">
+							<span style="color: gray;">Date & Time:</span>  {{ currentDateTime() }}</p>
 						<div v-if="result">
 							<img src="http://openweathermap.org/img/w/10d.png" style="width: 80px; height: 80px;">
 							<div>
-								<p>Temp: {{ (result.list[0].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
+								<p><span style="color: gray;">Temp:</span>  {{ (result.list[0].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
 
 							</div>
 							<div>
-								<p>Feels Like:
+								<p><span style="color: gray;">Feels Like:</span> 
 									{{ (result.list[0].main.feels_like - 273.15).toFixed(2) }}°<span>C</span>
 								</p>
 							</div>
-							<div><p>{{ result.list[0].weather[0].description }}</p></div>
+							<div><p><span style="color: gray;">Description:</span> {{ result.list[0].weather[0].description }}</p></div>
 						</div>
 
 
@@ -33,21 +32,21 @@
 				</el-collapse-item>
 				<el-collapse-item title="&nbsp; Tomorrow's Weather " name="2">
 					<div
-						style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
+						style="font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
 
 
 						<div v-if="result">
 							<img src="http://openweathermap.org/img/w/04d.png" style="width: 80px; height: 80px;">
 							<div>
-								<p>Temp: {{ (result.list[10].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
+								<p><span style="color: gray;">Temp:</span>  {{ (result.list[10].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
 
 							</div>
 							<div>
-								<p>Feels Like:
+								<p><span style="color: gray;">Feels Like:</span> 
 									{{ (result.list[10].main.feels_like - 273.15).toFixed(2) }}°<span>C</span>
 								</p>
 							</div>
-							<div><p>{{ result.list[10].weather[0].description }}</p></div>
+							<div><p><span style="color: gray;">Description:</span> {{ result.list[10].weather[0].description }}</p></div>
 						</div>
 
 
@@ -57,22 +56,22 @@
 				</el-collapse-item>
 				<el-collapse-item title="&nbsp; Future Weather" name="3">
 					<div
-						style="font-weight: bold;  font-family: 'Actor';font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
+						style="font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
 						<div v-if="result">
 							<img src="http://openweathermap.org/img/w/04n.png" style="width: 80px; height: 80px;">
 							<div>
-								<p>Current date {{ result.list[20].dt_txt }}</p>
+								<p><span style="color: gray;">Current date: </span>{{ result.list[20].dt_txt }}</p>
 							</div>
 							<div>
-								<p>Temp: {{ (result.list[20].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
+								<p><span style="color: gray;">Temp:</span>  {{ (result.list[20].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
 
 							</div>
 							<div>
-								<p>Feels Like:
+								<p><span style="color: gray;">Feels Like:</span> 
 									{{ (result.list[20].main.feels_like - 273.15).toFixed(2) }}°<span>C</span>
 								</p>
 							</div>
-							<div><p>{{ result.list[20].weather[0].description }}</p></div>
+							<div><p><span style="color: gray;">Description: </span> {{ result.list[20].weather[0].description }}</p></div>
 						</div>
 					</div>
 				</el-collapse-item>
