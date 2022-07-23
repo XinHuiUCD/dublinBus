@@ -1,5 +1,9 @@
 <template>
 	<div id="Weather">
+		<h2 style="text-align:center">
+            <span style="color: black">Up to date</span>&nbsp;
+            <span style="color: gray">Weather Information</span>
+        </h2>
 		<div class="demo-collapse">
 			<el-collapse v-model="activeName" accordion>
 				<el-collapse-item title="&nbsp; Current Weather" name="1">

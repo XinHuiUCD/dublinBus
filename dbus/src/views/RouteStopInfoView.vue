@@ -2,8 +2,8 @@
     <ContentBase>
         <div id="Menu">
           <h2 style="text-align:center">
-          <span style="color: black">Bus Routes</span>&nbsp;
-          <span style="color: gray">and Real Time Info</span>
+            <span style="color: black">Bus Routes</span>&nbsp;
+            <span style="color: gray">and Real Time Info</span>
         </h2>
             <div id="title">
                 <div id="function">

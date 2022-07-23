@@ -1,42 +1,10 @@
-<!-- <template>
-	<ContentBase>
-		<div id="twitter">
-			<frame-options policy="SAMEORIGIN" />
-			<iframe :src="txtUrl" frameborder="0" width="100%" :style="{height:calHeight}" scrolling="auto"></iframe>
-		</div>
-
-<template>
-  <a
-    class="twitter-timeline"
-    :href="src"
-    :data-theme="dark ? 'dark' : 'light'"
-    :data-link-color="dataLinkColor"
-  ></a>
-</template>
-
-			ContentBase,
-		},
-		data() {
-			return {
-				txtUrl: "https://twitter.com/dublinbusnews?ref_src=twsrc%5Etfw",
-			}
-		},
-
-		computed: {
-			//Calculate the property and set the iframe height to 100px less than the window height
-			calHeight() {
-				return (window.innerHeight - 100) + 'px';
-			}
-		},
-	}
-</script>
-
-<style scoped>
-
-</style> -->
 <template>
 <ContentBase>
-  <div style= "margin:0 auto; width: 50%;">
+  <h2 style="text-align:center">
+            <span style="color: black">View up to date tweets from</span>&nbsp;
+            <span style="color: gray">Dublin Bus</span>
+        </h2>
+  <div style= "margin:20px auto; width: 50%;">
     <a  
     id="twitter"
       class="twitter-timeline"
