@@ -135,30 +135,40 @@
           :clickable="true"
           :icon='{url: "https://img.icons8.com/fluency/48/000000/bus.png",
           scaledSize: {width: 40, height: 40}}'
-          @click="openMarker(marker.stop_id)"
+          @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)"
         >
-          <GMapInfoWindow
+          <GMapInfoWindow 
             :closeclick="true"
             @closeclick="openMarker(null)"
             :opened="openedMarkerID === marker.stop_id"
           >
-            <div style="text-align: center">
+            <div style="text-align: center;  height:200px; overflow:auto">
               <h5>Real Time Information</h5>
-              <div>Stop Name: {{ marker.stop_name }}</div>
-              <table style="margin: 0 auto">
-                <tr>
-                  <th>Bus Route</th>
-                  <th>Arrival</th>
-                </tr>
-                <tr>
-                  <td>145</td>
-                  <td>6 mins</td>
-                </tr>
-                <tr>
-                  <td>46a</td>
-                  <td>12 mins</td>
-                </tr>
-              </table>
+              <div>
+                <div v-if="loading" style="margin: 0 auto;">
+                  <div class="loader" style="margin: 10px auto;"></div>
+                  <div>Loading Real Time Data</div>
+                </div>
+                <div v-else>
+
+                    <table id= "realTimeTable" style="margin: 0 auto;">
+                      <tr>
+                        <th>Bus Route</th>
+                        <th>Destination</th>
+                        <th>Arrival</th>
+
+                      </tr>
+
+                      <tr  v-for="busInfo in resultBusTimesSched" :key="busInfo">
+                          <td>{{busInfo.Route}}</td>
+                          <td>{{busInfo.Destination}}</td>
+                          <td>{{busInfo.Arrival}}</td>
+
+                      </tr>
+                    </table>
+                </div>
+              </div>
+
             </div>
           </GMapInfoWindow>
         </GMapMarker>
@@ -174,7 +184,7 @@
 
 
 <script>
-import markerLocations from "./json/BusStopsLongLatCSV.json";
+import markerLocations from "./json/BusStopsLongLatCSVComma.json";
 // eslint-disable-next-line
 import axios from "axios";
 import { ref } from "vue";
@@ -226,8 +236,13 @@ export default {
         open: false,
         template: "",
       },
+      resultBusTimesSched: {},
+      loading: false,
+
+
     };
   },
+
   mounted() {
     this.setLocationLatLng();
     this.getDirection();
@@ -288,6 +303,15 @@ export default {
     },
     openMarker(id) {
       this.openedMarkerID = id;
+    },
+    realTimeBusData(busstopNO) {
+      this.loading = true
+      fetch('http://127.0.0.1:9000/getRealTime/'+ busstopNO)
+        .then(response => response.json())
+        .then(data => this.resultBusTimesSched = data)
+        .finally(() => (this.loading=false))
+      
+        
     },
 
     getDirection: function () {
@@ -418,6 +442,38 @@ export default {
 }
 #sidebar > div {
   padding: 0.5rem;
+}
+
+
+#realTimeTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#realTimeTable tr:hover {background-color: #ddd;}
+
+#realTimeTable th {background-color: #009B77;}
+
+#realTimeTable td, #realTimeTable th {
+  border: 1px solid #ddd;
+}
+/* Loader adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader */
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 30px;
+  height: 30px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 
