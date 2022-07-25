@@ -34,10 +34,10 @@
 					</div>
 
 					<!-- swap address -->
-					<button class="btn btn-outline-secondary" @click="swapAddress(address, addresstwo)"
+					<!-- <button class="btn btn-outline-secondary" @click="swapAddress(address, addresstwo)"
 						style="margin-top: 10px; width: 60px; height: 60px">
 						↕️<br />Swap
-					</button>
+					</button> -->
 
 					<!-- fare calculator -->
 					<button class="btn btn-outline-secondary" type="submit" style="
@@ -304,12 +304,12 @@ export default {
 
 		},
 
-		swapAddress() {
-			const tempAddress = this.address;
-			this.address = this.addresstwo;
-			this.addresstwo = tempAddress;
-			console.log("trying to swap")
-		},
+		// swapAddress() {
+		// 	const tempAddress = this.address;
+		// 	this.address = this.addresstwo;
+		// 	this.addresstwo = tempAddress;
+		// 	console.log("trying to swap")
+		// },
 	},
 	showUserLocationOnTheMap(latitude, longitude) {
 		// eslint-disable-next-line
