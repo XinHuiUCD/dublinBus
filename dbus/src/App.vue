@@ -99,4 +99,12 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
+	#browsers{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
+	#addFavourite{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
 </style>

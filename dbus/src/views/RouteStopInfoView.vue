@@ -6,22 +6,8 @@
                 <span style="color: gray">and Real Time Info</span>
             </h2>
             <div id="title">
+
                 <div id="function">
-
-                    <!-- <div id="app">
-                        <h2>Cats</h2>
-                        <div v-for="(cat, n) in cats" :key="cat">
-                            <p>
-                                <span class="cat">{{ cat }}</span>
-                                <button @click="removeCat(n)">Remove</button>
-                            </p>
-                        </div>
-
-                        <p>
-                            <input v-model="newCat">
-                            <button @click="addCat">Add Cat</button>
-                        </p>
-                    </div> -->
                     <div>
                         <label id="browser" style="padding-right:5px; font-weight: bolder; font-size: large;">Choose a
                             route to display on the map. Click the stop to view
@@ -36,6 +22,29 @@
                         <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
                             @click="submit">🔍</button>
                     </div>
+
+
+                    <div id="addFavourite">
+                        <p>
+                            <el-input id="addFavourite" v-model="newFavourite" list="browsers" placeholder="Add Favourite Route"
+                                style="width:70%" clearable/>
+                            <datalist id="browsers">
+                                <div v-for="(favourite, index) in favourites" :key="favourite">
+                                    <option :value="favourites[index]"></option>
+
+                                </div>
+                            </datalist>
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon1" @click="addFavourite">❤️</button>
+                        </p>
+                        <div v-for="(favourite, index) in favourites" :key="favourite">
+                            <p>
+                                <span class="favourite" style="font-weight:bolder">{{ favourite }}</span>
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon1" @click="removeFavourite(index)">✖️</button>
+                            </p>
+                        </div>
+                    </div>
+
+
 
 
                 </div>
@@ -99,7 +108,7 @@ import busRoutesJson from "../assets/json/route.json";
 import { ref } from 'vue';
 import $ from 'jquery';
 
-const input = ref('')
+const newFavourite = ref('')
 
 export default {
     name: "RouteStopInfoView",
@@ -116,8 +125,8 @@ export default {
             realTimeResults: null,
             resultBusTimesSched: {},
             loading: false,
-            cats: [],
-            newCat: null
+            favourites: [],
+            newFavourite: null
 
 
         }
@@ -145,22 +154,21 @@ export default {
             stops,
             routeId,
             submit,
-            input,
             center: {
                 lat: 53.349722,
                 lng: -6.260278,
             },
         }
     },
-    // mounted() {
-    //     if (localStorage.getItem('cats')) {
-    //         try {
-    //             this.cats = JSON.parse(localStorage.getItem('cats'));
-    //         } catch (e) {
-    //             localStorage.removeItem('cats');
-    //         }
-    //     }
-    // },
+    mounted() {
+        if (localStorage.getItem('favourites')) {
+            try {
+                this.favourites = JSON.parse(localStorage.getItem('favourites'));
+            } catch (e) {
+                localStorage.removeItem('favourites');
+            }
+        }
+    },
     methods: {
         openMarker(id) {
             this.openedMarkerID = id;
@@ -174,24 +182,25 @@ export default {
 
 
         },
-        // addCat() {
-        //     // 确保他们输入了一些东西
-        //     if (!this.newCat) {
-        //         return;
-        //     }
+        addFavourite() {
+            // 确保他们输入了一些东西
+            if (!this.newFavourite) {
+                return;
+            }
 
-        //     this.cats.push(this.newCat);
-        //     this.newCat = '';
-        //     this.saveCats();
-        // },
-        // removeCat(x) {
-        //     this.cats.splice(x, 1);
-        //     this.saveCats();
-        // },
-        // saveCats() {
-        //     const parsed = JSON.stringify(this.cats);
-        //     localStorage.setItem('cats', parsed);
-        // },
+            this.favourites.push(this.newFavourite);
+            this.newFavourite = '';
+            this.saveFavourite();
+            console.log("add complete")
+        },
+        removeFavourite(x) {
+            this.favourites.splice(x, 1);
+            this.saveFavourite();
+        },
+        saveFavourite() {
+            const parsed = JSON.stringify(this.favourites);
+            localStorage.setItem('favourites', parsed);
+        },
 
     }
 }
