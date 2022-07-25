@@ -26,20 +26,24 @@
 
                     <div id="addFavourite">
                         <p>
-                            <el-input id="addFavourite" v-model="newFavourite" list="browsers" placeholder="Add Favourite Route"
-                                style="width:70%" clearable/>
+                            <el-input id="addFavourite" v-model="newFavourite" list="browsers"
+                                placeholder="Add Favourite Route" style="width:70%" clearable />
                             <datalist id="browsers">
                                 <div v-for="(favourite, index) in favourites" :key="favourite">
                                     <option :value="favourites[index]"></option>
 
                                 </div>
                             </datalist>
-                            <button class="btn btn-outline-secondary" type="submit" id="button-addon1" @click="addFavourite">❤️</button>
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
+                                @click="addFavourite">❤️</button>
                         </p>
+
                         <div v-for="(favourite, index) in favourites" :key="favourite">
                             <p>
-                                <span class="favourite" style="font-weight:bolder">{{ favourite }}</span>
-                                <button class="btn btn-outline-secondary" type="submit" id="button-addon1" @click="removeFavourite(index)">✖️</button>
+                                <span class="favourite" style="font-weight:bolder" type="submit" @click="submit2"
+                                    >{{ favourite }}</span>
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
+                                    @click="removeFavourite(index)">✖️</button>
                             </p>
                         </div>
                     </div>
@@ -126,8 +130,6 @@ export default {
             resultBusTimesSched: {},
             loading: false,
             favourites: [],
-            newFavourite: null
-
 
         }
     },
@@ -136,6 +138,7 @@ export default {
     setup() {
         let stops = ref([]);
         let routeId = ref('');
+        // let newFavourite = ref('')
         const submit = () => {
             $.ajax({
                 url: "http://127.0.0.1:9000/getinfo",
@@ -149,11 +152,26 @@ export default {
                 }
             });
         };
+        // const submit2 = () => {
+        //     $.ajax({
+        //         url: "http://127.0.0.1:9000/getinfo",
+        //         type: "GET",
+        //         data: {
+        //             newFavourite: newFavourite.value,
+        //         },
+        //         success(resp) {
+        //             stops.value = resp;
+        //             console.log(stops.value)
+        //         }
+        //     });
+        // };
 
         return {
             stops,
             routeId,
+            newFavourite,
             submit,
+            // submit2,
             center: {
                 lat: 53.349722,
                 lng: -6.260278,
@@ -183,7 +201,6 @@ export default {
 
         },
         addFavourite() {
-            // 确保他们输入了一些东西
             if (!this.newFavourite) {
                 return;
             }
@@ -191,15 +208,17 @@ export default {
             this.favourites.push(this.newFavourite);
             this.newFavourite = '';
             this.saveFavourite();
-            console.log("add complete")
+            // console.log("add favourite complete")
         },
         removeFavourite(x) {
             this.favourites.splice(x, 1);
             this.saveFavourite();
+            // console.log("remove favourite complete")
         },
         saveFavourite() {
             const parsed = JSON.stringify(this.favourites);
             localStorage.setItem('favourites', parsed);
+            // console.log("save favourite complete")
         },
 
     }

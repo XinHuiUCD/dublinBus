@@ -25,6 +25,14 @@ class RouteStopView(APIView):
         serializer = BusSerializer(stops, many=True)
         return JsonResponse({"stops": serializer.data}, safe=False)
 
+    # def get(self, request):
+    #     newFavourite = request.query_params.get('newFavourite')
+    #     newFavourite = newFavourite.upper()
+    #     # stops = Stoprouteinfo.objects.all()
+    #     stops = Stoprouteinfo.objects.filter(routesid__contains=newFavourite)
+    #     serializer = BusSerializer(stops, many=True)
+    #     return JsonResponse({"stops": serializer.data}, safe=False)
+
 @api_view(['GET'])
 def stop_detail(request, id):
     
