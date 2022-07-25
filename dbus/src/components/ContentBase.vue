@@ -49,9 +49,6 @@
 import {
     ref
 } from 'vue'
-import {
-    ElMessageBox
-} from 'element-plus'
 
 const dialogVisible = ref(false)
 
