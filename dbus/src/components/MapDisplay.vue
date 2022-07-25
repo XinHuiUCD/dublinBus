@@ -12,7 +12,7 @@
 
 					<div class="input-group mb-3">
 						<GMapAutocomplete placeholder="Enter your starting point" @place_changed="setPlace"
-							v-model="address">
+							v-model="address" style="width:75%">
 						</GMapAutocomplete><button class="btn" @click="addMarkerStart()"><img
 								style="width: fit-content; height: fit-content;"
 								src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
@@ -22,7 +22,7 @@
 
 					<div class="input-group mb-3">
 						<GMapAutocomplete placeholder="Enter your destination" @place_changed="setPlace"
-							v-model="addresstwo">
+							v-model="addresstwo" style="width:75%">
 						</GMapAutocomplete><button class="btn" @click="addMarkerEnd()"><img
 								style="width: fit-content; height: fit-content;"
 								src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
@@ -30,7 +30,7 @@
 					<!-- Select date and time -->
 					<div class="block">
 						<el-date-picker v-model="pickdate" type="datetime" placeholder="Select date and time"
-							style="height: 40px; width: 90%" />
+							style="height: 40px; width: 100%" />
 					</div>
 
 					<!-- swap address -->
