@@ -40,7 +40,7 @@
 
                         <div v-for="(favourite, index) in favourites" :key="favourite">
                             <p>
-                                <span class="favourite" style="font-weight:bolder" type="submit" @click="submit2"
+                                <span class="favourite" style="font-weight:bolder" type="submit" @click="submit"
                                     >{{ favourite }}</span>
                                 <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
                                     @click="removeFavourite(index)">✖️</button>
@@ -130,7 +130,7 @@ export default {
             resultBusTimesSched: {},
             loading: false,
             favourites: [],
-
+            newFavourite: null,
         }
     },
 
@@ -169,7 +169,7 @@ export default {
         return {
             stops,
             routeId,
-            newFavourite,
+            // newFavourite,
             submit,
             // submit2,
             center: {

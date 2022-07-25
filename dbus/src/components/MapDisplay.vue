@@ -30,7 +30,7 @@
 					<!-- Select date and time -->
 					<div class="block">
 						<el-date-picker v-model="pickdate" type="datetime" placeholder="Select date and time"
-							style="height: 40px; width: 100%" />
+							style="height: 40px; width: 90%" />
 					</div>
 
 					<!-- swap address -->
