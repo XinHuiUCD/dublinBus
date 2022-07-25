@@ -42,7 +42,6 @@
 					<!-- fare calculator -->
 					<button class="btn btn-outline-secondary" type="submit" style="
               margin-top: 10px;
-              margin-left: 20px;
               width: 60px;
               height: 60px;
             ">
