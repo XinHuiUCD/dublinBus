@@ -38,6 +38,7 @@
                                 @click="addFavourite">❤️</button>
                         </p>
 
+<<<<<<< HEAD
                         
                             <el-collapse v-model="activeNames">
                                 <el-collapse-item title="Your Favourite Routes" name="1">
@@ -55,6 +56,18 @@
                                 </el-collapse-item>
                             </el-collapse>
 
+=======
+                        <div v-for="(favourite, index) in favourites" :key="favourite">
+                            <p>
+                                <span class="favourite" style="font-weight:bolder" type="submit"
+                                    @click="showFavoriteRoute($event)">{{
+                                            favourite
+                                    }}</span>
+                                <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
+                                    @click="removeFavourite(index)">✖️</button>
+                            </p>
+                        </div>
+>>>>>>> 5493f5063c77ee369eece132f03252eab6fbef39
                     </div>
 
 
@@ -120,7 +133,11 @@ import busRoutesJson from "../assets/json/route.json";
 // import VueGoogleAutocomplete from "vue-google-autocomplete"
 import { ref } from 'vue';
 import $ from 'jquery';
+<<<<<<< HEAD
 const activeNames = ref(['1'])
+=======
+
+>>>>>>> 5493f5063c77ee369eece132f03252eab6fbef39
 
 export default {
     name: "RouteStopInfoView",

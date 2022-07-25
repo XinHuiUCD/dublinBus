@@ -7,6 +7,7 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <footer style="text-align: center;margin-top: 10px;color: #1dc1ec">
             <div class="common-layout">
                 <el-container>
@@ -45,6 +46,41 @@
                     </el-container>
                 </el-container>
             </div>
+=======
+        <div class="common-layout">
+            <el-container>
+
+                <el-header>
+                    <h1 style="color: #1dc1ec">About Us</h1>
+                </el-header>
+
+                <el-container>
+                    <el-main>
+                        <h3 style="color: #1dc1ec">Rating for us!</h3>
+                        <el-rate v-model="value" :texts="['oops', 'disappointed', 'normal', 'good', 'great']" show-text
+                            style="color: #1dc1ec" />
+
+                        <!-- submit button -->
+                        <el-divider border-style="dashed" />
+                        <el-button text @click="dialogVisible = true" style="background-color: pink;">click here to
+                            submit your rating</el-button>
+
+                        <el-dialog v-model="dialogVisible" title="Tips" width="30%" :before-close="handleClose">
+                            <span>We are pleased to receive your rating 😊</span>
+                            <template #footer>
+                                <span class="dialog-footer">
+                                    <el-button @click="dialogVisible = false">Cancel</el-button>
+                                    <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+                                </span>
+                            </template>
+                        </el-dialog>
+                        <el-divider border-style="dashed" />
+                    </el-main>
+                </el-container>
+            </el-container>
+        </div>
+        <footer style="text-align: center;margin-top: 10px;color: #1dc1ec">
+>>>>>>> 5493f5063c77ee369eece132f03252eab6fbef39
             © 2022: XpressBusEgineering- Team 10
         </footer>
     </div>
@@ -54,9 +90,14 @@
 import {
     ref
 } from 'vue'
+<<<<<<< HEAD
 import {
     ElMessageBox
 } from 'element-plus'
+=======
+
+const dialogVisible = ref(false)
+>>>>>>> 5493f5063c77ee369eece132f03252eab6fbef39
 
 const dialogVisible = ref(false)
 const handleClose = (done: () => void) => {
@@ -75,12 +116,15 @@ export default {
     data() {
         return {
             dialogVisible,
+<<<<<<< HEAD
             carouseImgs: [
                 { url: require("../assets/photo1.png") },
                 { url: require("../assets/photo1.png") },
                 { url: require("../assets/photo1.png") },
                 { url: require("../assets/photo1.png") },
             ]
+=======
+>>>>>>> 5493f5063c77ee369eece132f03252eab6fbef39
         }
     }
 }
