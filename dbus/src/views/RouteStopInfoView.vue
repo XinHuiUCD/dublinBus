@@ -38,14 +38,23 @@
                                 @click="addFavourite">❤️</button>
                         </p>
 
-                        <div v-for="(favourite, index) in favourites" :key="favourite">
-                            <p>
-                                <span class="favourite" style="font-weight:bolder" type="submit" @click="submit"
-                                    >{{ favourite }}</span>
-                                <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
-                                    @click="removeFavourite(index)">✖️</button>
-                            </p>
-                        </div>
+                        
+                            <el-collapse v-model="activeNames">
+                                <el-collapse-item title="Your Favourite Routes" name="1">
+                                    <div v-for="(favourite, index) in favourites" :key="favourite">
+                                        <p>
+                                            <span class="favourite" style="font-weight:bolder" type="submit"
+                                                @click="showFavoriteRoute($event)">{{
+                                                        favourite
+                                                }}</span>
+                                            <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
+                                                @click="removeFavourite(index)">✖️</button>
+                                        </p>
+                                    </div>
+
+                                </el-collapse-item>
+                            </el-collapse>
+
                     </div>
 
 
@@ -111,8 +120,7 @@ import busRoutesJson from "../assets/json/route.json";
 // import VueGoogleAutocomplete from "vue-google-autocomplete"
 import { ref } from 'vue';
 import $ from 'jquery';
-
-const newFavourite = ref('')
+const activeNames = ref(['1'])
 
 export default {
     name: "RouteStopInfoView",
@@ -122,7 +130,6 @@ export default {
 
     data() {
         return {
-
             openedMarkerID: null,
             currentLocation: null,
             busRoutes: busRoutesJson,
@@ -131,6 +138,7 @@ export default {
             loading: false,
             favourites: [],
             newFavourite: null,
+            activeNames
         }
     },
 
@@ -138,7 +146,6 @@ export default {
     setup() {
         let stops = ref([]);
         let routeId = ref('');
-        // let newFavourite = ref('')
         const submit = () => {
             $.ajax({
                 url: "http://127.0.0.1:9000/getinfo",
@@ -152,26 +159,26 @@ export default {
                 }
             });
         };
-        // const submit2 = () => {
-        //     $.ajax({
-        //         url: "http://127.0.0.1:9000/getinfo",
-        //         type: "GET",
-        //         data: {
-        //             newFavourite: newFavourite.value,
-        //         },
-        //         success(resp) {
-        //             stops.value = resp;
-        //             console.log(stops.value)
-        //         }
-        //     });
-        // };
+
+        const showFavoriteRoute = (e) => {
+            $.ajax({
+                url: "http://127.0.0.1:9000/getinfo",
+                type: "GET",
+                data: {
+                    routeId: e.currentTarget.innerText,
+                },
+                success(resp) {
+                    stops.value = resp;
+                    console.log(stops.value)
+                }
+            });
+        };
 
         return {
             stops,
             routeId,
-            // newFavourite,
             submit,
-            // submit2,
+            showFavoriteRoute,
             center: {
                 lat: 53.349722,
                 lng: -6.260278,
@@ -201,14 +208,18 @@ export default {
 
         },
         addFavourite() {
-            if (!this.newFavourite) {
-                return;
+
+            if (!this.favourites.includes(this.newFavourite)) {
+                // console.log('true')
+                this.favourites.push(this.newFavourite);
+            } else {
+                console.log('already added')
             }
 
-            this.favourites.push(this.newFavourite);
             this.newFavourite = '';
             this.saveFavourite();
             // console.log("add favourite complete")
+            console.log(this.favourites)
         },
         removeFavourite(x) {
             this.favourites.splice(x, 1);

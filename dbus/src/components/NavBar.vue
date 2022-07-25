@@ -38,17 +38,6 @@
 							</div>
 						</div>
 					</li>
-
-
-					<li class="nav-item">
-						<div class="card">
-							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'about' }"
-									style="color: #1dc1ec">About
-								</router-link>
-							</div>
-						</div>
-					</li>
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">

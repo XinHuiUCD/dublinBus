@@ -107,6 +107,7 @@ export default ({
 	data() {
 		return {
 			currentWeather: null,
+			activeName
 
 		}
 	},

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<ContentBase>
 		<div class="common-layout">
 			<el-container>
@@ -13,7 +13,7 @@
 						<el-rate v-model="value" :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
 							show-text style="color: #1dc1ec"/>
 
-						<!-- submit button -->
+						
 						<el-divider border-style="dashed" />
 						<el-button text @click="dialogVisible = true" style="background-color: pink;">click here to
 							submit your rating</el-button>
@@ -96,4 +96,4 @@
 		background-color: #d3dce6;
 		text-align: center;
 	}
-</style>
+</style> -->
