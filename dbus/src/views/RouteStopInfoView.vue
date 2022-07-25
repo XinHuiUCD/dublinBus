@@ -40,8 +40,9 @@
 
                         <div v-for="(favourite, index) in favourites" :key="favourite">
                             <p>
-                                <span class="favourite" style="font-weight:bolder" type="submit" @click="submit"
-                                    >{{ favourite }}</span>
+                                <span class="favourite" style="font-weight:bolder" type="submit" @click="submit">{{
+                                        favourite
+                                }}</span>
                                 <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
                                     @click="removeFavourite(index)">✖️</button>
                             </p>
@@ -122,7 +123,6 @@ export default {
 
     data() {
         return {
-
             openedMarkerID: null,
             currentLocation: null,
             busRoutes: busRoutesJson,
@@ -152,19 +152,6 @@ export default {
                 }
             });
         };
-        // const submit2 = () => {
-        //     $.ajax({
-        //         url: "http://127.0.0.1:9000/getinfo",
-        //         type: "GET",
-        //         data: {
-        //             newFavourite: newFavourite.value,
-        //         },
-        //         success(resp) {
-        //             stops.value = resp;
-        //             console.log(stops.value)
-        //         }
-        //     });
-        // };
 
         return {
             stops,
