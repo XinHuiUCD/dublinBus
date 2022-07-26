@@ -92,4 +92,19 @@
 	.btn{
 		color: var(--text-primary-color);
 	}
+	#sidebar{
+		filter: var(--filter-invert);
+	}
+	#browser{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
+	#browsers{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
+	#addFavourite{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
 </style>
