@@ -54,17 +54,87 @@
 
           <!-- fare calculator -->
           <button
+            @click="fareCalculation(); showFareInfo();"
             class="btn btn-outline-secondary"
+            id="fareButton"
             type="submit"
             style="
               margin-top: 10px;
               margin-left: 20px;
               width: 60px;
               height: 60px;
+              display:none;
             "
           >
             €️<br />Fare
           </button>
+          <div class="form-popup" id="myForm">
+            <div class="form-container">
+              <h2>Fare Estimation</h2>
+              <div v-if="this.journey == 'long'">
+                  <h4>Long Zone</h4>
+                  <table id= "realTimeTable" style="margin: 0 auto 7px; ">
+                          <tr>
+                            <th>Type</th>
+                            <th>Leap Card</th>
+                            <th>Cash Fare</th>
+
+                          </tr>
+
+                          <tr>
+                              <td>Adult</td>
+                              <td>€2.00</td>
+                              <td>€2.60</td>
+
+                          </tr>
+                          <tr>
+                              <td>Student</td>
+                              <td>€1.00</td>
+                              <td>€2.60</td>
+
+                          </tr>
+                          <tr>
+                              <td>Child</td>
+                              <td>€0.65</td>
+                              <td>€0.90</td>
+
+                          </tr>
+                  </table>
+              </div>
+              <div v-else-if="this.journey =='short'">
+                  <h4>Short Zone</h4>
+                  <table id= "realTimeTable" style="margin: 0 auto 7px; ">
+                          <tr>
+                            <th>Type</th>
+                            <th>Leap Card</th>
+                            <th>Cash Fare</th>
+
+                          </tr>
+
+                          <tr>
+                              <td>Adult</td>
+                              <td>€1.30</td>
+                              <td>€1.70</td>
+
+                          </tr>
+                          <tr>
+                              <td>Student</td>
+                              <td>€0.65</td>
+                              <td>€1.70</td>
+
+                          </tr>
+                          <tr>
+                              <td>Child</td>
+                              <td>€0.65</td>
+                              <td>€0.90</td>
+
+                          </tr>
+                  </table>
+              </div>
+              <button type="button" class="btn cancel" @click="closeFareInfo();">Close</button>
+            </div>
+          </div>
+
 
           <button
             class="btn btn-outline-secondary"
@@ -86,7 +156,7 @@
           <button
             class="btn btn-outline-secondary"
             type="submit"
-            @click="getDirection(); showDiv();"
+            @click="getDirection(); showDiv(); showFareButton(); fareCalculation();"
             style="
               margin-top: 10px;
               margin-left: 20px;
@@ -199,6 +269,7 @@ var clicked = true;
 const directionRenderers = [];
 
 
+let arrayy = 0;
 
 
 
@@ -211,6 +282,10 @@ export default {
       address: "",
       addresstwo: "",
       submit,
+      distanceJourney: "",
+      zone:null,
+      arrayy:[],
+      journey:"",
 
       center: {
         lat: 53.349722,
@@ -246,6 +321,7 @@ export default {
   mounted() {
     this.setLocationLatLng();
     this.getDirection();
+
     this.$refs.mapTheme.$mapPromise.then((mapObject) => {
       console.log("map is loaded now", mapObject);
     });
@@ -257,6 +333,9 @@ export default {
 
     showDiv() {
    document.getElementById('MlResult').style.display = "inline";
+    },
+    showFareButton(){
+      document.getElementById('fareButton').style.display = "inline";
     },
 
     setLocationLatLng: function () {
@@ -339,26 +418,46 @@ export default {
               modes: [google.maps.TransitMode.BUS],
             },
           },
-          function (response, status) {
+          function (response, status)  {
             if (status === "OK") {
-               
-              console.log("fare estimation", response.routes[0].fare);
-              console.log("respnss",response);
+              // let directionsResponse = response;
+              console.log("response",response);
+              console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
+              // this.zone.value = response.routes[0].legs[0].steps[1].distance.value;
+              // zoneZone = response.routes[0].legs[0].steps[1].distance.value;
+              // console.log(zoneZone)
+              // this.zone = response.routes[0].legs[0].steps[1].distance.value;
+
+              arrayy = (response.routes[0].legs[0].steps[1].distance.value);
+
+              console.log("arrayy", arrayy)
               directionsDisplay.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
             }
+            return{
+              arrayy
+            }
           }
+          
+          
         );
       }
+     
+      
       calculateAndDisplayRoute(
         directionsService,
         directionsDisplay,
         this.coords,
         this.destination
       );
+      // return {
+      //   zoneZone
+
+      // }
     },
     // Journey Plan
+
 
     togglefav: function () {
       this.$emit("togglefav", !this.is_fav);
@@ -366,12 +465,15 @@ export default {
     resetSearch(){
       console.log("reset")
       directionRenderers.forEach(directionsDisplay => {
-    directionsDisplay.setMap(null)
-    directionsDisplay.setPanel(null)
+      directionsDisplay.setMap(null)
+      directionsDisplay.setPanel(null)
 
-  });
-  directionRenderers.length = 0;
-  document.getElementById('MlResult').style.display = "none";
+     });
+      directionRenderers.length = 0;
+      document.getElementById('MlResult').style.display = "none";
+      document.getElementById('fareButton').style.display = "none";
+      document.getElementById("myForm").style.display = "none";
+
      
 
     },
@@ -381,6 +483,24 @@ export default {
       this.address = this.addresstwo;
       this.addresstwo = tempAddress;
       console.log("trying to swap")
+    },
+    fareCalculation(){
+    console.log("this is the array", arrayy)
+    if(arrayy < 3000){
+      this.journey = "short"
+    }
+    else{
+      this.journey = "long"
+    }
+  },
+    showFareInfo(){
+      document.getElementById("myForm").style.display = "block";
+
+
+    },
+    closeFareInfo(){
+        document.getElementById("myForm").style.display = "none";
+
     },
   },
   showUserLocationOnTheMap(latitude, longitude) {
@@ -399,6 +519,9 @@ export default {
       map: map,
     });
   },
+
+  
+  
   
 };
 
@@ -475,6 +598,57 @@ export default {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+h1, h2, h4{
+  font-family: 'Roboto', sans-serif;
+
+}
+/* reference for fare pop-up */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+
 
 
 

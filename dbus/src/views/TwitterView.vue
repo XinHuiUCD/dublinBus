@@ -1,7 +1,7 @@
 <template>
 <ContentBase>
   <h2 style="text-align:center">
-            <span style="color: black">View up to date tweets from</span>&nbsp;
+            <span style="color: black">View the latest tweets from</span>&nbsp;
             <span style="color: gray">Dublin Bus</span>
         </h2>
   <div style= "margin:20px auto; width: 50%; height: 700px; overflow: auto;">
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import ContentBase from '../components/ContentBase.vue'
+
 export default {
   props: {
     src: {
@@ -30,6 +32,9 @@ export default {
       default: "#2B7BB9"
     }
   },
+  components: {
+        ContentBase,
+    },
   created() {
     let twitterFeed = document.createElement("script");
     twitterFeed.setAttribute("src", "https://platform.twitter.com/widgets.js");
@@ -37,3 +42,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+h2{
+  font-family: 'Roboto', sans-serif;
+
+}
+</style>

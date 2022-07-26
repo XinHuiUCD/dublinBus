@@ -195,4 +195,11 @@ export default {
   100% { transform: rotate(360deg); }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+h2{
+  font-family: 'Roboto', sans-serif;
+
+}
+
 </style>
