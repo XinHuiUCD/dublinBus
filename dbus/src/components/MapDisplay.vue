@@ -606,12 +606,12 @@ h1, h2, h4{
   font-family: 'Roboto', sans-serif;
 
 }
-/* reference for fare pop-up */
+/* reference for fare pop-up https://www.w3schools.com/howto/howto_js_popup_form.asp */
 .form-popup {
   display: none;
   position: fixed;
-  bottom: 0;
-  right: 15px;
+  bottom: 10px;
+  right: 120px;
   border: 3px solid #f1f1f1;
   z-index: 9;
 }
