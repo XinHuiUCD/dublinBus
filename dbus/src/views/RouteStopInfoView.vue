@@ -7,11 +7,12 @@
         </h2>
             <div id="title">
 
-                <div id="function">
-                    <div>
-                         <el-button type="danger" plain disabled style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose a
-                            route to display on the map. Click the stop to view
-                            the real time data</el-button>
+                <div class="grid text-center" id="function">
+                    <div class="g-col-6">
+                         <label type="danger" plain disabled style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose a
+                            route to display on the map<br/>Click the stop to view
+                            the real time data</label>
+                            
 
                         <el-input list="browsers" name="browser" id="browser" v-model="routeId"
                             placeholder="Choose a route" clearable style="width:70%" />
@@ -25,7 +26,7 @@
                     </div>
 
 
-                    <div id="addFavourite" style="margin-top:2%">
+                    <div class="g-col-6" id="addFavourite" style="margin-top:2%">
                         <p>
                             <el-input id="addFavourite" v-model="newFavourite" list="browsers"
                                 placeholder="Add Favourite Route" style="width:70%" clearable />
