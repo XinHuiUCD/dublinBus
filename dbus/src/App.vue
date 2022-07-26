@@ -107,4 +107,13 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
+	/* #realTimeTable{
+		filter: var(--filter-invert);
+	} */
+	#myForm{
+		filter: var(--filter-invert);
+	}
+	#el-button{
+		filter: var(--filter-invert);
+	}
 </style>

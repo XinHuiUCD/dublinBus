@@ -9,9 +9,10 @@
 
                 <div id="function">
                     <div>
-                        <label id="browser" style="padding-right:5px; font-weight: bolder; font-size: large;">Choose a
+                         <el-button type="danger" plain disabled style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose a
                             route to display on the map. Click the stop to view
-                            the real time data</label>
+                            the real time data</el-button>
+
                         <el-input list="browsers" name="browser" id="browser" v-model="routeId"
                             placeholder="Choose a route" clearable style="width:70%" />
                         <datalist id="browsers">
@@ -24,7 +25,7 @@
                     </div>
 
 
-                    <div id="addFavourite">
+                    <div id="addFavourite" style="margin-top:2%">
                         <p>
                             <el-input id="addFavourite" v-model="newFavourite" list="browsers"
                                 placeholder="Add Favourite Route" style="width:70%" clearable />

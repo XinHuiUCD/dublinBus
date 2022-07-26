@@ -15,7 +15,7 @@
               placeholder="Enter your starting point"
               @place_changed="setPlace"
               v-model="address"
-
+              style="width:75%"
             >
             </GMapAutocomplete
             ><button class="btn" @click="addMarkerStart()"><img style="width: fit-content; height: fit-content;" src="https://img.icons8.com/color/48/000000/place-marker--v1.png"/></button>
@@ -28,7 +28,7 @@
               placeholder="Enter your destination"
               @place_changed="setPlace"
               v-model="addresstwo"
-
+              style="width:75%"
             >
             </GMapAutocomplete
             ><button class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;" src="https://img.icons8.com/color/48/000000/place-marker--v1.png"/></button>
@@ -191,6 +191,7 @@
             type="button"
             @click="hideAllMarkers()"
             class="btn btn-outline-info"
+            style="color: #1dc1ec"
           >
             Hide/Show Makers
           </button>
