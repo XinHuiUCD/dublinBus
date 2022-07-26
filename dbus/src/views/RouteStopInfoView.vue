@@ -9,9 +9,9 @@
 
                 <div id="function">
                     <div>
-                         <el-button type="danger" plain disabled style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose a
+                         <label style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose a
                             route to display on the map. Click the stop to view
-                            the real time data</el-button>
+                            the real time data</label>
 
                         <el-input list="browsers" name="browser" id="browser" v-model="routeId"
                             placeholder="Choose a route" clearable style="width:70%" />

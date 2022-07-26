@@ -60,7 +60,7 @@
 						<div v-if="result">
 							<img src="http://openweathermap.org/img/w/04n.png" style="width: 80px; height: 80px;">
 							<div>
-								<p><span style="color: gray;">Current date: </span>{{ result.list[20].dt_txt }}</p>
+								<p><span style="color: gray;">Date: </span>{{ result.list[20].dt_txt }}</p>
 							</div>
 							<div>
 								<p><span style="color: gray;">Temp:</span>  {{ (result.list[20].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
