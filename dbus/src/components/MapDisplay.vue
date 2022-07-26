@@ -269,7 +269,7 @@ var clicked = true;
 const directionRenderers = [];
 
 
-let arrayy = 0;
+let busDistance = 0;
 
 
 
@@ -284,7 +284,6 @@ export default {
       submit,
       distanceJourney: "",
       zone:null,
-      arrayy:[],
       journey:"",
 
       center: {
@@ -420,23 +419,17 @@ export default {
           },
           function (response, status)  {
             if (status === "OK") {
-              // let directionsResponse = response;
               console.log("response",response);
               console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
-              // this.zone.value = response.routes[0].legs[0].steps[1].distance.value;
-              // zoneZone = response.routes[0].legs[0].steps[1].distance.value;
-              // console.log(zoneZone)
-              // this.zone = response.routes[0].legs[0].steps[1].distance.value;
+              busDistance = (response.routes[0].legs[0].steps[1].distance.value);
 
-              arrayy = (response.routes[0].legs[0].steps[1].distance.value);
-
-              console.log("arrayy", arrayy)
+              console.log("bus Distance", busDistance)
               directionsDisplay.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
             }
             return{
-              arrayy
+              busDistance
             }
           }
           
@@ -451,13 +444,8 @@ export default {
         this.coords,
         this.destination
       );
-      // return {
-      //   zoneZone
-
-      // }
+      
     },
-    // Journey Plan
-
 
     togglefav: function () {
       this.$emit("togglefav", !this.is_fav);
@@ -474,8 +462,6 @@ export default {
       document.getElementById('fareButton').style.display = "none";
       document.getElementById("myForm").style.display = "none";
 
-     
-
     },
 
     swapAddress() {
@@ -485,8 +471,8 @@ export default {
       console.log("trying to swap")
     },
     fareCalculation(){
-    console.log("this is the array", arrayy)
-    if(arrayy < 3000){
+    console.log("this is the array", busDistance)
+    if(busDistance < 3000){
       this.journey = "short"
     }
     else{
@@ -520,9 +506,6 @@ export default {
     });
   },
 
-  
-  
-  
 };
 
 // code ref: https://jsfiddle.net/irhamkim/20pegws2/2/  https://developers.google.com/maps/documentation/javascript/directions#TransitOptions
