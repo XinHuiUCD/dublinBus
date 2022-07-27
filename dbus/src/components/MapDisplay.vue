@@ -13,7 +13,7 @@
           <div class="grid text-center">
             <div class="g-col-6">
               <GMapAutocomplete placeholder="Enter your starting point" @place_changed="setPlace" v-model="address"
-                style="width:75%">
+                style="width:75%; border-radius: 4px;">
               </GMapAutocomplete>
               <button class="btn" @click="addMarkerStart()"><img style="width: fit-content; height: fit-content;"
                   src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
@@ -23,7 +23,7 @@
 
             <div class="g-col-6">
               <GMapAutocomplete placeholder="Enter your destination" @place_changed="setPlace" v-model="addresstwo"
-                style="width:75%">
+                style="width:75%; border-radius: 4px;">
               </GMapAutocomplete>
               <button class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;"
                   src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>

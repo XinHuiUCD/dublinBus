@@ -12,7 +12,7 @@
 						<p style=" font-size:16px; position: relative; display: inline-block; height: auto;">
 							<span style="color: gray;">Date & Time:</span>  {{ currentDateTime() }}</p>
 						<div v-if="result">
-							<img src="http://openweathermap.org/img/w/10d.png" style="width: 80px; height: 80px;">
+							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[0].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
 							<div>
 								<p><span style="color: gray;">Temp:</span>  {{ (result.list[0].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
 
@@ -36,7 +36,7 @@
 
 
 						<div v-if="result">
-							<img src="http://openweathermap.org/img/w/04d.png" style="width: 80px; height: 80px;">
+							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[10].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
 							<div>
 								<p><span style="color: gray;">Temp:</span>  {{ (result.list[10].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
 
@@ -58,7 +58,7 @@
 					<div
 						style="font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
 						<div v-if="result">
-							<img src="http://openweathermap.org/img/w/04n.png" style="width: 80px; height: 80px;">
+							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[20].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
 							<div>
 								<p><span style="color: gray;">Date: </span>{{ result.list[20].dt_txt }}</p>
 							</div>
