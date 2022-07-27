@@ -12,7 +12,7 @@
                          <label type="danger" plain disabled style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose a
                             route to display on the map<br/>Click the stop to view
                             the real time data</label>
-                            
+                            <el-divider border-style="dashed" />
 
                         <el-input list="browsers" name="browser" id="browser" v-model="routeId"
                             placeholder="Choose a route" clearable style="width:70%" />
