@@ -9,18 +9,6 @@
 
         <div id="functions">
           <!-- Your Position -->
-          <div>
-            <div class="input-group mb-3">
-                <GMapAutocomplete
-                  placeholder="Enter your starting point"
-                  @place_changed="setPlace"
-                  v-model="address"
-                  style="width: 70%; border-radius: 3px;"
-                >
-                </GMapAutocomplete
-                ><button class="btn" @click="addMarkerStart()"><img style="width: fit-content; height: fit-content;" src="https://img.icons8.com/color/48/000000/place-marker--v1.png"/></button>
-            </div>
-            <!-- Your Destination -->
 
           <div class="grid text-center">
             <div class="g-col-6">
@@ -218,7 +206,7 @@
         </GMapMap>
       </div>
     </div>
-</div>
+
   </div>
 </template>
 
