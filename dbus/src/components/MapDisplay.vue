@@ -13,7 +13,7 @@
           <div class="grid text-center">
             <div class="g-col-6">
               <GMapAutocomplete placeholder="Enter your starting point" @place_changed="setPlace" v-model="address"
-                style="width:75%">
+                style="width:75%; border-radius: 4px;">
               </GMapAutocomplete>
               <button class="btn" @click="addMarkerStart()"><img style="width: fit-content; height: fit-content;"
                   src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
@@ -23,7 +23,7 @@
 
             <div class="g-col-6">
               <GMapAutocomplete placeholder="Enter your destination" @place_changed="setPlace" v-model="addresstwo"
-                style="width:75%">
+                style="width:75%; border-radius: 4px;">
               </GMapAutocomplete>
               <button class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;"
                   src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
@@ -38,12 +38,7 @@
 
           </div>
           <el-divider border-style="dashed" />
-
-          <!-- swap address -->
-          <button class="btn btn-outline-secondary" @click="swapAddress(address, addresstwo)"
-            style="margin-top: 10px; width: 60px; height: 60px">
-            ↕️<br />Swap
-          </button>
+          
 
           <!-- fare calculator -->
           <button @click="fareCalculation(); showFareInfo();" class="btn btn-outline-secondary" id="fareButton"
@@ -156,10 +151,10 @@
     <div id="container">
       <div id="sidebar"></div>
       <div class="button" id="map" style="align-items: center; margin-top: 1%">
-        <GMapMap :center="center" :zoom="15" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
+        <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
           <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
             <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
-              Hide/Show Makers
+              Hide/Show Markers
             </button>
 
           </div>
@@ -217,6 +212,7 @@
 
 <script>
 import markerLocations from "./json/BusStopsLongLatCSVComma.json";
+
 // eslint-disable-next-line
 import axios from "axios";
 import { ref } from "vue";
@@ -238,6 +234,7 @@ let busDistance = 0;
 export default {
   name: "DrawGoogleMap",
 
+
   data() {
     return {
       pickdate,
@@ -247,6 +244,15 @@ export default {
       distanceJourney: "",
       zone: null,
       journey: "",
+      options: {
+        styles: [
+          {featureType: "transit",
+          stylers: [{visibility: "off",}],
+          },
+      
+
+        ],
+      },
 
       center: {
         lat: 53.349722,
@@ -416,7 +422,7 @@ export default {
           function (response, status) {
             if (status === "OK") {
               console.log("response", response);
-              console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
+              // console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
               busDistance = (response.routes[0].legs[0].steps[1].distance.value);
 
               console.log("bus Distance", busDistance)
@@ -460,12 +466,12 @@ export default {
 
     },
 
-    swapAddress() {
-      const tempAddress = this.address;
-      this.address = this.addresstwo;
-      this.addresstwo = tempAddress;
-      console.log("trying to swap")
-    },
+    // swapAddress() {
+    //   const tempAddress = this.address;
+    //   this.address = this.addresstwo;
+    //   this.addresstwo = tempAddress;
+    //   console.log("trying to swap")
+    // },
     fareCalculation() {
       console.log("this is the array", busDistance)
       if (busDistance < 3000) {
