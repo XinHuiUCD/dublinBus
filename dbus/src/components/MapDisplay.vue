@@ -163,46 +163,49 @@
             </button>
 
           </div>
-          <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
-            :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
-            :title="marker.stop_name" :clickable="true" :icon='{
-              url: "https://img.icons8.com/fluency/48/000000/bus.png",
-              scaledSize: { width: 40, height: 40 }
-            }' @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)">
-            <GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)"
-              :opened="openedMarkerID === marker.stop_id">
-              <div style="text-align: center;  height:200px; overflow:auto">
-                <h5>Real Time Information</h5>
-                <div>
-                  <div v-if="loading" style="margin: 0 auto;">
-                    <div class="loader" style="margin: 10px auto;"></div>
-                    <div>Loading Real Time Data</div>
+          <GMapCluster :styles="clusterIcon" :zoomOnClick="true">
+            <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
+              :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
+              :title="marker.stop_name" :clickable="true" :icon='{
+                url: "https://img.icons8.com/fluency/48/000000/bus.png",
+                scaledSize: { width: 40, height: 40 }
+              }' @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)">
+              <GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)"
+                :opened="openedMarkerID === marker.stop_id">
+                <div style="text-align: center;  height:200px; overflow:auto">
+                  <h5>Real Time Information</h5>
+                  <div>
+                    <div v-if="loading" style="margin: 0 auto;">
+                      <div class="loader" style="margin: 10px auto;"></div>
+                      <div>Loading Real Time Data</div>
+                    </div>
+                    <div v-else>
+
+                      <table id="realTimeTable" style="margin: 0 auto;">
+                        <tr>
+                          <th>Bus Route</th>
+                          <th>Destination</th>
+                          <th>Arrival</th>
+
+                        </tr>
+
+                        <tr v-for="busInfo in resultBusTimesSched" :key="busInfo">
+                          <td>{{ busInfo.Route }}</td>
+                          <td>{{ busInfo.Destination }}</td>
+                          <td>{{ busInfo.Arrival }}</td>
+
+                        </tr>
+                      </table>
+                    </div>
                   </div>
-                  <div v-else>
 
-                    <table id="realTimeTable" style="margin: 0 auto;">
-                      <tr>
-                        <th>Bus Route</th>
-                        <th>Destination</th>
-                        <th>Arrival</th>
-
-                      </tr>
-
-                      <tr v-for="busInfo in resultBusTimesSched" :key="busInfo">
-                        <td>{{ busInfo.Route }}</td>
-                        <td>{{ busInfo.Destination }}</td>
-                        <td>{{ busInfo.Arrival }}</td>
-
-                      </tr>
-                    </table>
-                  </div>
                 </div>
-
-              </div>
-            </GMapInfoWindow>
-          </GMapMarker>
+              </GMapInfoWindow>
+            </GMapMarker>
+          </GMapCluster>
           <GMapMarker :position="this.coords" />
           <GMapMarker :position="this.destination" />
+
         </GMapMap>
       </div>
     </div>
@@ -272,6 +275,39 @@ export default {
       resultBusTimesSched: {},
       loading: false,
 
+      //for cluster marker
+      clusterIcon: [
+        {
+          textColor: '#00CCFF',
+          textSize:20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m1.png',
+          height: 52,
+          width: 53,
+          // offset:(100,100),
+        },
+        {
+          textColor: 'yellow',
+          textSize:20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m2.png',
+          height: 55,
+          width: 56
+        },
+        {
+          textColor: 'red',
+          textSize:20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m3.png',
+          height: 65,
+          width: 66
+        },
+        {
+          textColor: '#FF33CC',
+          textSize:20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m4.png',
+          height: 77,
+          width: 78
+        },
+      ],
+
 
     };
   },
@@ -283,6 +319,7 @@ export default {
     this.$refs.mapTheme.$mapPromise.then((mapObject) => {
       console.log("map is loaded now", mapObject);
     });
+
   },
   methods: {
     setPlace(place) {
@@ -471,6 +508,12 @@ export default {
 </script>
 
 <style scoped>
+#clusterIcon {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
 .pac-target-input {
   padding: 10px;
   width: 90%;
