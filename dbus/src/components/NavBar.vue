@@ -24,7 +24,7 @@
 							<div class="card-body">
 								<router-link class="nav-link active" aria-current="page" :to="{ name: 'routeStopInfo' }"
 									style="color: #1dc1ec">
-									RoutesInfo
+									Route Info
 								</router-link>
 							</div>
 						</div>

@@ -17,7 +17,7 @@
                     <el-divider border-style="dashed" />
                     <el-container>
                         <el-main>
-                            <h3 style="color: #1dc1ec">Rating for us!</h3>
+                            <h3 style="color: #1dc1ec">Rate us below!</h3>
                             <el-rate v-model="value" :texts="['oops', 'disappointed', 'normal', 'good', 'great']"
                                 show-text style="color: #1dc1ec" />
 
@@ -77,9 +77,9 @@ export default {
             dialogVisible,
             carouseImgs: [
                 { url: require("../assets/photo1.png") },
+                { url: require("../assets/photo2.png") },
                 { url: require("../assets/photo1.png") },
-                { url: require("../assets/photo1.png") },
-                { url: require("../assets/photo1.png") },
+                { url: require("../assets/photo2.png") },
             ]
         }
     }
