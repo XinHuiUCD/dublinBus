@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Stoprouteinfo
+from xpressbus.models.models import Stoprouteinfo
 
 class BusSerializer(serializers.ModelSerializer):
     class Meta:
