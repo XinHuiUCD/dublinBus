@@ -9,6 +9,9 @@ from rest_framework.decorators import api_view
 import pandas as pd
 import json
 import pickle
+import os 
+from django.conf import settings
+
 # Create your views here.
 
 def index(request):
@@ -33,16 +36,28 @@ class RoutePredictView(APIView):
         """get model name"""
         routeId = request.query_params.get('routeId')
         routeId = routeId.upper()
-        direction = 1
-        modelPath = './models/ML/'
+        direction = request.query_params.get('direction')
+        basicPath = settings.BASE_DIR
+        modelPath = os.path.join(basicPath, 'xpressbus/models/ML/')
         modelName = modelPath + routeId + "_" + direction + "dir_rf_model.pkl"
         f = open(modelName, 'rb')
         model = pickle.load(f)
         """get model input data"""
-        month = request.query_params.get('month')
-        dayOfWeek = request.query_params.get('dayOfWeek')
-        rushHour = request.query_params.get('rushHour')
-        hour = request.query_params.get('hour')
+        # preprocess with month
+        monthData = request.query_params.get('month')
+        monthDict = {"JAN" : 0, "FEB": 1, "MAR" : 2, "APR" : 3, "MAY" : 4, "JUN" : 5, "JUL" : 6, "AUG" : 7, "SEP" : 8, "OCT" : 9, "NOV" : 10, "DEC" : 11}
+        month = monthDict.get(monthData.upper())
+        # preprocess with day
+        dayOfWeekData = request.query_params.get('dayOfWeek')
+        weekDict = {"MON" : 0, "TUE" : 1, "WED" : 2, "THU" : 3, "FRI" : 4, "SAT" : 5, "SUN" : 6}
+        dayOfWeek = weekDict.get(dayOfWeekData.upper())
+        # preprocess with the hour and rushHour
+        hour = int(request.query_params.get('hour'))
+        rushHour = 0 # default not rushHour
+        if dayOfWeek <= 4:
+            if 8 <= hour <= 9 or 16 <= hour <= 18:
+                rushHour = 1
+        # get temp and wind_speed
         temp = request.query_params.get('temp')
         wind_speed = request.query_params.get('wind_speed')
         data = {'month': month, 
@@ -55,7 +70,7 @@ class RoutePredictView(APIView):
         """get machine learning model result"""
         df = pd.DataFrame([data])
         predictTime = model.predict(df)
-        return JsonResponse({"result": predictTime}, safe=False)
+        return JsonResponse({"result": predictTime[0]}, safe=False)
         
 
 @api_view(['GET'])

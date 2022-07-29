@@ -38,7 +38,7 @@
 
           </div>
           <el-divider border-style="dashed" />
-          
+
 
           <!-- fare calculator -->
           <button @click="fareCalculation(); showFareInfo();" class="btn btn-outline-secondary" id="fareButton"
@@ -151,7 +151,8 @@
     <div id="container">
       <div id="sidebar"></div>
       <div class="button" id="map" style="align-items: center; margin-top: 1%">
-        <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
+        <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px"
+          ref="mapTheme">
           <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
             <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
               Hide/Show Markers
@@ -204,7 +205,11 @@
         </GMapMap>
       </div>
     </div>
-
+    <div class="g-col-6">
+      <button class="btn" @click="submitPredict">
+        Test
+      </button>
+    </div>
   </div>
 </template>
 
@@ -214,8 +219,8 @@
 import markerLocations from "./json/BusStopsLongLatCSVComma.json";
 
 // eslint-disable-next-line
-import axios from "axios";
 import { ref } from "vue";
+import $ from 'jquery';
 
 const pickdate = ref("");
 const submit = ref("");
@@ -234,6 +239,51 @@ let busDistance = 0;
 export default {
   name: "DrawGoogleMap",
 
+  setup() {
+    let direction = ref('');
+    let routeId = ref('');
+    let month = ref('');
+    let dayOfWeek = ref('');
+    let hour = ref('');
+    let temp = ref(0.0);
+    let wind_speed = ref(0.0);
+
+    const submitPredict = () => {
+      routeId.value = '39a';
+      direction.value = '1'
+      month.value = pickdate.value.toString().substring(4, 7);
+      dayOfWeek.value = pickdate.value.toString().substring(0, 3);
+      hour.value = pickdate.value.toString().substring(16, 18);
+      temp.value = 14.5;
+      wind_speed.value = 4.3;
+      $.ajax({
+        url: "http://127.0.0.1:9000/getPredict",
+        type: "GET",
+        data: {
+          routeId: routeId.value,
+          direction: direction.value,
+          month: month.value,
+          dayOfWeek: dayOfWeek.value,
+          hour: hour.value,
+          temp: temp.value,
+          wind_speed: wind_speed.value,
+        },
+        success(resp) {
+          console.log(resp);
+        }
+      });
+    };
+
+    return {
+      routeId,
+      direction,
+      month,
+      hour,
+      temp,
+      wind_speed,
+      submitPredict,
+    }
+  },
 
   data() {
     return {
@@ -246,11 +296,10 @@ export default {
       journey: "",
       options: {
         styles: [
-          {featureType: "transit",
-          stylers: [{visibility: "off",}],
+          {
+            featureType: "transit",
+            stylers: [{ visibility: "off", }],
           },
-      
-
         ],
       },
 
@@ -285,7 +334,7 @@ export default {
       clusterIcon: [
         {
           textColor: '#00CCFF',
-          textSize:20,
+          textSize: 20,
           url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m1.png',
           height: 52,
           width: 53,
@@ -293,21 +342,21 @@ export default {
         },
         {
           textColor: 'yellow',
-          textSize:20,
+          textSize: 20,
           url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m2.png',
           height: 55,
           width: 56
         },
         {
           textColor: 'red',
-          textSize:20,
+          textSize: 20,
           url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m3.png',
           height: 65,
           width: 66
         },
         {
           textColor: '#FF33CC',
-          textSize:20,
+          textSize: 20,
           url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m4.png',
           height: 77,
           width: 78
