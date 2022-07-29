@@ -205,11 +205,6 @@
         </GMapMap>
       </div>
     </div>
-    <div class="g-col-6">
-      <button class="btn" @click="submitPredict">
-        Test
-      </button>
-    </div>
   </div>
 </template>
 
@@ -234,55 +229,59 @@ const directionRenderers = [];
 
 let busDistance = 0;
 
+let direction = ref('');
+let routeId = ref('');
+let month = ref('');
+let dayOfWeek = ref('');
+let hour = ref('');
+let temp = ref(0.0);
+let wind_speed = ref(0.0);
+let start_location = ref({});
+let end_location = ref({});
+let diff = ref(0.0);
 
+
+const submitPredict = () => {
+  routeId.value = '39a';
+  direction.value = '1'
+  month.value = pickdate.value.toString().substring(4, 7);
+  dayOfWeek.value = pickdate.value.toString().substring(0, 3);
+  hour.value = pickdate.value.toString().substring(16, 18);
+  temp.value = 14.5;
+  wind_speed.value = 4.3;
+  $.ajax({
+    url: "http://127.0.0.1:9000/getPredict",
+    type: "GET",
+    data: {
+      routeId: routeId.value,
+      direction: direction.value,
+      month: month.value,
+      dayOfWeek: dayOfWeek.value,
+      hour: hour.value,
+      temp: temp.value,
+      wind_speed: wind_speed.value,
+    },
+    success(resp) {
+      diff.value = resp.result;
+      console.log(diff.value);
+    }
+  });
+}
 
 export default {
   name: "DrawGoogleMap",
 
-  setup() {
-    let direction = ref('');
-    let routeId = ref('');
-    let month = ref('');
-    let dayOfWeek = ref('');
-    let hour = ref('');
-    let temp = ref(0.0);
-    let wind_speed = ref(0.0);
-
-    const submitPredict = () => {
-      routeId.value = '39a';
-      direction.value = '1'
-      month.value = pickdate.value.toString().substring(4, 7);
-      dayOfWeek.value = pickdate.value.toString().substring(0, 3);
-      hour.value = pickdate.value.toString().substring(16, 18);
-      temp.value = 14.5;
-      wind_speed.value = 4.3;
-      $.ajax({
-        url: "http://127.0.0.1:9000/getPredict",
-        type: "GET",
-        data: {
-          routeId: routeId.value,
-          direction: direction.value,
-          month: month.value,
-          dayOfWeek: dayOfWeek.value,
-          hour: hour.value,
-          temp: temp.value,
-          wind_speed: wind_speed.value,
-        },
-        success(resp) {
-          console.log(resp);
-        }
-      });
-    };
-
-    return {
-      routeId,
-      direction,
-      month,
-      hour,
-      temp,
-      wind_speed,
-      submitPredict,
-    }
+  return: {
+    routeId,
+    direction,
+    month,
+    hour,
+    temp,
+    wind_speed,
+    start_location,
+    end_location,
+    diff,
+    submitPredict,
   },
 
   data() {
@@ -473,8 +472,23 @@ export default {
               console.log("response", response);
               // console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
               busDistance = (response.routes[0].legs[0].steps[1].distance.value);
-
               console.log("bus Distance", busDistance)
+              // preprocess location
+              start_location.value = response.routes[0].legs[0].start_location;
+              end_location.value = response.routes[0].legs[0].end_location;
+              //console.log("start", start_location.value);
+              //console.log("end", end_location.value);
+              let dx = ref(0), dy = ref(0);
+              dy.value = (end_location.value.lat() - start_location.value.lat()) * 100;
+              dx.value = (end_location.value.lng() - start_location.value.lng()) * 100;
+              if (dy.value > 0 || dx.value > 0)
+                direction.value = '1';
+              else if (dy.value < 0 || dx.value < 0)
+                direction.value = '0';
+              //console.log("x", dx.value);
+              //console.log("y", dy.value);
+              //console.log(direction.value);
+              submitPredict();
               directionsDisplay.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
