@@ -10,242 +10,199 @@
         <div id="functions">
           <!-- Your Position -->
 
-          <div class="input-group mb-3">
-            <GMapAutocomplete
-              placeholder="Enter your starting point"
-              @place_changed="setPlace"
-              v-model="address"
+          <div class="grid text-center">
+            <div class="g-col-6">
+              <GMapAutocomplete placeholder="Enter your starting point" @place_changed="setPlace" v-model="address"
+                style="width:75%; border-radius: 4px;">
+              </GMapAutocomplete>
+              <button class="btn" @click="addMarkerStart()"><img style="width: fit-content; height: fit-content;"
+                  src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
+            </div>
 
-            >
-            </GMapAutocomplete
-            ><button class="btn" @click="addMarkerStart()"><img style="width: fit-content; height: fit-content;" src="https://img.icons8.com/color/48/000000/place-marker--v1.png"/></button>
+            <!-- Your Destination -->
+
+            <div class="g-col-6">
+              <GMapAutocomplete placeholder="Enter your destination" @place_changed="setPlace" v-model="addresstwo"
+                style="width:75%; border-radius: 4px;">
+              </GMapAutocomplete>
+              <button class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;"
+                  src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
+            </div>
+            <div class="g-col-6">
+              <!-- Select date and time -->
+              <div class="block">
+                <el-date-picker v-model="pickdate" type="datetime" placeholder="Select date and time"
+                  style="height: 40px; width: 81.77%" />
+              </div>
+            </div>
+
           </div>
-
-          <!-- Your Destination -->
-
-          <div class="input-group mb-3">
-            <GMapAutocomplete
-              placeholder="Enter your destination"
-              @place_changed="setPlace"
-              v-model="addresstwo"
-
-            >
-            </GMapAutocomplete
-            ><button class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;" src="https://img.icons8.com/color/48/000000/place-marker--v1.png"/></button>
-          </div>
-          <!-- Select date and time -->
-          <div class="block">
-            <el-date-picker
-              v-model="pickdate"
-              type="datetime"
-              placeholder="Select date and time"
-              style="height: 40px; width: 100%"
-            />
-          </div>
-
-          <!-- swap address -->
-          <button
-            class="btn btn-outline-secondary"
-            @click="swapAddress(address, addresstwo)"
-            style="margin-top: 10px; width: 60px; height: 60px"
-          >
-            ↕️<br />Swap
-          </button>
+          <el-divider border-style="dashed" />
+          
 
           <!-- fare calculator -->
-          <button
-            @click="fareCalculation(); showFareInfo();"
-            class="btn btn-outline-secondary"
-            id="fareButton"
-            type="submit"
-            style="
+          <button @click="fareCalculation(); showFareInfo();" class="btn btn-outline-secondary" id="fareButton"
+            type="submit" style="
               margin-top: 10px;
               margin-left: 20px;
               width: 60px;
               height: 60px;
               display:none;
-            "
-          >
+            ">
             €️<br />Fare
           </button>
           <div class="form-popup" id="myForm">
             <div class="form-container">
               <h2>Fare Estimation</h2>
               <div v-if="this.journey == 'long'">
-                  <h4>Long Zone</h4>
-                  <table id= "realTimeTable" style="margin: 0 auto 7px; ">
-                          <tr>
-                            <th>Type</th>
-                            <th>Leap Card</th>
-                            <th>Cash Fare</th>
+                <h4>Long Zone</h4>
+                <table id="realTimeTable" style="margin: 0 auto 7px; ">
+                  <tr>
+                    <th>Type</th>
+                    <th>Leap Card</th>
+                    <th>Cash Fare</th>
 
-                          </tr>
+                  </tr>
 
-                          <tr>
-                              <td>Adult</td>
-                              <td>€2.00</td>
-                              <td>€2.60</td>
+                  <tr>
+                    <td>Adult</td>
+                    <td>€2.00</td>
+                    <td>€2.60</td>
 
-                          </tr>
-                          <tr>
-                              <td>Student</td>
-                              <td>€1.00</td>
-                              <td>€2.60</td>
+                  </tr>
+                  <tr>
+                    <td>Student</td>
+                    <td>€1.00</td>
+                    <td>€2.60</td>
 
-                          </tr>
-                          <tr>
-                              <td>Child</td>
-                              <td>€0.65</td>
-                              <td>€0.90</td>
+                  </tr>
+                  <tr>
+                    <td>Child</td>
+                    <td>€0.65</td>
+                    <td>€0.90</td>
 
-                          </tr>
-                  </table>
+                  </tr>
+                </table>
               </div>
-              <div v-else-if="this.journey =='short'">
-                  <h4>Short Zone</h4>
-                  <table id= "realTimeTable" style="margin: 0 auto 7px; ">
-                          <tr>
-                            <th>Type</th>
-                            <th>Leap Card</th>
-                            <th>Cash Fare</th>
+              <div v-else-if="this.journey == 'short'">
+                <h4>Short Zone</h4>
+                <table id="realTimeTable" style="margin: 0 auto 7px; ">
+                  <tr>
+                    <th>Type</th>
+                    <th>Leap Card</th>
+                    <th>Cash Fare</th>
 
-                          </tr>
+                  </tr>
 
-                          <tr>
-                              <td>Adult</td>
-                              <td>€1.30</td>
-                              <td>€1.70</td>
+                  <tr>
+                    <td>Adult</td>
+                    <td>€1.30</td>
+                    <td>€1.70</td>
 
-                          </tr>
-                          <tr>
-                              <td>Student</td>
-                              <td>€0.65</td>
-                              <td>€1.70</td>
+                  </tr>
+                  <tr>
+                    <td>Student</td>
+                    <td>€0.65</td>
+                    <td>€1.70</td>
 
-                          </tr>
-                          <tr>
-                              <td>Child</td>
-                              <td>€0.65</td>
-                              <td>€0.90</td>
+                  </tr>
+                  <tr>
+                    <td>Child</td>
+                    <td>€0.65</td>
+                    <td>€0.90</td>
 
-                          </tr>
-                  </table>
+                  </tr>
+                </table>
               </div>
               <button type="button" class="btn cancel" @click="closeFareInfo();">Close</button>
             </div>
           </div>
 
 
-          <button
-            class="btn btn-outline-secondary"
-            type="submit"
-            style="
+          <button class="btn btn-outline-secondary" type="submit" style="
               margin-top: 10px;
               margin-left: 20px;
               width: 60px;
               height: 60px;
-            "
-            @click="resetSearch()"
-
-          >
+            " @click="resetSearch()">
             Reset
           </button>
 
           <!-- submit -->
 
-          <button
-            class="btn btn-outline-secondary"
-            type="submit"
-            @click="getDirection(); showDiv(); showFareButton(); fareCalculation();"
-            style="
+          <button class="btn btn-outline-secondary" type="submit"
+            @click="getDirection(); showDiv(); showFareButton(); fareCalculation();" style="
               margin-top: 10px;
               margin-left: 20px;
               width: 70px;
               height: 60px;
               background-color: chartreuse;
-            "
-          >
+            ">
             Submit
           </button>
-          <div id="MlResult"
-            class="btn btn-outline-secondary"
-            style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;"
-          >
-          Your predicted travel time is: <strong>20 minutes</strong>
+          <div id="MlResult" class="btn btn-outline-secondary"
+            style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
+            Your predicted travel time is: <strong>20 minutes</strong>
           </div>
         </div>
       </div>
     </div>
-     <div id="container">
+
+    <div id="container">
       <div id="sidebar"></div>
-    <div class="button" id="map" style="align-items: center; margin-top: 1%">
-      <GMapMap
-        :center="center"
-        :zoom="15"
-        map-type-id="terrain"
-        style="width: 100%; height: 700px"
-        ref="mapTheme"
-      >
-        <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
-          <button
-            type="button"
-            @click="hideAllMarkers()"
-            class="btn btn-outline-info"
-          >
-            Hide/Show Makers
-          </button>
+      <div class="button" id="map" style="align-items: center; margin-top: 1%">
+        <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
+          <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
+            <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
+              Hide/Show Markers
+            </button>
 
-        </div>
-        <GMapMarker
-          v-for="marker in Hellodata"
-          :key="marker.stop_id"
-          :position="{ lat: marker.stop_lat, lng: marker.stop_lon }"
-          :visible="marker.visibility"
-          :title="marker.stop_name"
-          :clickable="true"
-          :icon='{url: "https://img.icons8.com/fluency/48/000000/bus.png",
-          scaledSize: {width: 40, height: 40}}'
-          @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)"
-        >
-          <GMapInfoWindow 
-            :closeclick="true"
-            @closeclick="openMarker(null)"
-            :opened="openedMarkerID === marker.stop_id"
-          >
-            <div style="text-align: center;  height:200px; overflow:auto">
-              <h5>Real Time Information</h5>
-              <div>
-                <div v-if="loading" style="margin: 0 auto;">
-                  <div class="loader" style="margin: 10px auto;"></div>
-                  <div>Loading Real Time Data</div>
+          </div>
+          <GMapCluster :styles="clusterIcon" :zoomOnClick="true">
+            <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
+              :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
+              :title="marker.stop_name" :clickable="true" :icon='{
+                url: "https://img.icons8.com/fluency/48/000000/bus.png",
+                scaledSize: { width: 40, height: 40 }
+              }' @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)">
+              <GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)"
+                :opened="openedMarkerID === marker.stop_id">
+                <div style="text-align: center;  height:200px; overflow:auto">
+                  <h5>Real Time Information</h5>
+                  <div>
+                    <div v-if="loading" style="margin: 0 auto;">
+                      <div class="loader" style="margin: 10px auto;"></div>
+                      <div>Loading Real Time Data</div>
+                    </div>
+                    <div v-else>
+
+                      <table id="realTimeTable" style="margin: 0 auto;">
+                        <tr>
+                          <th>Bus Route</th>
+                          <th>Destination</th>
+                          <th>Arrival</th>
+
+                        </tr>
+
+                        <tr v-for="busInfo in resultBusTimesSched" :key="busInfo">
+                          <td>{{ busInfo.Route }}</td>
+                          <td>{{ busInfo.Destination }}</td>
+                          <td>{{ busInfo.Arrival }}</td>
+
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+
                 </div>
-                <div v-else>
+              </GMapInfoWindow>
+            </GMapMarker>
+          </GMapCluster>
+          <GMapMarker :position="this.coords" />
+          <GMapMarker :position="this.destination" />
 
-                    <table id= "realTimeTable" style="margin: 0 auto;">
-                      <tr>
-                        <th>Bus Route</th>
-                        <th>Destination</th>
-                        <th>Arrival</th>
-
-                      </tr>
-
-                      <tr  v-for="busInfo in resultBusTimesSched" :key="busInfo">
-                          <td>{{busInfo.Route}}</td>
-                          <td>{{busInfo.Destination}}</td>
-                          <td>{{busInfo.Arrival}}</td>
-
-                      </tr>
-                    </table>
-                </div>
-              </div>
-
-            </div>
-          </GMapInfoWindow>
-        </GMapMarker>
-        <GMapMarker :position="this.coords" />
-        <GMapMarker :position="this.destination" />
-      </GMapMap>
-    </div>
+        </GMapMap>
+      </div>
     </div>
 
   </div>
@@ -255,6 +212,7 @@
 
 <script>
 import markerLocations from "./json/BusStopsLongLatCSVComma.json";
+
 // eslint-disable-next-line
 import axios from "axios";
 import { ref } from "vue";
@@ -276,6 +234,7 @@ let busDistance = 0;
 export default {
   name: "DrawGoogleMap",
 
+
   data() {
     return {
       pickdate,
@@ -283,8 +242,17 @@ export default {
       addresstwo: "",
       submit,
       distanceJourney: "",
-      zone:null,
-      journey:"",
+      zone: null,
+      journey: "",
+      options: {
+        styles: [
+          {featureType: "transit",
+          stylers: [{visibility: "off",}],
+          },
+      
+
+        ],
+      },
 
       center: {
         lat: 53.349722,
@@ -313,6 +281,39 @@ export default {
       resultBusTimesSched: {},
       loading: false,
 
+      //for cluster marker
+      clusterIcon: [
+        {
+          textColor: '#00CCFF',
+          textSize:20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m1.png',
+          height: 52,
+          width: 53,
+          // offset:(100,100),
+        },
+        {
+          textColor: 'yellow',
+          textSize:20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m2.png',
+          height: 55,
+          width: 56
+        },
+        {
+          textColor: 'red',
+          textSize:20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m3.png',
+          height: 65,
+          width: 66
+        },
+        {
+          textColor: '#FF33CC',
+          textSize:20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m4.png',
+          height: 77,
+          width: 78
+        },
+      ],
+
 
     };
   },
@@ -324,6 +325,7 @@ export default {
     this.$refs.mapTheme.$mapPromise.then((mapObject) => {
       console.log("map is loaded now", mapObject);
     });
+
   },
   methods: {
     setPlace(place) {
@@ -331,9 +333,9 @@ export default {
     },
 
     showDiv() {
-   document.getElementById('MlResult').style.display = "inline";
+      document.getElementById('MlResult').style.display = "inline";
     },
-    showFareButton(){
+    showFareButton() {
       document.getElementById('fareButton').style.display = "inline";
     },
 
@@ -384,12 +386,12 @@ export default {
     },
     realTimeBusData(busstopNO) {
       this.loading = true
-      fetch('http://127.0.0.1:9000/getRealTime/'+ busstopNO)
+      fetch('http://127.0.0.1:9000/getRealTime/' + busstopNO)
         .then(response => response.json())
         .then(data => this.resultBusTimesSched = data)
-        .finally(() => (this.loading=false))
-      
-        
+        .finally(() => (this.loading = false))
+
+
     },
 
     getDirection: function () {
@@ -417,10 +419,10 @@ export default {
               modes: [google.maps.TransitMode.BUS],
             },
           },
-          function (response, status)  {
+          function (response, status) {
             if (status === "OK") {
-              console.log("response",response);
-              console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
+              console.log("response", response);
+              // console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
               busDistance = (response.routes[0].legs[0].steps[1].distance.value);
 
               console.log("bus Distance", busDistance)
@@ -428,35 +430,35 @@ export default {
             } else {
               window.alert("Directions request failed due to " + status);
             }
-            return{
+            return {
               busDistance
             }
           }
-          
-          
+
+
         );
       }
-     
-      
+
+
       calculateAndDisplayRoute(
         directionsService,
         directionsDisplay,
         this.coords,
         this.destination
       );
-      
+
     },
 
     togglefav: function () {
       this.$emit("togglefav", !this.is_fav);
     },
-    resetSearch(){
+    resetSearch() {
       console.log("reset")
       directionRenderers.forEach(directionsDisplay => {
-      directionsDisplay.setMap(null)
-      directionsDisplay.setPanel(null)
+        directionsDisplay.setMap(null)
+        directionsDisplay.setPanel(null)
 
-     });
+      });
       directionRenderers.length = 0;
       document.getElementById('MlResult').style.display = "none";
       document.getElementById('fareButton').style.display = "none";
@@ -464,28 +466,28 @@ export default {
 
     },
 
-    swapAddress() {
-      const tempAddress = this.address;
-      this.address = this.addresstwo;
-      this.addresstwo = tempAddress;
-      console.log("trying to swap")
+    // swapAddress() {
+    //   const tempAddress = this.address;
+    //   this.address = this.addresstwo;
+    //   this.addresstwo = tempAddress;
+    //   console.log("trying to swap")
+    // },
+    fareCalculation() {
+      console.log("this is the array", busDistance)
+      if (busDistance < 3000) {
+        this.journey = "short"
+      }
+      else {
+        this.journey = "long"
+      }
     },
-    fareCalculation(){
-    console.log("this is the array", busDistance)
-    if(busDistance < 3000){
-      this.journey = "short"
-    }
-    else{
-      this.journey = "long"
-    }
-  },
-    showFareInfo(){
+    showFareInfo() {
       document.getElementById("myForm").style.display = "block";
 
 
     },
-    closeFareInfo(){
-        document.getElementById("myForm").style.display = "none";
+    closeFareInfo() {
+      document.getElementById("myForm").style.display = "none";
 
     },
   },
@@ -512,6 +514,12 @@ export default {
 </script>
 
 <style scoped>
+#clusterIcon {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
 .pac-target-input {
   padding: 10px;
   width: 90%;
@@ -546,20 +554,29 @@ export default {
   flex: 0 1 auto;
   padding: 0;
 }
-#sidebar > div {
+
+#sidebar>div {
   padding: 0.5rem;
 }
 
 
-#realTimeTable tr:nth-child(even){background-color: #f2f2f2;}
+#realTimeTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
 
-#realTimeTable tr:hover {background-color: #ddd;}
+#realTimeTable tr:hover {
+  background-color: #ddd;
+}
 
-#realTimeTable th {background-color: #009B77;}
+#realTimeTable th {
+  background-color: #009B77;
+}
 
-#realTimeTable td, #realTimeTable th {
+#realTimeTable td,
+#realTimeTable th {
   border: 1px solid #ddd;
 }
+
 /* Loader adapted from https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader */
 .loader {
   border: 16px solid #f3f3f3;
@@ -567,28 +584,42 @@ export default {
   border-top: 16px solid #3498db;
   width: 30px;
   height: 30px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
   animation: spin 2s linear infinite;
 }
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-h1, h2, h4{
+h1,
+h2,
+h4 {
   font-family: 'Roboto', sans-serif;
 
 }
+
 /* reference for fare pop-up https://www.w3schools.com/howto/howto_js_popup_form.asp */
 .form-popup {
   display: none;
@@ -616,7 +647,7 @@ h1, h2, h4{
   border: none;
   cursor: pointer;
   width: 50%;
-  margin-bottom:10px;
+  margin-bottom: 10px;
   opacity: 0.8;
 }
 
@@ -626,15 +657,9 @@ h1, h2, h4{
 }
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
+.form-container .btn:hover,
+.open-button:hover {
   opacity: 1;
   cursor: pointer;
 }
-
-
-
-
-
-
-
 </style>

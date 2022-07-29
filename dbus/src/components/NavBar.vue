@@ -22,8 +22,9 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'weather' }"
-									style="color: #1dc1ec">Weather
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'routeStopInfo' }"
+									style="color: #1dc1ec">
+									Route Info
 								</router-link>
 							</div>
 						</div>
@@ -31,8 +32,8 @@
 					<li class="nav-item">
 						<div class="card">
 							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'about' }"
-									style="color: #1dc1ec">About
+								<router-link class="nav-link active" aria-current="page" :to="{ name: 'weather' }"
+									style="color: #1dc1ec">Weather
 								</router-link>
 							</div>
 						</div>
@@ -47,16 +48,7 @@
 							</div>
 						</div>
 					</li>
-					<li class="nav-item">
-						<div class="card">
-							<div class="card-body">
-								<router-link class="nav-link active" aria-current="page" :to="{ name: 'routeStopInfo' }"
-									style="color: #1dc1ec">
-									RoutesInfo
-								</router-link>
-							</div>
-						</div>
-					</li>
+
 				</ul>
 				<ul class="navbar-nav" v-if="!$store.state.user.is_login">
 					<li class="nav-item">

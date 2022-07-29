@@ -58,7 +58,6 @@ class RoutePredictView(APIView):
         return JsonResponse({"result": predictTime}, safe=False)
         
 
-
 @api_view(['GET'])
 def stop_detail(request, id):
     
@@ -78,11 +77,9 @@ def realTimeData(request, busNo):
     if request.method == 'GET':
         url = "https://www.dublinbus.ie/en/RTPI/Sources-of-Real-Time-Information/?searchtype=view&searchquery="
         df = pd.read_html(url + str(busNo))
-        print(df)
         bus_times = df[3]
         bus_times.rename(columns={'Expected Time': 'Arrival'},inplace=True)
         bus_times = bus_times.to_json(orient='records')
-        print(bus_times)
         return Response(json.loads(bus_times))
 
 
