@@ -142,7 +142,7 @@
           </button>
           <div id="MlResult" class="btn btn-outline-secondary"
             style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
-            Your predicted travel time is: <strong>20 minutes</strong>
+            Your predicted travel time is: <strong>{{ duration }} minutes</strong>
           </div>
         </div>
       </div>
@@ -239,31 +239,41 @@ let wind_speed = ref(0.0);
 let start_location = ref({});
 let end_location = ref({});
 let diff = ref(0.0);
+let duration = ref(0);
 
 
 const submitPredict = () => {
-  routeId.value = '39a';
-  direction.value = '1'
-  month.value = pickdate.value.toString().substring(4, 7);
-  dayOfWeek.value = pickdate.value.toString().substring(0, 3);
-  hour.value = pickdate.value.toString().substring(16, 18);
-  temp.value = 14.5;
-  wind_speed.value = 4.3;
+  // preprocess weather data
   $.ajax({
-    url: "http://127.0.0.1:9000/getPredict",
+    url: "https://api.openweathermap.org/data/2.5/onecall?lat=53.344&lon=-6.2672&units=metric&exclude=minutely,daily&appid=d6e328f404504a98d4be6d3942d42e9e",
     type: "GET",
-    data: {
-      routeId: routeId.value,
-      direction: direction.value,
-      month: month.value,
-      dayOfWeek: dayOfWeek.value,
-      hour: hour.value,
-      temp: temp.value,
-      wind_speed: wind_speed.value,
-    },
+    async: false,
     success(resp) {
-      diff.value = resp.result;
-      console.log(diff.value);
+      //console.log(resp);
+      routeId.value = '39a';
+      month.value = pickdate.value.toString().substring(4, 7);
+      dayOfWeek.value = pickdate.value.toString().substring(0, 3);
+      hour.value = pickdate.value.toString().substring(16, 18);
+      temp.value = resp.current.temp;
+      wind_speed.value = resp.current.wind_speed;
+      $.ajax({
+        url: "http://127.0.0.1:9000/getPredict",
+        type: "GET",
+        async: false,
+        data: {
+          routeId: routeId.value,
+          direction: direction.value,
+          month: month.value,
+          dayOfWeek: dayOfWeek.value,
+          hour: hour.value,
+          temp: temp.value,
+          wind_speed: wind_speed.value,
+        },
+        success(resp) {
+          diff.value = resp.result;
+          console.log("resp:", diff.value);
+        }
+      });
     }
   });
 }
@@ -281,6 +291,7 @@ export default {
     start_location,
     end_location,
     diff,
+    duration,
     submitPredict,
   },
 
@@ -488,7 +499,10 @@ export default {
               //console.log("x", dx.value);
               //console.log("y", dy.value);
               //console.log(direction.value);
+              duration.value = response.routes[0].legs[0].duration.value;
               submitPredict();
+              duration.value += diff.value;
+              console.log("duration: ", duration.value);
               directionsDisplay.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
