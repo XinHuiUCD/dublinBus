@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 import pandas as pd
 import json
+import pickle
 # Create your views here.
 
 def index(request):
@@ -24,6 +25,39 @@ class RouteStopView(APIView):
         stops = Stoprouteinfo.objects.filter(routesid__contains=routeId)
         serializer = BusSerializer(stops, many=True)
         return JsonResponse({"stops": serializer.data}, safe=False)
+
+class RoutePredictView(APIView):
+    http_method_names = ['get']
+    
+    def get(self, request):
+        """get model name"""
+        routeId = request.query_params.get('routeId')
+        routeId = routeId.upper()
+        direction = 1
+        modelPath = './models/ML/'
+        modelName = modelPath + routeId + "_" + direction + "dir_rf_model.pkl"
+        f = open(modelName, 'rb')
+        model = pickle.load(f)
+        """get model input data"""
+        month = request.query_params.get('month')
+        dayOfWeek = request.query_params.get('dayOfWeek')
+        rushHour = request.query_params.get('rushHour')
+        hour = request.query_params.get('hour')
+        temp = request.query_params.get('temp')
+        wind_speed = request.query_params.get('wind_speed')
+        data = {'month': month, 
+                'dayOfWeek': dayOfWeek,
+                'rushHour': rushHour,
+                'hour': hour,
+                'temp': temp,
+                'wind_speed': wind_speed,
+                }
+        """get machine learning model result"""
+        df = pd.DataFrame([data])
+        predictTime = model.predict(df)
+        return JsonResponse({"result": predictTime}, safe=False)
+        
+
 
 @api_view(['GET'])
 def stop_detail(request, id):
@@ -50,3 +84,5 @@ def realTimeData(request, busNo):
         bus_times = bus_times.to_json(orient='records')
         print(bus_times)
         return Response(json.loads(bus_times))
+
+
