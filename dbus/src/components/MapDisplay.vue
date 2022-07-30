@@ -213,6 +213,8 @@ import markerLocations from "./json/BusStopsLongLatCSVComma.json";
 // eslint-disable-next-line
 import { ref } from "vue";
 import $ from 'jquery';
+// eslint-disable-next-line
+import { variableDeclarator } from "@babel/types";
 
 const pickdate = ref("");
 const submit = ref("");
@@ -303,6 +305,7 @@ export default {
       submit,
       distanceJourney: "",
       zone: null,
+      routIdArray: [],
       journey: "",
       durationResult: 0,
       options: {
@@ -488,7 +491,18 @@ export default {
               loadedDirections = true;
 
               console.log("response", response);
-              // console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
+              // for loop to get rout ids of mutli bus trips and add to an array
+              for (var journeyStep of response.routes[0].legs[0].steps){
+                if(journeyStep.travel_mode == "TRANSIT"){
+                  console.log("bus Routess short name", journeyStep.transit.line.short_name);
+                  self.routIdArray.push(journeyStep.transit.line.short_name);
+
+                }
+                
+              }
+              console.log("routeId array", self.routIdArray)
+              console.log("bus routes",response.routes[0].legs[0].steps[1].transit.line.short_name, response.routes[0].legs[0].steps[3].transit.line.short_name);
+
               busDistance = (response.routes[0].legs[0].steps[1].distance.value);
               console.log("bus Distance", busDistance)
               // preprocess location
@@ -531,7 +545,6 @@ export default {
         );
       }
 
-
       calculateAndDisplayRoute(
         directionsService,
         directionsDisplay,
@@ -560,7 +573,6 @@ export default {
 
     fareCalculation() {
       console.log("this is the array", busDistance)
-      console.log("duration outs", durationDuration)
       if (busDistance < 3000) {
         this.journey = "short"
       }
