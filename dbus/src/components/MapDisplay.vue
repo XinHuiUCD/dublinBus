@@ -38,7 +38,7 @@
 
           </div>
           <el-divider border-style="dashed" />
-          
+
 
           <!-- fare calculator -->
           <button @click="fareCalculation(); showFareInfo();" class="btn btn-outline-secondary" id="fareButton"
@@ -142,7 +142,7 @@
           </button>
           <div id="MlResult" class="btn btn-outline-secondary"
             style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
-            Your predicted travel time is: <strong>20 minutes</strong>
+            Your predicted travel time is: <strong>{{ duration }} minutes</strong>
           </div>
         </div>
       </div>
@@ -158,50 +158,52 @@
             </button>
 
           </div>
-          <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
-            :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
-            :title="marker.stop_name" :clickable="true" :icon='{
-              url: "https://img.icons8.com/fluency/48/000000/bus.png",
-              scaledSize: { width: 40, height: 40 }
-            }' @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)">
-            <GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)"
-              :opened="openedMarkerID === marker.stop_id">
-              <div style="text-align: center;  height:200px; overflow:auto">
-                <h5>Real Time Information</h5>
-                <div>
-                  <div v-if="loading" style="margin: 0 auto;">
-                    <div class="loader" style="margin: 10px auto;"></div>
-                    <div>Loading Real Time Data</div>
+          <GMapCluster :styles="clusterIcon" :zoomOnClick="true">
+            <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
+              :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
+              :title="marker.stop_name" :clickable="true" :icon='{
+                url: "https://img.icons8.com/fluency/48/000000/bus.png",
+                scaledSize: { width: 40, height: 40 }
+              }' @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)">
+              <GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)"
+                :opened="openedMarkerID === marker.stop_id">
+                <div style="text-align: center;  height:200px; overflow:auto">
+                  <h5>Real Time Information</h5>
+                  <div>
+                    <div v-if="loading" style="margin: 0 auto;">
+                      <div class="loader" style="margin: 10px auto;"></div>
+                      <div>Loading Real Time Data</div>
+                    </div>
+                    <div v-else>
+
+                      <table id="realTimeTable" style="margin: 0 auto;">
+                        <tr>
+                          <th>Bus Route</th>
+                          <th>Destination</th>
+                          <th>Arrival</th>
+
+                        </tr>
+
+                        <tr v-for="busInfo in resultBusTimesSched" :key="busInfo">
+                          <td>{{ busInfo.Route }}</td>
+                          <td>{{ busInfo.Destination }}</td>
+                          <td>{{ busInfo.Arrival }}</td>
+
+                        </tr>
+                      </table>
+                    </div>
                   </div>
-                  <div v-else>
 
-                    <table id="realTimeTable" style="margin: 0 auto;">
-                      <tr>
-                        <th>Bus Route</th>
-                        <th>Destination</th>
-                        <th>Arrival</th>
-
-                      </tr>
-
-                      <tr v-for="busInfo in resultBusTimesSched" :key="busInfo">
-                        <td>{{ busInfo.Route }}</td>
-                        <td>{{ busInfo.Destination }}</td>
-                        <td>{{ busInfo.Arrival }}</td>
-
-                      </tr>
-                    </table>
-                  </div>
                 </div>
-
-              </div>
-            </GMapInfoWindow>
-          </GMapMarker>
+              </GMapInfoWindow>
+            </GMapMarker>
+          </GMapCluster>
           <GMapMarker :position="this.coords" />
           <GMapMarker :position="this.destination" />
+
         </GMapMap>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -211,8 +213,8 @@
 import markerLocations from "./json/BusStopsLongLatCSVComma.json";
 
 // eslint-disable-next-line
-import axios from "axios";
 import { ref } from "vue";
+import $ from 'jquery';
 
 const pickdate = ref("");
 const submit = ref("");
@@ -226,11 +228,71 @@ const directionRenderers = [];
 
 let busDistance = 0;
 
+let direction = ref('');
+let routeId = ref('');
+let month = ref('');
+let dayOfWeek = ref('');
+let hour = ref('');
+let temp = ref(0.0);
+let wind_speed = ref(0.0);
+let start_location = ref({});
+let end_location = ref({});
+let diff = ref(0.0);
+let duration = ref(0);
 
+
+const submitPredict = () => {
+  // preprocess weather data
+  $.ajax({
+    url: "https://api.openweathermap.org/data/2.5/onecall?lat=53.344&lon=-6.2672&units=metric&exclude=minutely,daily&appid=d6e328f404504a98d4be6d3942d42e9e",
+    type: "GET",
+    async: false,
+    success(resp) {
+      //console.log(resp);
+      routeId.value = '39a';
+      month.value = pickdate.value.toString().substring(4, 7);
+      dayOfWeek.value = pickdate.value.toString().substring(0, 3);
+      hour.value = pickdate.value.toString().substring(16, 18);
+      temp.value = resp.current.temp;
+      wind_speed.value = resp.current.wind_speed;
+      $.ajax({
+        url: "http://127.0.0.1:9000/getPredict",
+        type: "GET",
+        async: false,
+        data: {
+          routeId: routeId.value,
+          direction: direction.value,
+          month: month.value,
+          dayOfWeek: dayOfWeek.value,
+          hour: hour.value,
+          temp: temp.value,
+          wind_speed: wind_speed.value,
+        },
+        success(resp) {
+          diff.value = resp.result;
+          console.log("resp:", diff.value);
+        }
+      });
+    }
+  });
+}
 
 export default {
   name: "DrawGoogleMap",
 
+  return: {
+    routeId,
+    direction,
+    month,
+    hour,
+    temp,
+    wind_speed,
+    start_location,
+    end_location,
+    diff,
+    duration,
+    submitPredict,
+  },
 
   data() {
     return {
@@ -243,11 +305,10 @@ export default {
       journey: "",
       options: {
         styles: [
-          {featureType: "transit",
-          stylers: [{visibility: "off",}],
+          {
+            featureType: "transit",
+            stylers: [{ visibility: "off", }],
           },
-      
-
         ],
       },
 
@@ -278,6 +339,39 @@ export default {
       resultBusTimesSched: {},
       loading: false,
 
+      //for cluster marker
+      clusterIcon: [
+        {
+          textColor: '#00CCFF',
+          textSize: 20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m1.png',
+          height: 52,
+          width: 53,
+          // offset:(100,100),
+        },
+        {
+          textColor: 'yellow',
+          textSize: 20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m2.png',
+          height: 55,
+          width: 56
+        },
+        {
+          textColor: 'red',
+          textSize: 20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m3.png',
+          height: 65,
+          width: 66
+        },
+        {
+          textColor: '#FF33CC',
+          textSize: 20,
+          url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m4.png',
+          height: 77,
+          width: 78
+        },
+      ],
+
 
     };
   },
@@ -289,6 +383,7 @@ export default {
     this.$refs.mapTheme.$mapPromise.then((mapObject) => {
       console.log("map is loaded now", mapObject);
     });
+
   },
   methods: {
     setPlace(place) {
@@ -387,8 +482,26 @@ export default {
               console.log("response", response);
               // console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
               busDistance = (response.routes[0].legs[0].steps[1].distance.value);
-
               console.log("bus Distance", busDistance)
+              // preprocess location
+              start_location.value = response.routes[0].legs[0].start_location;
+              end_location.value = response.routes[0].legs[0].end_location;
+              //console.log("start", start_location.value);
+              //console.log("end", end_location.value);
+              let dx = ref(0), dy = ref(0);
+              dy.value = (end_location.value.lat() - start_location.value.lat()) * 100;
+              dx.value = (end_location.value.lng() - start_location.value.lng()) * 100;
+              if (dy.value > 0 || dx.value > 0)
+                direction.value = '1';
+              else if (dy.value < 0 || dx.value < 0)
+                direction.value = '0';
+              //console.log("x", dx.value);
+              //console.log("y", dy.value);
+              //console.log(direction.value);
+              duration.value = response.routes[0].legs[0].duration.value;
+              submitPredict();
+              duration.value += diff.value;
+              console.log("duration: ", duration.value);
               directionsDisplay.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
@@ -477,6 +590,12 @@ export default {
 </script>
 
 <style scoped>
+#clusterIcon {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
 .pac-target-input {
   padding: 10px;
   width: 90%;
