@@ -119,7 +119,7 @@
           </div>
 
 
-          <button class="btn btn-outline-secondary" type="submit" style="
+          <button class="btn btn-outline-secondary" id='resetButton' type="submit" style="
               margin-top: 10px;
               margin-left: 20px;
               width: 60px;
@@ -130,7 +130,7 @@
 
           <!-- submit -->
 
-          <button class="btn btn-outline-secondary" type="submit"
+          <button class="btn btn-outline-secondary" type="submit" id='submitButton'
             @click="getDirection(); showDiv(); showFareButton(); fareCalculation();" style="
               margin-top: 10px;
               margin-left: 20px;
@@ -150,7 +150,7 @@
 
     <div id="container">
       <div id="sidebar"></div>
-      <div class="button" id="map" style="align-items: center; margin-top: 1%">
+      <div class="button" id="map" style="align-items: center; margin-top: 1%;">
         <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
           <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
             <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
@@ -572,7 +572,7 @@ export default {
 
 h1,
 h2,
-h4 {
+h4, #fareButton, #submitButton, #resetButton {
   font-family: 'Roboto', sans-serif;
 
 }
