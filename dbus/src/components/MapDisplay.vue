@@ -142,7 +142,7 @@
           </button>
           <div id="MlResult" class="btn btn-outline-secondary"
             style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
-            Your predicted travel time is: <strong>{{ duration }} minutes</strong>
+            Your predicted travel time is: <strong>{{  Number(this.durationResult).toFixed(2) }} minutes</strong>
           </div>
         </div>
       </div>
@@ -225,7 +225,6 @@ const directionRenderers = [];
 
 
 let busDistance = 0;
-
 let direction = ref('');
 let routeId = ref('');
 let month = ref('');
@@ -237,6 +236,10 @@ let start_location = ref({});
 let end_location = ref({});
 let diff = ref(0.0);
 let duration = ref(0);
+
+let durationDuration = 0;
+let loadedDirections = false;
+
 
 
 const submitPredict = () => {
@@ -301,6 +304,7 @@ export default {
       distanceJourney: "",
       zone: null,
       journey: "",
+      durationResult: 0,
       options: {
         styles: [
           {
@@ -389,6 +393,8 @@ export default {
     },
 
     showDiv() {
+      console.log("show ddiv", durationDuration);
+
       document.getElementById('MlResult').style.display = "inline";
     },
     showFareButton() {
@@ -450,9 +456,11 @@ export default {
 
     },
 
-    getDirection: function () {
+    getDirection() {
       // eslint-disable-next-line
       var directionsService = new google.maps.DirectionsService();
+      // eslint-disable-next-line
+      const self = this;
       // eslint-disable-next-line
       var directionsDisplay = new google.maps.DirectionsRenderer();
       directionsDisplay.setMap(this.$refs.mapTheme.$mapObject);
@@ -475,8 +483,10 @@ export default {
               modes: [google.maps.TransitMode.BUS],
             },
           },
-          function (response, status) {
+           (response, status) => {
             if (status === "OK") {
+              loadedDirections = true;
+
               console.log("response", response);
               // console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
               busDistance = (response.routes[0].legs[0].steps[1].distance.value);
@@ -500,12 +510,20 @@ export default {
               submitPredict();
               duration.value += diff.value;
               console.log("duration: ", duration.value);
+                    
+
+              durationDuration = duration.value / 60;
+              self.durationResult = durationDuration;
+              console.log("durationDuration: ", durationDuration);
+
               directionsDisplay.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
             }
             return {
-              busDistance
+              busDistance,
+              durationDuration,
+              loadedDirections
             }
           }
 
@@ -540,14 +558,9 @@ export default {
 
     },
 
-    // swapAddress() {
-    //   const tempAddress = this.address;
-    //   this.address = this.addresstwo;
-    //   this.addresstwo = tempAddress;
-    //   console.log("trying to swap")
-    // },
     fareCalculation() {
       console.log("this is the array", busDistance)
+      console.log("duration outs", durationDuration)
       if (busDistance < 3000) {
         this.journey = "short"
       }
