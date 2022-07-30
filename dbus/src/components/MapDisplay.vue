@@ -158,7 +158,6 @@
             </button>
 
           </div>
-          <GMapCluster :styles="clusterIcon" :zoomOnClick="true">
             <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
               :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
               :title="marker.stop_name" :clickable="true" :icon='{
@@ -197,7 +196,6 @@
                 </div>
               </GMapInfoWindow>
             </GMapMarker>
-          </GMapCluster>
           <GMapMarker :position="this.coords" />
           <GMapMarker :position="this.destination" />
 
