@@ -38,7 +38,7 @@
 
           </div>
           <el-divider border-style="dashed" />
-          
+
 
           <!-- fare calculator -->
           <button @click="fareCalculation(); showFareInfo();" class="btn btn-outline-secondary" id="fareButton"
@@ -119,7 +119,7 @@
           </div>
 
 
-          <button class="btn btn-outline-secondary" type="submit" style="
+          <button class="btn btn-outline-secondary" id='resetButton' type="submit" style="
               margin-top: 10px;
               margin-left: 20px;
               width: 60px;
@@ -130,7 +130,7 @@
 
           <!-- submit -->
 
-          <button class="btn btn-outline-secondary" type="submit"
+          <button class="btn btn-outline-secondary" type="submit" id='submitButton'
             @click="getDirection(); showDiv(); showFareButton(); fareCalculation();" style="
               margin-top: 10px;
               margin-left: 20px;
@@ -142,7 +142,7 @@
           </button>
           <div id="MlResult" class="btn btn-outline-secondary"
             style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
-            Your predicted travel time is: <strong>20 minutes</strong>
+            Your predicted travel time is: <strong>{{  Number(this.durationResult).toFixed(2) }} minutes</strong>
           </div>
         </div>
       </div>
@@ -150,7 +150,7 @@
 
     <div id="container">
       <div id="sidebar"></div>
-      <div class="button" id="map" style="align-items: center; margin-top: 1%">
+      <div class="button" id="map" style="align-items: center; margin-top: 1%;">
         <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
           <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
             <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
@@ -158,7 +158,6 @@
             </button>
 
           </div>
-          <GMapCluster :styles="clusterIcon" :zoomOnClick="true">
             <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
               :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
               :title="marker.stop_name" :clickable="true" :icon='{
@@ -197,14 +196,12 @@
                 </div>
               </GMapInfoWindow>
             </GMapMarker>
-          </GMapCluster>
           <GMapMarker :position="this.coords" />
           <GMapMarker :position="this.destination" />
 
         </GMapMap>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -214,8 +211,10 @@
 import markerLocations from "./json/BusStopsLongLatCSVComma.json";
 
 // eslint-disable-next-line
-import axios from "axios";
 import { ref } from "vue";
+import $ from 'jquery';
+// eslint-disable-next-line
+import { variableDeclarator } from "@babel/types";
 
 const pickdate = ref("");
 const submit = ref("");
@@ -228,12 +227,75 @@ const directionRenderers = [];
 
 
 let busDistance = 0;
+let direction = ref('');
+let routeId = ref('');
+let month = ref('');
+let dayOfWeek = ref('');
+let hour = ref('');
+let temp = ref(0.0);
+let wind_speed = ref(0.0);
+let start_location = ref({});
+let end_location = ref({});
+let diff = ref(0.0);
+let duration = ref(0);
+
+let durationDuration = 0;
+let loadedDirections = false;
 
 
+
+const submitPredict = () => {
+  // preprocess weather data
+  $.ajax({
+    url: "https://api.openweathermap.org/data/2.5/onecall?lat=53.344&lon=-6.2672&units=metric&exclude=minutely,daily&appid=d6e328f404504a98d4be6d3942d42e9e",
+    type: "GET",
+    async: false,
+    success(resp) {
+      //console.log(resp);
+      routeId.value = '39a';
+      month.value = pickdate.value.toString().substring(4, 7);
+      dayOfWeek.value = pickdate.value.toString().substring(0, 3);
+      hour.value = pickdate.value.toString().substring(16, 18);
+      temp.value = resp.current.temp;
+      wind_speed.value = resp.current.wind_speed;
+      $.ajax({
+        url: "http://127.0.0.1:9000/getPredict",
+        type: "GET",
+        async: false,
+        data: {
+          routeId: routeId.value,
+          direction: direction.value,
+          month: month.value,
+          dayOfWeek: dayOfWeek.value,
+          hour: hour.value,
+          temp: temp.value,
+          wind_speed: wind_speed.value,
+        },
+        success(resp) {
+          diff.value = resp.result;
+          console.log("resp:", diff.value);
+        }
+      });
+    }
+  });
+}
 
 export default {
   name: "DrawGoogleMap",
 
+  return: {
+    routeId,
+    direction,
+    month,
+    hour,
+    temp,
+    wind_speed,
+    start_location,
+    end_location,
+    diff,
+    duration,
+    submitPredict,
+  },
 
   data() {
     return {
@@ -243,14 +305,15 @@ export default {
       submit,
       distanceJourney: "",
       zone: null,
+      routIdArray: [],
       journey: "",
+      durationResult: 0,
       options: {
         styles: [
-          {featureType: "transit",
-          stylers: [{visibility: "off",}],
+          {
+            featureType: "transit",
+            stylers: [{ visibility: "off", }],
           },
-      
-
         ],
       },
 
@@ -285,7 +348,7 @@ export default {
       clusterIcon: [
         {
           textColor: '#00CCFF',
-          textSize:20,
+          textSize: 20,
           url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m1.png',
           height: 52,
           width: 53,
@@ -293,21 +356,21 @@ export default {
         },
         {
           textColor: 'yellow',
-          textSize:20,
+          textSize: 20,
           url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m2.png',
           height: 55,
           width: 56
         },
         {
           textColor: 'red',
-          textSize:20,
+          textSize: 20,
           url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m3.png',
           height: 65,
           width: 66
         },
         {
           textColor: '#FF33CC',
-          textSize:20,
+          textSize: 20,
           url: 'https://github.com/googlemaps/v3-utility-library/raw/bd55f49fc8492207d30e179d280c00aa8b5016e0/markerclusterer/images/m4.png',
           height: 77,
           width: 78
@@ -333,6 +396,8 @@ export default {
     },
 
     showDiv() {
+      console.log("show ddiv", durationDuration);
+
       document.getElementById('MlResult').style.display = "inline";
     },
     showFareButton() {
@@ -394,9 +459,11 @@ export default {
 
     },
 
-    getDirection: function () {
+    getDirection() {
       // eslint-disable-next-line
       var directionsService = new google.maps.DirectionsService();
+      // eslint-disable-next-line
+      const self = this;
       // eslint-disable-next-line
       var directionsDisplay = new google.maps.DirectionsRenderer();
       directionsDisplay.setMap(this.$refs.mapTheme.$mapObject);
@@ -419,26 +486,63 @@ export default {
               modes: [google.maps.TransitMode.BUS],
             },
           },
-          function (response, status) {
+           (response, status) => {
             if (status === "OK") {
-              console.log("response", response);
-              // console.log("the numbers of stops", response.routes[0].legs[0].steps[1].transit.num_stops);
-              busDistance = (response.routes[0].legs[0].steps[1].distance.value);
+              loadedDirections = true;
 
+              console.log("response", response);
+              // for loop to get rout ids of mutli bus trips and add to an array
+              for (var journeyStep of response.routes[0].legs[0].steps){
+                if(journeyStep.travel_mode == "TRANSIT"){
+                  console.log("bus Routess short name", journeyStep.transit.line.short_name);
+                  self.routIdArray.push(journeyStep.transit.line.short_name);
+
+                }
+                
+              }
+              console.log("routeId array", self.routIdArray)
+
+              busDistance = (response.routes[0].legs[0].steps[1].distance.value);
               console.log("bus Distance", busDistance)
+              // preprocess location
+              start_location.value = response.routes[0].legs[0].start_location;
+              end_location.value = response.routes[0].legs[0].end_location;
+              //console.log("start", start_location.value);
+              //console.log("end", end_location.value);
+              let dx = ref(0), dy = ref(0);
+              dy.value = (end_location.value.lat() - start_location.value.lat()) * 100;
+              dx.value = (end_location.value.lng() - start_location.value.lng()) * 100;
+              if (dy.value > 0 || dx.value > 0)
+                direction.value = '1';
+              else if (dy.value < 0 || dx.value < 0)
+                direction.value = '0';
+              //console.log("x", dx.value);
+              //console.log("y", dy.value);
+              //console.log(direction.value);
+              duration.value = response.routes[0].legs[0].duration.value;
+              submitPredict();
+              duration.value += diff.value;
+              console.log("duration: ", duration.value);
+                    
+
+              durationDuration = duration.value / 60;
+              self.durationResult = durationDuration;
+              console.log("durationDuration: ", durationDuration);
+
               directionsDisplay.setDirections(response);
             } else {
               window.alert("Directions request failed due to " + status);
             }
             return {
-              busDistance
+              busDistance,
+              durationDuration,
+              loadedDirections
             }
           }
 
 
         );
       }
-
 
       calculateAndDisplayRoute(
         directionsService,
@@ -466,12 +570,6 @@ export default {
 
     },
 
-    // swapAddress() {
-    //   const tempAddress = this.address;
-    //   this.address = this.addresstwo;
-    //   this.addresstwo = tempAddress;
-    //   console.log("trying to swap")
-    // },
     fareCalculation() {
       console.log("this is the array", busDistance)
       if (busDistance < 3000) {
@@ -615,7 +713,7 @@ export default {
 
 h1,
 h2,
-h4 {
+h4, #fareButton, #submitButton, #resetButton {
   font-family: 'Roboto', sans-serif;
 
 }
