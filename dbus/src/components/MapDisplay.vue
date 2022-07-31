@@ -501,7 +501,6 @@ export default {
                 
               }
               console.log("routeId array", self.routIdArray)
-              console.log("bus routes",response.routes[0].legs[0].steps[1].transit.line.short_name, response.routes[0].legs[0].steps[3].transit.line.short_name);
 
               busDistance = (response.routes[0].legs[0].steps[1].distance.value);
               console.log("bus Distance", busDistance)
