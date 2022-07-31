@@ -4,7 +4,7 @@
             <span style="color: black">View the latest tweets from</span>&nbsp;
             <span style="color: gray">Dublin Bus</span>
         </h2>
-  <div style= "margin:20px auto; width: 50%; height: 700px; overflow: auto;">
+  <div style= "margin:20px auto; width: 50%; height: 700px; overflow: auto; box-shadow: 4px 4px 5px;">
     <a  
     id="twitter"
       class="twitter-timeline"
