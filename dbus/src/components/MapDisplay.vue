@@ -281,7 +281,7 @@ const submitPredict = () => {
 }
 
 export default {
-  name: "DrawGoogleMap",
+  name: "Map",
 
   return: {
     routeId,
