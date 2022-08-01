@@ -521,6 +521,7 @@ export default {
               //console.log(direction.value);
               duration.value = response.routes[0].legs[0].duration.value;
               submitPredict();
+              console.log("duration difference", diff.value);
               duration.value += diff.value;
               console.log("duration: ", duration.value);
                     
@@ -633,7 +634,7 @@ export default {
   flex-grow: 1;
   padding: 1rem;
   max-width: 30rem;
-  height: 55%;
+  height: 100%;
   box-sizing: border-box;
   overflow: auto;
 }
