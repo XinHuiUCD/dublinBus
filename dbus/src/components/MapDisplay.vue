@@ -558,7 +558,8 @@ export default {
       this.$emit("togglefav", !this.is_fav);
     },
     resetSearch() {
-      console.log("reset")
+      console.log("reset");
+      this.routIdArray = [];
       directionRenderers.forEach(directionsDisplay => {
         directionsDisplay.setMap(null)
         directionsDisplay.setPanel(null)
