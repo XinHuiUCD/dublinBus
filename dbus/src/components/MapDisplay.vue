@@ -260,7 +260,7 @@ const submitPredict = () => {
       temp.value = resp.current.temp;
       wind_speed.value = resp.current.wind_speed;
       $.ajax({
-        url: "http://127.0.0.1:80/getPredict",
+        url: "http://localhost:80/getPredict",
         type: "GET",
         async: false,
         data: {

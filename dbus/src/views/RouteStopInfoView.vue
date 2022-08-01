@@ -147,7 +147,7 @@ export default {
         let routeId = ref('');
         const submit = () => {
             $.ajax({
-                url: "http://127.0.0.1:80/getinfo",
+                url: "http://localhost:80/getinfo",
                 type: "GET",
                 data: {
                     routeId: routeId.value,
@@ -161,7 +161,7 @@ export default {
 
         const showFavoriteRoute = (e) => {
             $.ajax({
-                url: "http://127.0.0.1:80/getinfo",
+                url: "http://localhost:80/getinfo",
                 type: "GET",
                 data: {
                     routeId: e.currentTarget.innerText,
@@ -199,7 +199,7 @@ export default {
         },
         realTimeBusData(busstopNO) {
             this.loading = true
-            fetch('http://127.0.0.1:80/getRealTime/' + busstopNO)
+            fetch('http://localhost:80/getRealTime/' + busstopNO)
                 .then(response => response.json())
                 .then(data => this.resultBusTimesSched = data)
                 .finally(() => (this.loading = false))
