@@ -116,4 +116,12 @@
 	#el-button{
 		filter: var(--filter-invert);
 	}
+	#login{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
+	#register{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
 </style>

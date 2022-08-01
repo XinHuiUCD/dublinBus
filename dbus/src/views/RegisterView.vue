@@ -1,6 +1,6 @@
 <template>
     <ContentBase>
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center" id="register">
             <form @submit.prevent="register">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>

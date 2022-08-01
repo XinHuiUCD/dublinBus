@@ -44,9 +44,7 @@
                                 <div v-for="(favourite, index) in favourites" :key="favourite">
                                     <p>
                                         <span class="favourite" style="font-weight:bolder" type="submit"
-                                            @click="showFavoriteRoute($event)">{{
-                                                    favourite
-                                            }}</span>
+                                            @click="showFavoriteRoute($event)">{{ favourite }}</span>
                                         <button class="btn btn-outline-secondary" type="submit" id="button-addon1"
                                             @click="removeFavourite(index)">✖️</button>
                                     </p>
