@@ -142,7 +142,7 @@
           </button>
           <div id="MlResult" class="btn btn-outline-secondary"
             style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
-            Your predicted travel time is: <strong>{{  Number(this.durationResult).toFixed(2) }} minutes</strong>
+            Your predicted travel time is: <strong>{{ Number(this.durationResult).toFixed(2) }} minutes</strong>
           </div>
         </div>
       </div>
@@ -151,51 +151,52 @@
     <div id="container">
       <div id="sidebar"></div>
       <div class="button" id="map" style="align-items: center; margin-top: 1%;">
-        <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
+        <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px"
+          ref="mapTheme">
           <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
             <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
               Hide/Show Markers
             </button>
 
           </div>
-            <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
-              :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
-              :title="marker.stop_name" :clickable="true" :icon='{
-                url: "https://img.icons8.com/fluency/48/000000/bus.png",
-                scaledSize: { width: 40, height: 40 }
-              }' @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)">
-              <GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)"
-                :opened="openedMarkerID === marker.stop_id">
-                <div style="text-align: center;  height:200px; overflow:auto">
-                  <h5>Real Time Information</h5>
-                  <div>
-                    <div v-if="loading" style="margin: 0 auto;">
-                      <div class="loader" style="margin: 10px auto;"></div>
-                      <div>Loading Real Time Data</div>
-                    </div>
-                    <div v-else>
-
-                      <table id="realTimeTable" style="margin: 0 auto;">
-                        <tr>
-                          <th>Bus Route</th>
-                          <th>Destination</th>
-                          <th>Arrival</th>
-
-                        </tr>
-
-                        <tr v-for="busInfo in resultBusTimesSched" :key="busInfo">
-                          <td>{{ busInfo.Route }}</td>
-                          <td>{{ busInfo.Destination }}</td>
-                          <td>{{ busInfo.Arrival }}</td>
-
-                        </tr>
-                      </table>
-                    </div>
+          <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
+            :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
+            :title="marker.stop_name" :clickable="true" :icon='{
+              url: "https://img.icons8.com/fluency/48/000000/bus.png",
+              scaledSize: { width: 40, height: 40 }
+            }' @click="openMarker(marker.stop_id); realTimeBusData(marker.stop_num)">
+            <GMapInfoWindow :closeclick="true" @closeclick="openMarker(null)"
+              :opened="openedMarkerID === marker.stop_id">
+              <div style="text-align: center;  height:200px; overflow:auto">
+                <h5>Real Time Information</h5>
+                <div>
+                  <div v-if="loading" style="margin: 0 auto;">
+                    <div class="loader" style="margin: 10px auto;"></div>
+                    <div>Loading Real Time Data</div>
                   </div>
+                  <div v-else>
 
+                    <table id="realTimeTable" style="margin: 0 auto;">
+                      <tr>
+                        <th>Bus Route</th>
+                        <th>Destination</th>
+                        <th>Arrival</th>
+
+                      </tr>
+
+                      <tr v-for="busInfo in resultBusTimesSched" :key="busInfo">
+                        <td>{{ busInfo.Route }}</td>
+                        <td>{{ busInfo.Destination }}</td>
+                        <td>{{ busInfo.Arrival }}</td>
+
+                      </tr>
+                    </table>
+                  </div>
                 </div>
-              </GMapInfoWindow>
-            </GMapMarker>
+
+              </div>
+            </GMapInfoWindow>
+          </GMapMarker>
           <GMapMarker :position="this.coords" />
           <GMapMarker :position="this.destination" />
 
@@ -259,7 +260,7 @@ const submitPredict = () => {
       temp.value = resp.current.temp;
       wind_speed.value = resp.current.wind_speed;
       $.ajax({
-        url: "http://127.0.0.1:9000/getPredict",
+        url: "http://ipa-011.ucd.ie:80/getPredict",
         type: "GET",
         async: false,
         data: {
@@ -486,19 +487,19 @@ export default {
               modes: [google.maps.TransitMode.BUS],
             },
           },
-           (response, status) => {
+          (response, status) => {
             if (status === "OK") {
               loadedDirections = true;
 
               console.log("response", response);
               // for loop to get rout ids of mutli bus trips and add to an array
-              for (var journeyStep of response.routes[0].legs[0].steps){
-                if(journeyStep.travel_mode == "TRANSIT"){
+              for (var journeyStep of response.routes[0].legs[0].steps) {
+                if (journeyStep.travel_mode == "TRANSIT") {
                   console.log("bus Routess short name", journeyStep.transit.line.short_name);
                   self.routIdArray.push(journeyStep.transit.line.short_name);
 
                 }
-                
+
               }
               console.log("routeId array", self.routIdArray)
 
@@ -521,9 +522,10 @@ export default {
               //console.log(direction.value);
               duration.value = response.routes[0].legs[0].duration.value;
               submitPredict();
+              console.log("duration difference", diff.value);
               duration.value += diff.value;
               console.log("duration: ", duration.value);
-                    
+
 
               durationDuration = duration.value / 60;
               self.durationResult = durationDuration;
@@ -557,7 +559,8 @@ export default {
       this.$emit("togglefav", !this.is_fav);
     },
     resetSearch() {
-      console.log("reset")
+      console.log("reset");
+      this.routIdArray = [];
       directionRenderers.forEach(directionsDisplay => {
         directionsDisplay.setMap(null)
         directionsDisplay.setPanel(null)
@@ -633,7 +636,7 @@ export default {
   flex-grow: 1;
   padding: 1rem;
   max-width: 30rem;
-  height: 55%;
+  height: 100%;
   box-sizing: border-box;
   overflow: auto;
 }
@@ -713,7 +716,10 @@ export default {
 
 h1,
 h2,
-h4, #fareButton, #submitButton, #resetButton {
+h4,
+#fareButton,
+#submitButton,
+#resetButton {
   font-family: 'Roboto', sans-serif;
 
 }

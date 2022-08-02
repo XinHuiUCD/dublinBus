@@ -79,8 +79,8 @@ export default {
             carouseImgs: [
                 { url: require("../assets/photo1.png") },
                 { url: require("../assets/photo2.png") },
-                { url: require("../assets/photo1.png") },
-                { url: require("../assets/photo2.png") },
+                { url: require("../assets/photo3.png") },
+                // { url: require("../assets/photo4.png") },
             ]
         }
     }
