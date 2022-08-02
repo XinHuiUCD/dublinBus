@@ -1,18 +1,20 @@
 <template>
     <ContentBase>
         <div id="Menu">
-          <h2 style="text-align:center">
-            <span style="color: black">Bus Routes</span>&nbsp;
-            <span style="color: gray">and Real Time Info</span>
-        </h2>
+            <h2 style="text-align:center">
+                <span style="color: black">Bus Routes</span>&nbsp;
+                <span style="color: gray">and Real Time Info</span>
+            </h2>
             <div id="title">
 
                 <div class="grid text-center" id="function">
                     <div class="g-col-6">
-                         <label type="danger" plain disabled style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose a
-                            route to display on the map<br/>Click the stop to view
+                        <label type="danger" plain disabled
+                            style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose
+                            a
+                            route to display on the map<br />Click the stop to view
                             the real time data</label>
-                            <el-divider border-style="dashed" />
+                        <el-divider border-style="dashed" />
 
                         <el-input list="browsers" name="browser" id="browser" v-model="routeId"
                             placeholder="Choose a route" clearable style="width:70%" />
@@ -145,7 +147,7 @@ export default {
         let routeId = ref('');
         const submit = () => {
             $.ajax({
-                url: "http://127.0.0.1:9000/getinfo",
+                url: "http://ipa-011.ucd.ie:80/getinfo",
                 type: "GET",
                 data: {
                     routeId: routeId.value,
@@ -159,7 +161,7 @@ export default {
 
         const showFavoriteRoute = (e) => {
             $.ajax({
-                url: "http://127.0.0.1:9000/getinfo",
+                url: "http://ipa-011.ucd.ie:80/getinfo",
                 type: "GET",
                 data: {
                     routeId: e.currentTarget.innerText,
@@ -197,7 +199,7 @@ export default {
         },
         realTimeBusData(busstopNO) {
             this.loading = true
-            fetch('http://127.0.0.1:9000/getRealTime/' + busstopNO)
+            fetch('http://ipa-011.ucd.ie:80/getRealTime/' + busstopNO)
                 .then(response => response.json())
                 .then(data => this.resultBusTimesSched = data)
                 .finally(() => (this.loading = false))
