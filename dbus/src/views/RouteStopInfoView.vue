@@ -1,5 +1,19 @@
 <template>
     <ContentBase>
+        <!-- go up -->
+        <el-backtop :bottom="100">
+            <div style="
+        height: 100%;
+        width: 100%;
+        background-color: var(--el-bg-color-overlay);
+        box-shadow: var(--el-box-shadow-lighter);
+        text-align: center;
+        line-height: 40px;
+        color: #1989fa;
+      ">
+                UP
+            </div>
+        </el-backtop>
         <div id="Menu">
             <h2 style="text-align:center">
                 <span style="color: black">Bus Routes</span>&nbsp;

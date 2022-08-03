@@ -8,8 +8,23 @@
         </h1>
 
         <div id="functions">
-          <!-- Your Position -->
 
+          <!-- go up -->
+          <el-backtop :bottom="100">
+            <div style="
+        height: 100%;
+        width: 100%;
+        background-color: var(--el-bg-color-overlay);
+        box-shadow: var(--el-box-shadow-lighter);
+        text-align: center;
+        line-height: 40px;
+        color: #1989fa;
+      ">
+              UP
+            </div>
+          </el-backtop>
+          
+          <!-- Your Position -->
           <div class="grid text-center">
             <div class="g-col-6">
               <GMapAutocomplete placeholder="Enter your starting point" @place_changed="setPlace" v-model="address"
@@ -486,6 +501,7 @@ export default {
               // eslint-disable-next-line
               modes: [google.maps.TransitMode.BUS],
             },
+            provideRouteAlternatives: true,
           },
           (response, status) => {
             if (status === "OK") {
