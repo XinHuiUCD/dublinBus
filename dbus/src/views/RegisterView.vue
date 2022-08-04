@@ -64,11 +64,11 @@ export default {
                             }
                         });
                     } else {
-                        if (resp.result === "This username already exists")
+                        if (resp.result === "用户名已存在")
                             error_message.value = "This username already exists";
-                        else if (resp.result === "The two passwords do not match")
+                        else if (resp.result === "两个密码不一致")
                             error_message.value = "The two passwords do not match";
-                        else if (resp.result === "The username and password can not be blanked!")
+                        else if (resp.result === "用户名和密码不能为空")
                             error_message.value = "The username and password can not be blanked!";
                     }
                 }
