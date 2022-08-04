@@ -22,10 +22,10 @@
             <!-- Your Destination -->
 
             <div class="g-col-6">
-              <GMapAutocomplete placeholder="Enter your destination" @place_changed="setPlace" v-model="addresstwo"
+              <GMapAutocomplete placeholder="Enter your destination" @place_changed="setPlace" v-model="addresstwo" id="enterYourDestionation"
                 style="width:75%; border-radius: 4px;">
               </GMapAutocomplete>
-              <button class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;"
+              <button id="endMarkerBtn" class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;"
                   src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
             </div>
             <div class="g-col-6">
@@ -131,7 +131,7 @@
           <!-- submit -->
 
           <button class="btn btn-outline-secondary" type="submit" id='submitButton'
-            @click="getDirection(); showDiv(); showFareButton(); fareCalculation();" style="
+            @click="getDirection(); showDiv(); showFareButton(); fareCalculation(); " style="
               margin-top: 10px;
               margin-left: 20px;
               width: 70px;
@@ -140,7 +140,7 @@
             ">
             Submit
           </button>
-          <div id="MlResult" class="btn btn-outline-secondary"
+          <div id="MlResult" class="btn btn-outline-secondary" v-if="this.check_if_marker_pressed == true"
             style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
             Your predicted travel time is: <strong>{{  Number(this.durationResult).toFixed(2) }} minutes</strong>
           </div>
@@ -153,7 +153,7 @@
       <div class="button" id="map" style="align-items: center; margin-top: 1%;">
         <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px" ref="mapTheme">
           <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
-            <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
+            <button type="button" id="hideMarkers" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
               Hide/Show Markers
             </button>
 
@@ -281,7 +281,7 @@ const submitPredict = () => {
 }
 
 export default {
-  name: "Map",
+  name: "DrawGoogleMap",
 
   return: {
     routeId,
@@ -299,6 +299,7 @@ export default {
 
   data() {
     return {
+      check_if_marker_pressed: false,
       pickdate,
       address: "",
       addresstwo: "",
@@ -426,6 +427,8 @@ export default {
     },
 
     addMarkerEnd() {
+      this.check_if_marker_pressed = true;
+
       console.log("add maker");
       this.destination = {
         lat: this.currentPlace.geometry.location.lat(),
