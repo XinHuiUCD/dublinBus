@@ -52,11 +52,62 @@ class dublinBus(unittest.TestCase):
         # error_message = driver.find_element(By.ID, 'errorMsg')
         self.assertIn('Wrong', driver.page_source)
 
+    def test_register_already_exists(self):
+        """Testing register page when the user already exists"""
+
+        driver = self.driver
+        driver.get("http://localhost:8080/register/")
+        username_input = driver.find_element(By.ID, "username")
+        username_input.send_keys('gus')
+        time.sleep(1)
+        pass_input = driver.find_element(By.ID, "password")
+        pass_input.send_keys('password')
+        time.sleep(1)
+        pass_confrim = driver.find_element(By.ID, "password_confirm")
+        pass_confrim.send_keys('password')
+        time.sleep(1)
+        singin_button = driver.find_element(By.ID, 'sigupBtn')
+        singin_button.click()
+        time.sleep(3)
+        self.assertIn('already', driver.page_source)
 
 
+    def test_register_passwords(self):
+        """Testing sign up of new user when passwords don't match"""
 
+        driver = self.driver
+        driver.get("http://localhost:8080/register/")
+        username_input = driver.find_element(By.ID, "username")
+        username_input.send_keys('newUser')
+        time.sleep(1)
+        pass_input = driver.find_element(By.ID, "password")
+        pass_input.send_keys('password')
+        time.sleep(1)
+        pass_confrim = driver.find_element(By.ID, "password_confirm")
+        pass_confrim.send_keys('password1')
+        time.sleep(1)
+        singin_button = driver.find_element(By.ID, 'sigupBtn')
+        singin_button.click()
+        time.sleep(3)
+        self.assertIn('do not match', driver.page_source)
 
+    def test_register_correct(self):
+        """Testing sign up of new user"""
 
+        driver = self.driver
+        driver.get("http://localhost:8080/register/")
+        username_input = driver.find_element(By.ID, "username")
+        username_input.send_keys('newUser123')
+        time.sleep(1)
+        pass_input = driver.find_element(By.ID, "password")
+        pass_input.send_keys('password123')
+        time.sleep(1)
+        pass_confrim = driver.find_element(By.ID, "password_confirm")
+        pass_confrim.send_keys('password123')
+        time.sleep(1)
+        singin_button = driver.find_element(By.ID, 'sigupBtn')
+        singin_button.click()
+        time.sleep(3)
 
 
     def tearDown(self):
