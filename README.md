@@ -150,9 +150,11 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+### Journey Planner
+  <a href="https://github.com/XinHuiUCD/dublinBus">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Journey_Planner.png" width="75%">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile1.png" width="20%">
+  </a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
