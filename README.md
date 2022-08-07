@@ -25,4 +25,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 =======
 # dublinBus
 This is the Group work for COMP 47360
->>>>>>> Haden_development
+
