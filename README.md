@@ -20,14 +20,16 @@
 -->
 
 
-<!-- PROJECT LOGO -->
+<!-- PROJECT LOGO -->![Uploading Du![Dublin-Bus-logo](https://user-images.githubusercontent.com/92164053/183298048-89d34885-7c48-4cb2-ac4c-aa0a1b98280a.png)
+blin-Bus-logo.png…]()
+
 <br />
 <div align="center">
-  <a href="https://github.com/XinHuiUCD/dublinBus/main/dbus/src/assets">
+  <a href="https://github.com/XinHuiUCD/dublinBus/main/dbus/src/assets/Dublin-Bus-logo.png">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Team 10</h3>
 
   <p align="center">
     project_description
