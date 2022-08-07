@@ -66,14 +66,19 @@
     </li>
     <li><a href="#features">Features</a>
       <ul>
-        <li><a href="#journey-planner">Journey_Planner</a></li>
-        <li><a href="#fare-calculation">Fare-Calculation</a></li>
+        <li><a href="#journey-planner">Journey Planner</a></li>
+        <li><a href="#fare-calculation">Fare Calculation</a></li>
+        <li><a href="#route-information">Route Information</a></li>
+        <li><a href="#real-time-information">Real Time Information</a></li>
+        <li><a href="#weather-information">Weather Information</a></li>
+        <li><a href="#twitter">Twitter</a></li>
+        <li><a href="#register-and-login">Register & Login</a></li>
+        <li><a href="#dark-mode">Dark Mode</a></li>
+        <li><a href="#mobile-optimization">Mobile Optimization</a></li>
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
