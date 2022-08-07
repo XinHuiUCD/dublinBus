@@ -23,7 +23,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/main/dbus/src/assets">
+  <a href="https://github.com/XinHuiUCD/dublinBus/main/dbus/src/assets">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
