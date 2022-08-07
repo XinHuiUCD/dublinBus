@@ -112,20 +112,32 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/XinHuiUCD/dublinBus.git
+   ```
+2. cd into the cloned directory
+   ```sh
+   cd dbus
    ```
 3. Install NPM packages
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+4. Install pip requirements & activate pipenv shell
+   ```sh
+   pipenv install --dev && pipenv shell
    ```
 
+### Run
+1. Serve the frontend
+   ```sh
+   npm run serve
+   ```
+2. Serve the backend. Note: You must be in pipenv shell at this point.
+   ```sh
+   python manage.py runserver 9000
+   ```
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
