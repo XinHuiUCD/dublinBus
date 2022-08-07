@@ -154,8 +154,7 @@ This is an example of how to list things you need to use the software and how to
 <div>
   <p>Enter the destination you want to go to, click the Submit button, and our app will show you the time predicted by our model, the different bus routes, and the fare required.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
-    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Journey_Planner.png" width="75%">
-    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile1.png" width="20%">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Journey_Planner.png">
   </a>
 </div>
 
@@ -175,6 +174,24 @@ This is an example of how to list things you need to use the software and how to
       <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/tomorrow_weather.png">
       <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/future_weather.png">
     </a>
+</div>
+
+### Twitter
+<div>
+  <p>The Twitter feature allows users to view the latest tweets from Dublin Bus, so that users can easily can view new information and alerts from Dublin Bus that our models cannot predict.</p>
+  <a href="https://github.com/XinHuiUCD/dublinBus">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Twitter.png">
+  </a>
+</div>
+
+### Register & Login
+<div>
+  <p>The Register and Login features allow users to create their own account and display their username on the page. Users' information is stored in the database and verified with JWT-Authorization. In addition, all functions are not affected if users do not login, there are no restrictions.</p>
+  <a href="https://github.com/XinHuiUCD/dublinBus">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Register.png">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Login.png">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/login_completed.png">
+  </a>
 </div>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
