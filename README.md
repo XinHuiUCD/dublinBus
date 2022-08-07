@@ -249,24 +249,25 @@ Don't forget to give the project a star! Thanks again!
 
 
 
-<!-- LICENSE -->
+<!-- LICENSE 
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> 
+-->
 
 
 
 <!-- CONTACT -->
 ## Contact
-Gus Boothman
+Gus Boothman - Front-end
 <br/>
-Will O’Donohoe
+Will O’Donohoe - Data Analytic
 <br/>
-Cheng Zhang
+Cheng Zhang - Front-end
 <br/>
-Xinhui Jiang
+Xinhui Jiang - Back-end
 
 Project Link: [https://github.com/XinHuiUCD/dublinBus](https://github.com/XinHuiUCD/dublinBus)
 
