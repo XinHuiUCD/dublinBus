@@ -261,8 +261,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 Gus Boothman
+<br/>
 Will O’Donohoe
+<br/>
 Cheng Zhang
+<br/>
 Xinhui Jiang
 
 Project Link: [https://github.com/XinHuiUCD/dublinBus](https://github.com/XinHuiUCD/dublinBus)
