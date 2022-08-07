@@ -148,7 +148,7 @@ This is an example of how to list things you need to use the software and how to
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usage & Features
 
 ### Journey Planner
 <div>
@@ -158,20 +158,24 @@ This is an example of how to list things you need to use the software and how to
     <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile1.png" width="20%">
   </a>
 </div>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Route Info
+<div>
+  <p>The route information feature allows users to search for the bus routes they want to view. Also, users can add their favorite routes to their favorites for future viewing.</p>
+  <a href="https://github.com/XinHuiUCD/dublinBus">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Route_Info.png">
+  </a>
+</div>
 
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
-
+### Weather Info
+<div>
+  <p>The weather feature allows users to view the current weather in Dublin, tomorrow's weather and weather information for three days from now. This information includes temperature, feels like temperature and weather description information.</p>
+    <a href="https://github.com/XinHuiUCD/dublinBus">
+      <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/current_weather.png">
+      <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/tomorrow_weather.png">
+      <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/future_weather.png">
+    </a>
+</div>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
