@@ -261,7 +261,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
-[Gus Boothman - Front-end]()
+[Gus Boothman - Front-end](https://github.com/Gus1616)
 <br/>
 [Will O’Donohoe - Data Analytic]()
 <br/>
