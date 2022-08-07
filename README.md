@@ -23,7 +23,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/main/dbus/src/assets">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -112,7 +112,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/XinHuiUCD/dublinBus.git
    ```
 3. Install NPM packages
    ```sh
