@@ -401,15 +401,25 @@ export default {
   mounted() {
     this.setLocationLatLng();
     this.getDirection();
+    this.hideMarkers_onload();
 
     this.$refs.mapTheme.$mapPromise.then((mapObject) => {
       console.log("map is loaded now", mapObject);
     });
 
+
+
   },
   methods: {
     setPlace(place) {
       this.currentPlace = place;
+    },
+
+    hideMarkers_onload(){
+      for (let i = 0; i < this.Hellodata.length; i++) {
+          this.Hellodata[i]["visibility"] = false;
+        }
+
     },
 
     showDiv() {
@@ -455,12 +465,12 @@ export default {
     hideAllMarkers() {
       if (clicked) {
         for (let i = 0; i < this.Hellodata.length; i++) {
-          this.Hellodata[i]["visibility"] = false;
+          this.Hellodata[i]["visibility"] = true;
         }
         clicked = false;
       } else {
         for (let i = 0; i < this.Hellodata.length; i++) {
-          this.Hellodata[i]["visibility"] = true;
+          this.Hellodata[i]["visibility"] = false;
         }
         clicked = true;
       }
