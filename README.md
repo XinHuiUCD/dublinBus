@@ -66,7 +66,7 @@
     </li>
     <li><a href="#features">Features</a>
       <ul>
-        <li><a href="#journeyplanner">Journey Planner</a></li>
+        <li><a href="#journey_planner">Journey_Planner</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -155,7 +155,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Features
 
-### Journey Planner
+### Journey_Planner
 <div>
   <p>Enter the destination you want to go to, click the Submit button, and our app will show you the time predicted by our model, the different bus routes, and the fare required.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
