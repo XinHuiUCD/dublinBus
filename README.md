@@ -261,13 +261,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- CONTACT -->
 ## Contact
-Gus Boothman - Front-end
+[Gus Boothman - Front-end]()
 <br/>
-Will O’Donohoe - Data Analytic
+[Will O’Donohoe - Data Analytic]()
 <br/>
 [Cheng Zhang - Front-end](https://github.com/20211342)
 <br/>
-Xinhui Jiang - Back-end
+[Xinhui Jiang - Back-end]()
 
 Project Link: [https://github.com/XinHuiUCD/dublinBus](https://github.com/XinHuiUCD/dublinBus)
 
