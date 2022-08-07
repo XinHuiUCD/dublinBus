@@ -222,9 +222,9 @@ This is an example of how to list things you need to use the software and how to
 <div>
   <p>Our App is also optimized for mobile, so users can use the product perfectly on mobile as well.Everything in the navigation bar is placed in one button, and when users click on the button, they can view all the functions.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
-    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile1.png" width="33%">
-    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile2.png" width="33%">
-    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile3.png" width="33%">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile1.png" width="32%">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile2.png" width="32%">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile3.png" width="32%">
   </a>
 </div>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
