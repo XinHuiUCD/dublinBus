@@ -36,7 +36,7 @@
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="http://ipa-011.ucd.ie/">View Our Project</a>
+    <a href="http://ipa-011.ucd.ie/">View Live Project</a>
     ·
     <a href="https://github.com/XinHuiUCD/dublinBus/issues">Report Bug</a>
     ·
@@ -138,6 +138,11 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    python manage.py runserver 9000
    ```
+3. Access App from frontend or backend
+   ```sh
+   http://localhost:8080/
+   ```
+   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
