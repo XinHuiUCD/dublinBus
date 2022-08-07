@@ -267,7 +267,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <br/>
 [Cheng Zhang - Front-end](https://github.com/20211342)
 <br/>
-[Xinhui Jiang - Back-end]()
+[Xinhui Jiang - Back-end](https://github.com/XinHuiUCD)
 
 Project Link: [https://github.com/XinHuiUCD/dublinBus](https://github.com/XinHuiUCD/dublinBus)
 
