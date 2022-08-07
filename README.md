@@ -158,7 +158,15 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Route Info
+### Fare Calculation
+<div>
+  <p>Users can view their fare by clicking on the Fare button. This is calculated by the distance of the journey. All potential fare are displayed so the user does not have specify their age. </p>
+  <a href="https://github.com/XinHuiUCD/dublinBus">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/fare_calculation.png">
+  </a>
+</div>
+
+### Route Information
 <div>
   <p>The route information feature allows users to search for the bus routes they want to view. Also, users can add their favorite routes to their favorites for future viewing.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
@@ -166,7 +174,15 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Weather Info
+### Real Time Information
+<div>
+  <p>The user can select a bus stop on the map and view the expected arrivals of buses for that particular stop. </p>
+  <a href="https://github.com/XinHuiUCD/dublinBus">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/RealtimeInfo.png">
+  </a>
+</div>
+
+### Weather Information
 <div>
   <p>The weather feature allows users to view the current weather in Dublin, tomorrow's weather and weather information for three days from now. This information includes temperature, feels like temperature and weather description information.</p>
     <a href="https://github.com/XinHuiUCD/dublinBus">
