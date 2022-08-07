@@ -66,8 +66,8 @@
     </li>
     <li><a href="#features">Features</a>
       <ul>
-        <li><a href="#journey_planner">Journey_Planner</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#journey-planner">Journey_Planner</a></li>
+        <li><a href="#fare-calculation">Fare-Calculation</a></li>
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
@@ -155,7 +155,7 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Features
 
-### Journey_Planner
+### Journey-Planner
 <div>
   <p>Enter the destination you want to go to, click the Submit button, and our app will show you the time predicted by our model, the different bus routes, and the fare required.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
@@ -163,7 +163,7 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Fare Calculation
+### Fare-Calculation
 <div>
   <p>Users can view their fare by clicking on the Fare button. This is calculated by the distance of the journey. All potential fare are displayed so the user does not have specify their age. </p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
@@ -171,7 +171,7 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Route Information
+### Route-Information
 <div>
   <p>The route information feature allows users to search for the bus routes they want to view. Also, users can add their favorite routes to their favorites for future viewing.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
@@ -179,7 +179,7 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Real Time Information
+### Real-Time-Information
 <div>
   <p>The user can select a bus stop on the map and view the expected arrivals of buses for that particular stop. </p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
@@ -187,7 +187,7 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Weather Information
+### Weather-Information
 <div>
   <p>The weather feature allows users to view the current weather in Dublin, tomorrow's weather and weather information for three days from now. This information includes temperature, feels like temperature and weather description information.</p>
     <a href="https://github.com/XinHuiUCD/dublinBus">
@@ -205,7 +205,7 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Register & Login
+### Register-and-Login
 <div>
   <p>The Register and Login features allow users to create their own account and display their username on the page. Users' information is stored in the database and verified with JWT-Authorization. In addition, all functions are not affected if users do not login, there are no restrictions.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
@@ -215,7 +215,7 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Dark Mode
+### Dark-Mode
 <div>
   <p>The main purpose of setting the dark mode function is to facilitate users to use the product at night. In addition, the dark mode will also have a certain protective effect on people's eyes, which is good for users.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
@@ -223,7 +223,7 @@ This is an example of how to list things you need to use the software and how to
   </a>
 </div>
 
-### Mobile Optimization
+### Mobile-Optimization
 <div>
   <p>Our App is also optimized for mobile, so users can use the product perfectly on mobile as well.Everything in the navigation bar is placed in one button, and when users click on the button, they can view all the functions.</p>
   <a href="https://github.com/XinHuiUCD/dublinBus">
