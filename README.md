@@ -153,7 +153,6 @@ This is an example of how to list things you need to use the software and how to
 ### Journey Planner
 <div>
   <p>Enter the destination you want to go to, click the Submit button, and our app will show you the time predicted by our model, the different bus routes, and the fare required.</p>
-  <br/>
   <a href="https://github.com/XinHuiUCD/dublinBus">
     <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Journey_Planner.png" width="75%">
     <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile1.png" width="20%">
