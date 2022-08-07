@@ -209,6 +209,15 @@ This is an example of how to list things you need to use the software and how to
     <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/login_completed.png">
   </a>
 </div>
+
+### Dark Mode
+<div>
+  <p>The main purpose of setting the dark mode function is to facilitate users to use the product at night. In addition, the dark mode will also have a certain protective effect on people's eyes, which is good for users.</p>
+  <a href="https://github.com/XinHuiUCD/dublinBus">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Dark_mode.png">
+    <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/mobile3.png">
+  </a>
+</div>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
