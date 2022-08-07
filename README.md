@@ -265,7 +265,7 @@ Gus Boothman - Front-end
 <br/>
 Will O’Donohoe - Data Analytic
 <br/>
-Cheng Zhang - Front-end
+[Cheng Zhang - Front-end](https://github.com/20211342)
 <br/>
 Xinhui Jiang - Back-end
 
