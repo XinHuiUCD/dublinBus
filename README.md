@@ -64,9 +64,9 @@
         <li><a href="#run">Run</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage & Features</a>
+    <li><a href="#usage & features">Usage & Features</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#journeyplanner">Journey Planner</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
