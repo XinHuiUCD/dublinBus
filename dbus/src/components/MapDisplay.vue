@@ -23,7 +23,7 @@
               UP
             </div>
           </el-backtop>
-          
+
           <!-- Your Position -->
           <div class="grid text-center">
             <div class="g-col-6">
@@ -38,9 +38,10 @@
 
             <div class="g-col-6">
               <GMapAutocomplete placeholder="Enter your destination" @place_changed="setPlace" v-model="addresstwo"
-                style="width:75%; border-radius: 4px;">
+                id="enterYourDestionation" style="width:75%; border-radius: 4px;">
               </GMapAutocomplete>
-              <button class="btn" @click="addMarkerEnd()"><img style="width: fit-content; height: fit-content;"
+              <button id="endMarkerBtn" class="btn" @click="addMarkerEnd()"><img
+                  style="width: fit-content; height: fit-content;"
                   src="https://img.icons8.com/color/48/000000/place-marker--v1.png" /></button>
             </div>
             <div class="g-col-6">
@@ -146,7 +147,7 @@
           <!-- submit -->
 
           <button class="btn btn-outline-secondary" type="submit" id='submitButton'
-            @click="getDirection(); showDiv(); showFareButton(); fareCalculation();" style="
+            @click="getDirection(); showDiv(); showFareButton(); fareCalculation(); " style="
               margin-top: 10px;
               margin-left: 20px;
               width: 70px;
@@ -155,7 +156,7 @@
             ">
             Submit
           </button>
-          <div id="MlResult" class="btn btn-outline-secondary"
+          <div id="MlResult" class="btn btn-outline-secondary" v-if="this.check_if_marker_pressed == true"
             style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
             Your predicted travel time is: <strong>{{ Number(this.durationResult).toFixed(2) }} minutes</strong>
           </div>
@@ -169,7 +170,8 @@
         <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px"
           ref="mapTheme">
           <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
-            <button type="button" @click="hideAllMarkers()" class="btn btn-outline-info" style="color: #1dc1ec">
+            <button type="button" id="hideMarkers" @click="hideAllMarkers()" class="btn btn-outline-info"
+              style="color: #1dc1ec">
               Hide/Show Markers
             </button>
 
@@ -260,7 +262,7 @@ let loadedDirections = false;
 
 
 
-const submitPredict = () => {
+const submitPredict = (routeId) => {
   // preprocess weather data
   $.ajax({
     url: "https://api.openweathermap.org/data/2.5/onecall?lat=53.344&lon=-6.2672&units=metric&exclude=minutely,daily&appid=d6e328f404504a98d4be6d3942d42e9e",
@@ -268,7 +270,6 @@ const submitPredict = () => {
     async: false,
     success(resp) {
       //console.log(resp);
-      routeId.value = '39a';
       month.value = pickdate.value.toString().substring(4, 7);
       dayOfWeek.value = pickdate.value.toString().substring(0, 3);
       hour.value = pickdate.value.toString().substring(16, 18);
@@ -279,7 +280,7 @@ const submitPredict = () => {
         type: "GET",
         async: false,
         data: {
-          routeId: routeId.value,
+          routeId: routeId,
           direction: direction.value,
           month: month.value,
           dayOfWeek: dayOfWeek.value,
@@ -315,6 +316,7 @@ export default {
 
   data() {
     return {
+      check_if_marker_pressed: false,
       pickdate,
       address: "",
       addresstwo: "",
@@ -400,15 +402,25 @@ export default {
   mounted() {
     this.setLocationLatLng();
     this.getDirection();
+    this.hideMarkers_onload();
 
     this.$refs.mapTheme.$mapPromise.then((mapObject) => {
       console.log("map is loaded now", mapObject);
     });
 
+
+
   },
   methods: {
     setPlace(place) {
       this.currentPlace = place;
+    },
+
+    hideMarkers_onload() {
+      for (let i = 0; i < this.Hellodata.length; i++) {
+        this.Hellodata[i]["visibility"] = false;
+      }
+
     },
 
     showDiv() {
@@ -442,6 +454,8 @@ export default {
     },
 
     addMarkerEnd() {
+      this.check_if_marker_pressed = true;
+
       console.log("add maker");
       this.destination = {
         lat: this.currentPlace.geometry.location.lat(),
@@ -452,12 +466,12 @@ export default {
     hideAllMarkers() {
       if (clicked) {
         for (let i = 0; i < this.Hellodata.length; i++) {
-          this.Hellodata[i]["visibility"] = false;
+          this.Hellodata[i]["visibility"] = true;
         }
         clicked = false;
       } else {
         for (let i = 0; i < this.Hellodata.length; i++) {
-          this.Hellodata[i]["visibility"] = true;
+          this.Hellodata[i]["visibility"] = false;
         }
         clicked = true;
       }
@@ -529,17 +543,20 @@ export default {
               dy.value = (end_location.value.lat() - start_location.value.lat()) * 100;
               dx.value = (end_location.value.lng() - start_location.value.lng()) * 100;
               if (dy.value > 0 || dx.value > 0)
-                direction.value = '1';
+                direction.value = '2';
               else if (dy.value < 0 || dx.value < 0)
-                direction.value = '0';
+                direction.value = '1';
               //console.log("x", dx.value);
               //console.log("y", dy.value);
               //console.log(direction.value);
               duration.value = response.routes[0].legs[0].duration.value;
-              submitPredict();
-              console.log("duration difference", diff.value);
-              duration.value += diff.value;
-              console.log("duration: ", duration.value);
+              for (var i = 0; i < self.routIdArray.length; i++) {
+                console.log("i: ", i);
+                submitPredict(self.routIdArray[i]);
+                console.log("duration difference", diff.value);
+                duration.value += diff.value;
+                console.log("duration: ", duration.value);
+              }
 
 
               durationDuration = duration.value / 60;

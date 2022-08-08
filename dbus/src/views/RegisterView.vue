@@ -15,7 +15,7 @@
                     <input v-model="password_confirm" type="password" class="form-control" id="password_confirm">
                 </div>
                 <div class="error-message">{{ error_message }}</div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <button id="sigupBtn" type="submit" class="btn btn-primary">Sign Up</button>
             </form>
         </div>
     </ContentBase>
