@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <ContentBase> UserLocation </ContentBase>
 </template>
 
@@ -14,4 +14,4 @@ export default {
 </script>
 
 <style scoped>
-</style>
+</style> -->

@@ -127,9 +127,6 @@
 <script>
 import ContentBase from '../components/ContentBase.vue'
 import busRoutesJson from "../assets/json/route.json";
-
-
-// import VueGoogleAutocomplete from "vue-google-autocomplete"
 import { ref } from 'vue';
 import $ from 'jquery';
 

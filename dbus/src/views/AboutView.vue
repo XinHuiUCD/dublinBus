@@ -2,9 +2,6 @@
 	<ContentBase>
 		<div class="common-layout">
 			<el-container>
-				<!-- <el-header>
-					<h1 style="color: #1dc1ec">About Us</h1>
-				</el-header> -->
 				<el-container>
 					<el-aside width="30%">
 						<h3 style="color: #1dc1ec;margin-top: 9%;">Rating for us!</h3>
@@ -101,7 +98,7 @@ export default {
 				{ url: require("../assets/photo1.png") },
 				{ url: require("../assets/photo2.png") },
 				{ url: require("../assets/photo3.png") },
-				// { url: require("../assets/photo1.png")},
+				// { url: require("../assets/photo4	.png")},
 			]
 		}
 	}

@@ -501,7 +501,6 @@ export default {
               // eslint-disable-next-line
               modes: [google.maps.TransitMode.BUS],
             },
-            provideRouteAlternatives: true,
           },
           (response, status) => {
             if (status === "OK") {

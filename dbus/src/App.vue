@@ -82,10 +82,6 @@
 		filter: var(--filter-invert);
 	}
 
-	/* .el-step {
-		background-color: var(--background-color-secondary);
-		color: var(--text-primary-color);
-	} */
 	.pac-target-input{
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);	
@@ -108,9 +104,7 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
-	/* #realTimeTable{
-		filter: var(--filter-invert);
-	} */
+
 	#myForm{
 		filter: var(--filter-invert);
 	}
