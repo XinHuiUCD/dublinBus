@@ -135,19 +135,17 @@
           </div>
 
 
-          <button class="btn btn-outline-secondary" id='resetButton' type="submit" style="
+          <el-button class="btn btn-outline-secondary" id='resetButton' type="submit" style="
               margin-top: 10px;
               margin-left: 20px;
               width: 60px;
               height: 60px;
             " @click="resetSearch()">
             Reset
-          </button>
+          </el-button>
 
           <!-- submit -->
-
-
-          <button :plain="true" class="btn btn-outline-secondary" type="submit" id='submitButton'
+          <el-button :plain="true" class="btn btn-outline-secondary" type="submit" id='submitButton'
             @click="errorAlert(); getDirection(); showDiv(); showFareButton(); fareCalculation();  " style="
               margin-top: 10px;
               margin-left: 20px;
@@ -156,26 +154,36 @@
               background-color: chartreuse;
             ">
             Submit
-          </button>
+          </el-button>
 
-          <div id="MlResult" class="btn btn-outline-secondary" v-if="this.check_if_marker_pressed == true"
-            style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
-            Your predicted travel time is: <strong>{{ Number(this.durationResult).toFixed(2) }} minutes</strong>
+          <!-- ml result -->
+          <div id="MlResult" v-if="this.check_if_marker_pressed == true"
+            style=" margin-left: 20px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
+            Predicted travel time is: <strong>{{ Number(this.durationResult).toFixed(2) }} minutes</strong>
+          </div>
+
+          <!-- text direction -->
+          <div class="sidebar-collapse">
+            <el-collapse v-model="activeName" accordion>
+              <el-collapse-item title="Text Direction" name="1">
+                <div id="sidebar"></div>
+              </el-collapse-item>
+            </el-collapse>
           </div>
         </div>
       </div>
     </div>
 
     <div id="container">
-      <div id="sidebar"></div>
+
       <div class="button" id="map" style="align-items: center; margin-top: 1%;">
         <GMapMap :center="center" :zoom="15" :options="options" map-type-id="terrain" style="width: 100%; height: 700px"
           ref="mapTheme">
           <div style="padding-top: 10px; margin-left: auto; margin-right: auto;">
-            <button type="button" id="hideMarkers" @click="hideAllMarkers()" class="btn btn-outline-info"
+            <el-button type="button" id="hideMarkers" @click="hideAllMarkers()" class="btn btn-outline-info"
               style="color: #1dc1ec">
               Hide/Show Markers
-            </button>
+            </el-button>
 
           </div>
           <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
@@ -237,7 +245,7 @@ import $ from 'jquery';
 import { variableDeclarator } from "@babel/types";
 import { ElMessage } from 'element-plus';
 
-
+const activeName = ref('1')
 const pickdate = ref("");
 const submit = ref("");
 
@@ -326,6 +334,7 @@ export default {
       address: "",
       addresstwo: "",
       submit,
+      activeName,
       distanceJourney: "",
       zone: null,
       routIdArray: [],
@@ -679,7 +688,7 @@ export default {
   display: flex;
 }
 
-#sidebar {
+/* #sidebar {
   flex-basis: 15rem;
   flex-grow: 1;
   padding: 1rem;
@@ -687,7 +696,7 @@ export default {
   height: 100%;
   box-sizing: border-box;
   overflow: auto;
-}
+} */
 
 #map {
   flex-basis: 0;
@@ -699,14 +708,14 @@ export default {
   flex: auto;
 }
 
-#sidebar {
+/* #sidebar {
   flex: 0 1 auto;
   padding: 0;
 }
 
 #sidebar>div {
   padding: 0.5rem;
-}
+} */
 
 
 #realTimeTable tr:nth-child(even) {
@@ -814,5 +823,4 @@ h4,
   opacity: 1;
   cursor: pointer;
 }
-
 </style>

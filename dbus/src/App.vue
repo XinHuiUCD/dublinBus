@@ -57,6 +57,7 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
+
 	.el-autocomplete * {
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
@@ -66,6 +67,10 @@
 		color: var(--text-primary-color);
 	}
 	.el-date-picker {
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
+	.el-button {
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
@@ -89,9 +94,7 @@
 	.btn{
 		color: var(--text-primary-color);
 	}
-	#sidebar{
-		filter: var(--filter-invert);
-	}
+
 	#browser{
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
@@ -116,6 +119,10 @@
 		color: var(--text-primary-color);	
 	}
 	#register{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
+	#MlResult{
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);	
 	}
