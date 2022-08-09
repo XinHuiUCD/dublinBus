@@ -24,10 +24,6 @@
 							</div>
 							<div><p><span style="color: gray;">Description:</span> {{ result.list[0].weather[0].description }}</p></div>
 						</div>
-
-
-
-
 					</div>
 				</el-collapse-item>
 				<el-collapse-item title="&nbsp; Tomorrow's Weather " name="2">
@@ -36,20 +32,18 @@
 
 
 						<div v-if="result">
-							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[10].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
+							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[8].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
 							<div>
-								<p><span style="color: gray;">Temp:</span>  {{ (result.list[10].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
+								<p><span style="color: gray;">Temp:</span>  {{ (result.list[8].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
 
 							</div>
 							<div>
 								<p><span style="color: gray;">Feels Like:</span> 
-									{{ (result.list[10].main.feels_like - 273.15).toFixed(2) }}°<span>C</span>
+									{{ (result.list[8].main.feels_like - 273.15).toFixed(2) }}°<span>C</span>
 								</p>
 							</div>
-							<div><p><span style="color: gray;">Description:</span> {{ result.list[10].weather[0].description }}</p></div>
+							<div><p><span style="color: gray;">Description:</span> {{ result.list[8].weather[0].description }}</p></div>
 						</div>
-
-
 
 
 					</div>
