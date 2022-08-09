@@ -146,6 +146,7 @@
 
           <!-- submit -->
 
+
           <button :plain="true" class="btn btn-outline-secondary" type="submit" id='submitButton'
             @click="errorAlert(); getDirection(); showDiv(); showFareButton(); fareCalculation();  " style="
               margin-top: 10px;
@@ -419,13 +420,7 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-    // errorAlert() {
-    //   console.log("error alert")
-    //   if (this.check_if_marker_pressed == false) {
-    //     confirm("Make Sure to enter an address and click the marker icon");
 
-    //   }
-    // },
     errorAlert() {
       console.log("error alert")
       if (this.check_if_marker_pressed == false) {
@@ -435,7 +430,6 @@ export default {
         })
 
       }
-
     },
 
     hideMarkers_onload() {
