@@ -176,7 +176,7 @@
             </button>
 
           </div>
-          <GMapMarker v-for="marker in Hellodata" :key="marker.stop_id"
+          <GMapMarker v-for="marker in All_stops" :key="marker.stop_id"
             :position="{ lat: marker.stop_lat, lng: marker.stop_lon }" :visible="marker.visibility"
             :title="marker.stop_name" :clickable="true" :icon='{
               url: "https://img.icons8.com/fluency/48/000000/bus.png",
@@ -349,7 +349,7 @@ export default {
         lng: null,
       },
       currentLocation: null,
-      Hellodata: markerLocations,
+      All_stops: markerLocations,
       openedMarkerID: null,
       infoWindow: {
         position: {
@@ -418,14 +418,14 @@ export default {
     errorAlert() {
       console.log("error alert")
       if(this.check_if_marker_pressed == false){
-          confirm("Make Sure to enter an address and click the marker icon");
+          confirm("Make sure to enter an address and click the marker icon");
 
       }
     },
 
     hideMarkers_onload() {
-      for (let i = 0; i < this.Hellodata.length; i++) {
-        this.Hellodata[i]["visibility"] = false;
+      for (let i = 0; i < this.All_stops.length; i++) {
+        this.All_stops[i]["visibility"] = false;
       }
 
     },
@@ -472,13 +472,13 @@ export default {
 
     hideAllMarkers() {
       if (clicked) {
-        for (let i = 0; i < this.Hellodata.length; i++) {
-          this.Hellodata[i]["visibility"] = true;
+        for (let i = 0; i < this.All_stops.length; i++) {
+          this.All_stops[i]["visibility"] = true;
         }
         clicked = false;
       } else {
-        for (let i = 0; i < this.Hellodata.length; i++) {
-          this.Hellodata[i]["visibility"] = false;
+        for (let i = 0; i < this.All_stops.length; i++) {
+          this.All_stops[i]["visibility"] = false;
         }
         clicked = true;
       }

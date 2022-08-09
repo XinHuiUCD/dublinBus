@@ -57,21 +57,37 @@
 				<el-collapse-item title="&nbsp; Future Weather" name="3">
 					<div
 						style="font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
-						<div v-if="result">
-							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[20].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
+						<div v-if="result" style="display: inline-block;">
+							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[16].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
 							<div>
-								<p><span style="color: gray;">Date: </span>{{ result.list[20].dt_txt }}</p>
+								<p><span style="color: gray;">Date: </span>{{ (result.list[16].dt_txt).slice(0,10) }}</p>
 							</div>
 							<div>
-								<p><span style="color: gray;">Temp:</span>  {{ (result.list[20].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
+								<p><span style="color: gray;">Temp:</span>  {{ (result.list[16].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
 
 							</div>
 							<div>
 								<p><span style="color: gray;">Feels Like:</span> 
-									{{ (result.list[20].main.feels_like - 273.15).toFixed(2) }}°<span>C</span>
+									{{ (result.list[16].main.feels_like - 273.15).toFixed(2) }}°<span>C</span>
 								</p>
 							</div>
-							<div><p><span style="color: gray;">Description: </span> {{ result.list[20].weather[0].description }}</p></div>
+							<div><p><span style="color: gray;">Description: </span> {{ result.list[16].weather[0].description }}</p></div>
+						</div>
+						<div v-if="result" style="display: inline-block;">
+							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[16].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
+							<div>
+								<p><span style="color: gray;">Date: </span>{{ (result.list[16].dt_txt).slice(0,10) }}</p>
+							</div>
+							<div>
+								<p><span style="color: gray;">Temp:</span>  {{ (result.list[16].main.temp - 273.15).toFixed(2) }}°<span>C</span></p>
+
+							</div>
+							<div>
+								<p><span style="color: gray;">Feels Like:</span> 
+									{{ (result.list[16].main.feels_like - 273.15).toFixed(2) }}°<span>C</span>
+								</p>
+							</div>
+							<div><p><span style="color: gray;">Description: </span> {{ result.list[16].weather[0].description }}</p></div>
 						</div>
 					</div>
 				</el-collapse-item>
@@ -84,7 +100,6 @@
 /* eslint-disable */
 
 
-import axios from 'axios'
 
 import {
 	result
@@ -128,11 +143,7 @@ export default ({
 				.then(data => result.value = data)
 				.then((result) => {
 					console.log("lfg", result)
-					// result.main
-					// weather = result.main.temp;
-
-					// console.log("helllooooo", result.weather[0].description)
-					// console.log("icon init", result.weather[0].icon);
+					
 				})
 
 
