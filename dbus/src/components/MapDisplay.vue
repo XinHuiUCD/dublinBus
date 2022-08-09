@@ -146,7 +146,7 @@
 
           <!-- submit -->
           <el-button :plain="true" class="btn btn-outline-secondary" type="submit" id='submitButton'
-            @click="errorAlert(); getDirection(); showDiv(); showFareButton(); fareCalculation();  " style="
+            @click="errorAlert(); showDiv(); getDirection();  showFareButton(); fareCalculation();  " style="
               margin-top: 10px;
               margin-left: 20px;
               width: 70px;
@@ -163,9 +163,9 @@
           </div>
 
           <!-- text direction -->
-          <div class="sidebar-collapse">
+          <div class="sidebar-collapse" id="sidebarTextdirections" style="display:none;">
             <el-collapse v-model="activeName" accordion>
-              <el-collapse-item title="Text Direction" name="1">
+              <el-collapse-item title="Show/Hide Text Directions" name="1">
                 <div id="sidebar"></div>
               </el-collapse-item>
             </el-collapse>
@@ -450,6 +450,7 @@ export default {
 
     showDiv() {
       console.log("show ddiv", durationDuration);
+      document.getElementById('sidebarTextdirections').style.display = "inline";
 
       document.getElementById('MlResult').style.display = "inline";
     },
@@ -627,6 +628,8 @@ export default {
       document.getElementById('MlResult').style.display = "none";
       document.getElementById('fareButton').style.display = "none";
       document.getElementById("myForm").style.display = "none";
+      document.getElementById('sidebarTextdirections').style.display = "none";
+
 
     },
 

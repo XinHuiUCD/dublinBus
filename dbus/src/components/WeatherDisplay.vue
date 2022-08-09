@@ -49,8 +49,7 @@
 					</div>
 				</el-collapse-item>
 				<el-collapse-item title="&nbsp; Future Weather" name="3">
-					<div
-						style="font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
+					<div style="font-size: 16px; text-align:center;box-shadow: 3px 3px 3px;   border-radius: 5px;border:1px solid #999999; color:#6f6f6f; ">
 						<div v-if="result" style="display: inline-block; padding-right: 5px; border: 1px solid black; border-radius: 5px;">
 							<img v-bind:src="'http://openweathermap.org/img/w/' + result.list[16].weather[0].icon + '.png'" style="width: 80px; height: 80px;">
 							<div>
