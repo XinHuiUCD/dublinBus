@@ -5,13 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-<<<<<<< HEAD
     "lint": "vue-cli-service lint",
-    "buildDev": "vue-cli-service build --mode production"
-=======
+    "buildDev": "vue-cli-service build --mode production",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
->>>>>>> 738428b2c97595d4dc841919741d4d62d519a4ac
+
   },
   "jest": {
     "moduleFileExtensions": [
