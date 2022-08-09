@@ -109,15 +109,6 @@
 /* eslint-disable */
 
 
-
-import {
-	result
-} from 'lodash';
-import {
-	defineComponent
-} from 'vue'
-
-
 import {
 	ref
 } from 'vue'
@@ -151,7 +142,6 @@ export default ({
 				.then(response => response.json())
 				.then(data => result.value = data)
 				.then((result) => {
-					console.log("lfg", result)
 					
 				})
 

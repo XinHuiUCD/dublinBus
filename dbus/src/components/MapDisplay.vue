@@ -450,7 +450,11 @@ export default {
 
     showDiv() {
       console.log("show ddiv", durationDuration);
-      document.getElementById('sidebarTextdirections').style.display = "inline";
+      if(this.check_if_marker_pressed == true){
+        document.getElementById('sidebarTextdirections').style.display = "inline";
+
+
+      }
 
       document.getElementById('MlResult').style.display = "inline";
     },
