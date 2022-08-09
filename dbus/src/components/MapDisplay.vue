@@ -431,7 +431,7 @@ export default {
       if (this.check_if_marker_pressed == false) {
         ElMessage({
           message: 'Make Sure to enter an address and click the marker icon',
-          type: 'warning',
+          type: 'error',
         })
 
       }
