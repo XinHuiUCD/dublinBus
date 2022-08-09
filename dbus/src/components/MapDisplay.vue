@@ -57,7 +57,7 @@
 
 
           <!-- fare calculator -->
-          <button @click="fareCalculation(); showFareInfo();" class="btn btn-outline-secondary" id="fareButton"
+          <el-button @click="fareCalculation(); showFareInfo();" class="btn btn-outline-secondary" id="fareButton"
             type="submit" style="
               margin-top: 10px;
               margin-left: 20px;
@@ -66,7 +66,7 @@
               display:none;
             ">
             €️<br />Fare
-          </button>
+          </el-button>
           <div class="form-popup" id="myForm">
             <div class="form-container">
               <h2>Fare Estimation</h2>
@@ -146,7 +146,8 @@
 
           <!-- submit -->
 
-          <button class="btn btn-outline-secondary" type="submit" id='submitButton'
+
+          <button :plain="true" class="btn btn-outline-secondary" type="submit" id='submitButton'
             @click="errorAlert(); getDirection(); showDiv(); showFareButton(); fareCalculation();  " style="
               margin-top: 10px;
               margin-left: 20px;
@@ -156,6 +157,7 @@
             ">
             Submit
           </button>
+
           <div id="MlResult" class="btn btn-outline-secondary" v-if="this.check_if_marker_pressed == true"
             style=" margin-left: 200px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
             Your predicted travel time is: <strong>{{ Number(this.durationResult).toFixed(2) }} minutes</strong>
@@ -233,6 +235,8 @@ import { ref } from "vue";
 import $ from 'jquery';
 // eslint-disable-next-line
 import { variableDeclarator } from "@babel/types";
+import { ElMessage } from 'element-plus';
+
 
 const pickdate = ref("");
 const submit = ref("");
@@ -312,6 +316,7 @@ export default {
     diff,
     duration,
     submitPredict,
+
   },
 
   data() {
@@ -415,10 +420,14 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
+
     errorAlert() {
       console.log("error alert")
-      if(this.check_if_marker_pressed == false){
-          confirm("Make sure to enter an address and click the marker icon");
+      if (this.check_if_marker_pressed == false) {
+        ElMessage({
+          message: 'Make Sure to enter an address and click the marker icon',
+          type: 'error',
+        })
 
       }
     },
@@ -805,4 +814,5 @@ h4,
   opacity: 1;
   cursor: pointer;
 }
+
 </style>
