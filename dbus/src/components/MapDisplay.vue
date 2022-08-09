@@ -147,7 +147,7 @@
           <!-- submit -->
 
           <button class="btn btn-outline-secondary" type="submit" id='submitButton'
-            @click="getDirection(); showDiv(); showFareButton(); fareCalculation(); " style="
+            @click="errorAlert(); getDirection(); showDiv(); showFareButton(); fareCalculation();  " style="
               margin-top: 10px;
               margin-left: 20px;
               width: 70px;
@@ -414,6 +414,13 @@ export default {
   methods: {
     setPlace(place) {
       this.currentPlace = place;
+    },
+    errorAlert() {
+      console.log("error alert")
+      if(this.check_if_marker_pressed == false){
+          confirm("Make Sure to enter an address and click the marker icon");
+
+      }
     },
 
     hideMarkers_onload() {
