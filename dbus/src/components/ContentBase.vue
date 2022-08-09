@@ -7,20 +7,13 @@
                 </div>
             </div>
         </div>
-		<footer style="text-align: center;margin-top: 10px;color: #1dc1ec">
-			© 2022: XpressBusEgineering- Team 10
-		</footer>
+        <footer style="text-align: center;margin-top: 10px;color: #1dc1ec">
+            © 2022: XpressBusEgineering- Team 10
+        </footer>
     </div>
 </template>
 
 <script lang="ts">
-
-export default {
-    name: "ContentBase",
-    components: {
-    }
-}
-
 </script>
 
 <style scoped>

@@ -57,9 +57,11 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
-	/* .el-input {
+
+	.el-autocomplete * {
 		background-color: var(--background-color-secondary);
-	} */
+		color: var(--text-primary-color);
+	}
 	.form-control {
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
@@ -68,16 +70,60 @@
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
 	}
+	.el-button {
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
 
-	#twitter {
-		filter: var(--filter-grayscale);
+	.el-input {
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
+
+	.twitter-timeline {
+		filter: var(--filter-invert);
 	}
 	#map {
 		filter: var(--filter-invert);
 	}
 
-	/* .el-step {
+	.pac-target-input{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
+	.btn{
+		color: var(--text-primary-color);
+	}
+
+	#browser{
 		background-color: var(--background-color-secondary);
 		color: var(--text-primary-color);
-	} */
+	}
+	#browsers{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
+	#addFavourite{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);
+	}
+
+	#myForm{
+		filter: var(--filter-invert);
+	}
+	#el-button{
+		filter: var(--filter-invert);
+	}
+	#login{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
+	#register{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
+	#MlResult{
+		background-color: var(--background-color-secondary);
+		color: var(--text-primary-color);	
+	}
 </style>
