@@ -6,7 +6,6 @@ import RegisterView from '../views/RegisterView.vue'
 import TwitterView from '../views/TwitterView.vue'
 import WeatherView from '../views/WeatherView.vue'
 import NotFoundView from '../views/NotFoundView.vue'
-import UserLocationView from '../views/UserLocationView.vue'
 import RouteStopInfoView from '../views/RouteStopInfoView.vue'
 
 const routes: Array<RouteRecordRaw> = [
@@ -35,16 +34,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'weather',
     component: WeatherView
   },
-  // {
-  //   path: '/route/',
-  //   name: 'route',
-  //   component: BusRouteView
-  // },
-  {
-    path: '/UserLocation/',
-    name: 'UserLocation',
-    component: UserLocationView
-  },
+  
   {
     path: '/register/',
     name: 'register',
