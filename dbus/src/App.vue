@@ -59,6 +59,11 @@ p {
 	color: var(--text-primary-color);
 }
 
+#texts {
+	color: var(--text-primary-color);
+}
+
+
 .el-autocomplete * {
 	background-color: var(--background-color-secondary);
 	color: var(--text-primary-color);
@@ -70,7 +75,7 @@ p {
 }
 
 .el-date-picker,
-.el-input__inner {
+.el-input__wrapper{
 	background-color: var(--background-color-secondary);
 	color: var(--text-primary-color);
 }

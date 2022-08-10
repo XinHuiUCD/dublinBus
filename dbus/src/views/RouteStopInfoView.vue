@@ -23,7 +23,7 @@
 
                 <div class="grid text-center" id="function">
                     <div class="g-col-6">
-                        <label type="danger" plain disabled
+                        <label type="danger" plain disabled id="texts"
                             style="padding-right:5px; font-weight: bolder; font-size: large; margin-bottom: 2%;">Choose
                             a
                             route to display on the map<br />Click the stop to view
