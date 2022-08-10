@@ -56,6 +56,7 @@
 			},
 		},
 	};
+	// code ref: https://dev.to/tqbit/create-your-own-dark-mode-toggle-component-with-vue-js-1284
 </script>
 
 <style scoped>
