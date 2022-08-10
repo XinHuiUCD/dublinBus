@@ -1,7 +1,6 @@
 <template>
     <ContentBase>
-        <div class="row justify-content-md-center">
-
+        <div class="row justify-content-md-center" id="login">
                 <form @submit.prevent="login">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
@@ -11,10 +10,9 @@
                         <label for="password" class="form-label">Password</label>
                         <input v-model="password" type="password" class="form-control" id="password">
                     </div>
-                    <div class="error-message">{{ error_message }}</div>
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <div id="errorMsg" class="error-message">{{ error_message }}</div>
+                    <button name="login_Button" id="loginBtn" type="submit" class="btn btn-primary">Log in</button>
                 </form>
-
         </div>
     </ContentBase>
 </template>

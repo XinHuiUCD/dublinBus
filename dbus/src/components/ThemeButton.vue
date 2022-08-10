@@ -32,8 +32,6 @@
 				} else {
 					this.setTheme("light-theme");
 				}
-				this.changeMap();
-				this.$emit('toggleTheme', this.userTheme.toLowerCase());
 			},
 
 			getTheme() {
