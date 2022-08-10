@@ -695,15 +695,7 @@ export default {
   display: flex;
 }
 
-/* #sidebar {
-  flex-basis: 15rem;
-  flex-grow: 1;
-  padding: 1rem;
-  max-width: 30rem;
-  height: 100%;
-  box-sizing: border-box;
-  overflow: auto;
-} */
+
 
 #map {
   flex-basis: 0;
@@ -714,15 +706,6 @@ export default {
 #map {
   flex: auto;
 }
-
-/* #sidebar {
-  flex: 0 1 auto;
-  padding: 0;
-}
-
-#sidebar>div {
-  padding: 0.5rem;
-} */
 
 
 #realTimeTable tr:nth-child(even) {
