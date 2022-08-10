@@ -273,7 +273,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 [Gus Boothman - Front-end](https://github.com/Gus1616)
 <br/>
-[Will O’Donohoe - Data Analytic]()
+[Will O’Donohoe - Data Analytic](https://github.com/21chubaka)
 <br/>
 [Cheng Zhang - Front-end](https://github.com/20211342)
 <br/>
