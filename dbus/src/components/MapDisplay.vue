@@ -155,11 +155,11 @@
             ">
             Submit
           </el-button>
-
+          <el-divider border-style="dashed"/>
           <!-- ml result -->
           <div id="MlResult" v-if="this.check_if_marker_pressed == true"
             style=" margin-left: 20px; margin-top: 10px; width: 160px; height: 60px; display:none; box-shadow: 3px 3px 3px lightblue;">
-            Predicted travel time is: <strong>{{ Number(this.durationResult).toFixed(2) }} minutes</strong>
+            Our predicted travel time is: <strong>{{ Number(this.durationResult).toFixed(2) }} minutes</strong>
           </div>
 
           <!-- text direction -->
@@ -813,4 +813,7 @@ h4,
   opacity: 1;
   cursor: pointer;
 }
+
+
+
 </style>
