@@ -31,7 +31,7 @@
 <h3 align="center">Team 10</h3>
 
   <p align="center">
-    Dublin Bus Artificial Incoherance
+    Dublin Bus
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
