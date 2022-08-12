@@ -91,6 +91,7 @@
     <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Journey_Planner.gif" alt="Journey_Planner">
   </a>
 </div>
+  <h3>Make sure to click the marker icon after entering your address!<h3>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -163,7 +164,7 @@ This is an example of how to list things you need to use the software and how to
 ### Journey-Planner
 <div>
   <p>Enter the destination you want to go to, click the Submit button, and our app will show you the time predicted by our model, the different bus routes, and the fare required.</p>
-  <h2>Make sure to click the marker icon after entering your address!<h2>
+  <h3>Make sure to click the marker icon after entering your address!<h3>
   <a href="https://github.com/XinHuiUCD/dublinBus">
     <img src="https://github.com/XinHuiUCD/dublinBus/blob/main/README_imgs/Journey_Planner.png">
   </a>
